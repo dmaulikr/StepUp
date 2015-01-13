@@ -88,7 +88,7 @@ static const NSString *EKOPlayerItemDurationContext;
     
     self.playerItem = [AVPlayerItem playerItemWithAsset:self.asset];
     self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
-    
+
     [self.playerItem addObserver:self
                       forKeyPath:@"status"
                          options:0

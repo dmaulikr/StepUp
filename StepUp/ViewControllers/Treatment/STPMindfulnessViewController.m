@@ -56,6 +56,10 @@
     [super setup];
     [self.navigationItem.rightBarButtonItem setTarget:self];
     [self.navigationItem.rightBarButtonItem setAction:@selector(saveButtonTouched:)];
+    
+    //Make sure the system follows our playback status
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive: YES error: nil];
 }
 
 #pragma mark - save button tapped

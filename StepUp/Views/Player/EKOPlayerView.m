@@ -9,6 +9,7 @@
 #import "EKOPlayerView.h"
 #import "EKOPlayerViewOutlets.h"
 #import "EKOPlayer.h"
+#import "Theme.h"
 
 @interface EKOPlayerView () <EKOBasePlayerDelegate>
 @property (nonatomic, strong) EKOPlayerViewOutlets *rootView;
@@ -59,6 +60,7 @@
 - (void)setupUIElements
 {
     [self resetPlayerElements];
+    [self.rootView.progressView setTintColor:[UIColor actionGreenColor]];
 }
 
 #pragma mark - set player item and start playing
