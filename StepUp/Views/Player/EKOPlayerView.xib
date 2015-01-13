@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+            <string>Roboto-Light</string>
+        </mutableArray>
+        <mutableArray key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EKOPlayerViewOutlets">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="111"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AmB-ME-Cc0" customClass="STPTreatmentButton">
+                    <rect key="frame" x="20" y="54" width="46" height="30"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4r-ao-g8C">
+                    <rect key="frame" x="20" y="35" width="34" height="19"/>
+                    <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DDg-Z2-dmX">
+                    <rect key="frame" x="20" y="92" width="280" height="2"/>
+                </progressView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YD-qa-gOd">
+                    <rect key="frame" x="266" y="35" width="34" height="19"/>
+                    <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBp-AN-o7H">
+                    <rect key="frame" x="20" y="7" width="280" height="20"/>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="z4r-ao-g8C" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="0hM-2v-x0h"/>
+                <constraint firstItem="3YD-qa-gOd" firstAttribute="top" secondItem="UBp-AN-o7H" secondAttribute="bottom" constant="8" id="0jh-mD-3YP"/>
+                <constraint firstItem="DDg-Z2-dmX" firstAttribute="top" secondItem="AmB-ME-Cc0" secondAttribute="bottom" constant="8" id="2jX-4z-3sy"/>
+                <constraint firstItem="z4r-ao-g8C" firstAttribute="top" secondItem="UBp-AN-o7H" secondAttribute="bottom" constant="8" id="4Dk-aC-Mre"/>
+                <constraint firstAttribute="trailing" secondItem="DDg-Z2-dmX" secondAttribute="trailing" constant="20" id="I6e-uy-jTI"/>
+                <constraint firstAttribute="trailing" secondItem="3YD-qa-gOd" secondAttribute="trailing" constant="20" id="ISa-Yo-rQU"/>
+                <constraint firstItem="AmB-ME-Cc0" firstAttribute="top" secondItem="z4r-ao-g8C" secondAttribute="bottom" id="L49-y0-gpq"/>
+                <constraint firstAttribute="bottom" secondItem="DDg-Z2-dmX" secondAttribute="bottom" constant="17" id="V51-t8-7MF"/>
+                <constraint firstItem="UBp-AN-o7H" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="XQc-LU-71y"/>
+                <constraint firstAttribute="trailing" secondItem="UBp-AN-o7H" secondAttribute="trailing" constant="20" id="dgm-r3-5Fb"/>
+                <constraint firstItem="DDg-Z2-dmX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="eSh-Zb-W0f"/>
+                <constraint firstItem="UBp-AN-o7H" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="lCa-66-bSW"/>
+                <constraint firstItem="AmB-ME-Cc0" firstAttribute="top" secondItem="z4r-ao-g8C" secondAttribute="bottom" id="mcx-gZ-yJb"/>
+                <constraint firstItem="AmB-ME-Cc0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="vPr-eB-NER"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="currentPlayTime" destination="z4r-ao-g8C" id="Dh7-2Z-UoO"/>
+                <outlet property="itemTitle" destination="UBp-AN-o7H" id="pLW-i2-LVT"/>
+                <outlet property="playButton" destination="AmB-ME-Cc0" id="qzH-Fq-1PW"/>
+                <outlet property="progressView" destination="DDg-Z2-dmX" id="oKq-r4-usa"/>
+                <outlet property="totalPlayTime" destination="3YD-qa-gOd" id="h3f-G5-D0F"/>
+            </connections>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
