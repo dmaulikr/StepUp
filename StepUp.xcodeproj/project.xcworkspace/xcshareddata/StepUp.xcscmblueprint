@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "04CF61C201A3BE897570ABCFF2DE56518F973B93",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "04CF61C201A3BE897570ABCFF2DE56518F973B93" : 9223372036854775807,
+    "2A1CBA6F9493D8564E1FDFA82B79A6D55590435E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "69BAF7B7-3394-4252-9164-77B8DC57E000",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "04CF61C201A3BE897570ABCFF2DE56518F973B93" : "StepUp\/",
+    "2A1CBA6F9493D8564E1FDFA82B79A6D55590435E" : "StepUp\/Packages\/FileKit-1.0.0\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "StepUp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "StepUp.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/eelcokoelewijn\/StepUp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "04CF61C201A3BE897570ABCFF2DE56518F973B93"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/eelcokoelewijn\/FileKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2A1CBA6F9493D8564E1FDFA82B79A6D55590435E"
+    }
+  ]
+}

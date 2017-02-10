@@ -1,0 +1,8 @@
+-rw-r--r-- 1 ftp ftp             28 Jun 14  2016 index.php
+drwxr-xr-x 1 ftp ftp              0 Jun 14  2016 languages
+drwxr-xr-x 1 ftp ftp              0 Jan 29 13:09 plugins
+drwxr-xr-x 1 ftp ftp              0 Jan 29 13:09 themes
+drwxr-xr-x 1 ftp ftp              0 Jan 29 13:09 upgrade
+drwxr-xr-x 1 ftp ftp              0 Jan 01 00:00 uploads
+drwxr-xr-x 1 ftp ftp              0 Jul 28  2016 wppa-depot
+-rw-r--r-- 1 ftp ftp          43676 Jul 28  2016 wppa-log.txt
