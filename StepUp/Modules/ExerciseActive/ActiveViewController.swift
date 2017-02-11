@@ -1,6 +1,17 @@
 import UIKit
 
 class ActiveViewController: UIViewController {
+    
+    private lazy var intensityLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textColor = .buttonDisabled
+        l.font = UIFont.regular(withSize: 14)
+        l.textAlignment = .left
+        l.text = "Intensiteit"
+        return l
+    }()
+    
     private lazy var intensity: UISegmentedControl = {
         let s = UISegmentedControl(items: ["Licht", "Matig", "Zwaar"])
         s.translatesAutoresizingMaskIntoConstraints = false
@@ -8,11 +19,32 @@ class ActiveViewController: UIViewController {
         return s
     }()
     
+    
+    private lazy var trainingLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textColor = .buttonDisabled
+        l.font = UIFont.regular(withSize: 14)
+        l.textAlignment = .left
+        l.text = "De training ging"
+        return l
+    }()
+    
     private lazy var training: UISegmentedControl = {
         let s = UISegmentedControl(items: ["Slecht", "Gemiddeld", "Super"])
         s.translatesAutoresizingMaskIntoConstraints = false
         s.tintColor = .baseGreen
         return s
+    }()
+    
+    private lazy var funLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textColor = .buttonDisabled
+        l.font = UIFont.regular(withSize: 14)
+        l.textAlignment = .left
+        l.text = "Plezier"
+        return l
     }()
     
     private lazy var fun: UISegmentedControl = {
@@ -46,8 +78,11 @@ class ActiveViewController: UIViewController {
     
     private func setup() {
         view.addSubview(titleLabel)
+        view.addSubview(intensityLabel)
         view.addSubview(intensity)
+        view.addSubview(trainingLabel)
         view.addSubview(training)
+        view.addSubview(funLabel)
         view.addSubview(fun)
     }
     
@@ -56,7 +91,10 @@ class ActiveViewController: UIViewController {
         let views: [String : Any] = ["intensity": intensity,
                      "training": training,
                      "fun": fun,
-                     "titleLabel": titleLabel]
+                     "titleLabel": titleLabel,
+                     "intensityLabel": intensityLabel,
+                     "trainingLabel": trainingLabel,
+                     "funLabel": funLabel]
         
         var constraints: [NSLayoutConstraint] = []
         
@@ -67,40 +105,67 @@ class ActiveViewController: UIViewController {
                                               attribute: .bottom,
                                               multiplier: 1, constant: 10))
         
+        constraints.append(NSLayoutConstraint(item: intensityLabel,
+                                              attribute: .top,
+                                              relatedBy: .equal,
+                                              toItem: titleLabel,
+                                              attribute: .bottom,
+                                              multiplier: 1, constant: 10))
         constraints.append(NSLayoutConstraint(item: intensity,
-                                                        attribute: .top,
-                                                        relatedBy: .equal,
-                                                        toItem: titleLabel,
-                                                        attribute: .bottom,
-                                                        multiplier: 1, constant: 10))
+                                              attribute: .top,
+                                              relatedBy: .equal,
+                                              toItem: intensityLabel,
+                                              attribute: .bottom,
+                                              multiplier: 1, constant: 5))
         
+        constraints.append(NSLayoutConstraint(item: trainingLabel,
+                                              attribute: .top,
+                                              relatedBy: .equal,
+                                              toItem: intensity,
+                                              attribute: .bottom,
+                                              multiplier: 1, constant: 10))
         constraints.append(NSLayoutConstraint(item: training,
-                                                        attribute: .top,
-                                                        relatedBy: .equal,
-                                                        toItem: intensity,
-                                                        attribute: .bottom,
-                                                        multiplier: 1, constant: 10))
-        constraints.append(NSLayoutConstraint(item: fun,
-                                                        attribute: .top,
-                                                        relatedBy: .equal,
-                                                        toItem: training,
-                                                        attribute: .bottom,
-                                                        multiplier: 1, constant: 10))
+                                              attribute: .top,
+                                              relatedBy: .equal,
+                                              toItem: trainingLabel,
+                                              attribute: .bottom,
+                                              multiplier: 1, constant: 5))
         
+        constraints.append(NSLayoutConstraint(item: funLabel,
+                                              attribute: .top,
+                                              relatedBy: .equal,
+                                              toItem: training,
+                                              attribute: .bottom,
+                                              multiplier: 1, constant: 10))
         constraints.append(NSLayoutConstraint(item: fun,
-                                                        attribute: .bottom,
-                                                        relatedBy: .lessThanOrEqual,
-                                                        toItem: bottomLayoutGuide,
-                                                        attribute: .top,
-                                                        multiplier: 1, constant: 30))
+                                              attribute: .top,
+                                              relatedBy: .equal,
+                                              toItem: funLabel,
+                                              attribute: .bottom,
+                                              multiplier: 1, constant: 5))
+        constraints.append(NSLayoutConstraint(item: fun,
+                                              attribute: .bottom,
+                                              relatedBy: .lessThanOrEqual,
+                                              toItem: bottomLayoutGuide,
+                                              attribute: .top,
+                                              multiplier: 1, constant: 30))
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[titleLabel]|",
+                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[intensityLabel]-(15)-|",
                                                            options: NSLayoutFormatOptions(rawValue: 0),
                                                            metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[intensity]-(15)-|",
                                                            options: NSLayoutFormatOptions(rawValue: 0),
                                                            metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[trainingLabel]-(15)-|",
+                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[training]-(15)-|",
+                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[funLabel]-(15)-|",
                                                            options: NSLayoutFormatOptions(rawValue: 0),
                                                            metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[fun]-(15)-|",

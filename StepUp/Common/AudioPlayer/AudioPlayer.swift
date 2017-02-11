@@ -30,12 +30,14 @@ class AudioPlayer {
     }
     
     func configure(completion: @escaping (Result<Bool>) -> ()) {
-        DispatchQueue.global().async { [unowned self] in
-            self.engine.attach(self.playerNode)
-            self.engine.connect(self.playerNode, to: self.mixer, format: nil)
-            self.engine.inputNode?.installTap(onBus: 0,
+        DispatchQueue.global().async { [weak self] in
+            guard let playerNode = self?.playerNode,
+                  let mixer = self?.mixer else { return }
+            self?.engine.attach(playerNode)
+            self?.engine.connect(playerNode, to: mixer, format: nil)
+            self?.engine.inputNode?.installTap(onBus: 0,
                                          bufferSize: 1024,
-                                         format: self.mixer.inputFormat(forBus: 0),
+                                         format: mixer.inputFormat(forBus: 0),
                                          block: { [weak self] (b: AVAudioPCMBuffer, at: AVAudioTime) in
                                             if let closure = self?.elapsedTime,
                                                 let currentTime = self?.currentTime(),
@@ -51,7 +53,7 @@ class AudioPlayer {
                                             }
             })
             do {
-                try self.engine.start()
+                try self?.engine.start()
                 DispatchQueue.main.async {
                     completion(.success(true))
                 }

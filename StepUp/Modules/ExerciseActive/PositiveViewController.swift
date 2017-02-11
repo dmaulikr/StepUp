@@ -55,7 +55,7 @@ class PositiveViewController: UIViewController {
         l.textColor = .buttonDisabled
         l.font = UIFont.regular(withSize: 20)
         l.textAlignment = .center
-        l.text = "3 Positief dingen"
+        l.text = "3 Positieve dingen"
         return l
     }()
     
