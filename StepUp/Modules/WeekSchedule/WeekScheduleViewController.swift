@@ -53,7 +53,7 @@ class WeekScheduleViewController: UIViewController,
     }()
     
     private let configurator: WeekScheduleCellConfiguration<DayScheduleCell>
-    private let dataSource: CollectionViewDataSource<ArrayDataHandler<DaySchedule>,
+    private let dataSource: CollectionViewDataSource<FlatArrayDataHandler<Section<DaySchedule>>,
     WeekScheduleCellConfiguration<DayScheduleCell>>
     
     init(viewModel: WeekScheduleViewModel) {

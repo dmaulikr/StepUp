@@ -7,7 +7,7 @@ protocol WeekScheduleViewOutput: class {
 
 protocol WeekScheduleViewModel: class {
     var weekNumber: Int { get }
-    var dataHandler: ArrayDataHandler<DaySchedule> { get }
+    var dataHandler: FlatArrayDataHandler<Section<DaySchedule>> { get }
     func setModel(output: WeekScheduleViewOutput)
     func start()
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule)
@@ -19,12 +19,12 @@ protocol UsesWeekScheduleViewModel {
 
 class WeekScheduleViewModelImplementation: WeekScheduleViewModel {
     private weak var output: WeekScheduleViewOutput?
-    let dataHandler: ArrayDataHandler<DaySchedule>
+    let dataHandler: FlatArrayDataHandler<Section<DaySchedule>>
     let weekNumber: Int
     
     init(weekNumber: Int) {
         self.weekNumber = weekNumber
-        dataHandler = ArrayDataHandler(data: [DaySchedule(title: "Maandag",
+        let section = Section(title: "Schedule", rows: DaySchedule(title: "Maandag",
                                                            weekDay: .monday,
                                                            exercises: [.active]),
                                               DaySchedule(title: "Dinsdag",
@@ -44,7 +44,8 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel {
                                                            exercises: [.active, .mindfulness]),
                                               DaySchedule(title: "Zondag",
                                                            weekDay: .sunday,
-                                                           exercises: [.active, .mindfulness, .positive])])
+                                                           exercises: [.active, .mindfulness, .positive]))
+        dataHandler = FlatArrayDataHandler(data: [section])
     }
     
     func setModel(output: WeekScheduleViewOutput) {

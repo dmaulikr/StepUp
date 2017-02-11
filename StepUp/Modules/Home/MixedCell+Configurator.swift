@@ -1,6 +1,11 @@
 import Foundation
 import UIKit
 
+enum MixedCell: Reusable {
+    case treatment(TreatmentCell)
+    case setting(SettingCell)
+}
+
 class TreatmentCell: UICollectionViewCell, Reusable {
     private lazy var title: UILabel = {
         let l = UILabel()
@@ -17,7 +22,7 @@ class TreatmentCell: UICollectionViewCell, Reusable {
         l.textColor = .black
         l.numberOfLines = 0
         l.textAlignment = .center
-        l.font = UIFont.light(withSize: 14)
+        l.font = UIFont.light(withSize: 18)
         return l
     }()
     
@@ -112,7 +117,7 @@ class TreatmentCell: UICollectionViewCell, Reusable {
 
 // MARK: Collection view cell configurator
 
-class TreatmentsCellConfigurator<T: Reusable>: CollectionViewCellConfigurator, UsesHomeViewModel {
+class MixedCellConfigurator<T: Reusable>: CollectionViewCellConfigurator, UsesHomeViewModel {
     internal unowned let homeViewModel: HomeViewModel
     
     init(viewModel: HomeViewModel) {
@@ -121,12 +126,19 @@ class TreatmentsCellConfigurator<T: Reusable>: CollectionViewCellConfigurator, U
     
     func configure(using collectionView: UICollectionView,
                    at index: IndexPath,
-                   with model: Treatment) -> UICollectionViewCell {
-        let cell: TreatmentCell = collectionView.dequeueReusableCell(at: index)
-        cell.configure(with: model)
-        cell.buttonTappedCallBack = { [weak self] number in
-            self?.homeViewModel.presentTreatment(weekNumber: number)
+                   with model: MixedEntity) -> UICollectionViewCell {
+        switch model {
+        case let .treatment(t):
+            let cell: TreatmentCell = collectionView.dequeueReusableCell(at: index)
+            cell.configure(with: t)
+            cell.buttonTappedCallBack = { [weak self] number in
+                self?.homeViewModel.presentTreatment(weekNumber: number)
+            }
+            return cell
+        case let .setting(s):
+            let cell: SettingCell = collectionView.dequeueReusableCell(at: index)
+            cell.configure(model: s)
+            return cell
         }
-        return cell
     }
 }

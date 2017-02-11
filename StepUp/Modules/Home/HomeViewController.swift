@@ -25,17 +25,18 @@ class HomeViewController: UIViewController,
         cv.backgroundColor = UIColor.white
         cv.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         cv.registerReusableCell(TreatmentCell.self)
+        cv.registerReusableCell(SettingCell.self)
         cv.isPagingEnabled = true
         return cv
     }()
     
-    private let configurator: TreatmentsCellConfigurator<TreatmentCell>
-    private let dataSource: CollectionViewDataSource<ArrayDataHandler<Treatment>,
-                            TreatmentsCellConfigurator<TreatmentCell>>
+    private let configurator: MixedCellConfigurator<MixedCell>
+    private let dataSource: CollectionViewDataSource<FlatArrayDataHandler<Section<MixedEntity>>,
+                            MixedCellConfigurator<MixedCell>>
     
     init(viewModel: HomeViewModel) {
         homeViewModel = viewModel
-        configurator = TreatmentsCellConfigurator(viewModel: homeViewModel)
+        configurator = MixedCellConfigurator(viewModel: homeViewModel)
         dataSource = CollectionViewDataSource(dataHandler: viewModel.dataHandler, configurator: configurator)
         super.init(nibName: nil, bundle: nil)
         viewModel.setModel(output: self)
@@ -104,7 +105,11 @@ class HomeViewController: UIViewController,
     // MARK: HomeViewOutput
     
     func showTreatments() {
-        pageControl.numberOfPages = homeViewModel.dataHandler.numberOfItems(inSection: 0)
+        var totalNrPages = 0
+        for nr in 0..<homeViewModel.dataHandler.numberOfSections() {
+            totalNrPages += homeViewModel.dataHandler.numberOfItems(inSection: nr)
+        }
+        pageControl.numberOfPages = totalNrPages
         collectionView.reloadData()
     }
     
