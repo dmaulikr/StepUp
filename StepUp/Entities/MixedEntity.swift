@@ -3,6 +3,20 @@ import Foundation
 enum MixedEntity {
     case setting(Setting)
     case treatment(Treatment)
+    
+    func entity() -> Setting? {
+        if case let .setting(s) = self {
+            return s
+        }
+        return nil
+    }
+    
+    func entity() -> Treatment? {
+        if case let .treatment(t) = self {
+            return t
+        }
+        return nil
+    }
 }
 
 extension MixedEntity: Equatable {

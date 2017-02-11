@@ -52,9 +52,9 @@ class WeekScheduleViewController: UIViewController,
         return l
     }()
     
-    private let configurator: WeekScheduleCellConfiguration<DayScheduleCell>
+    private let configurator: WeekScheduleCellConfiguration
     private let dataSource: CollectionViewDataSource<FlatArrayDataHandler<Section<DaySchedule>>,
-    WeekScheduleCellConfiguration<DayScheduleCell>>
+    WeekScheduleCellConfiguration>
     
     init(viewModel: WeekScheduleViewModel) {
         weekScheduleViewModel = viewModel

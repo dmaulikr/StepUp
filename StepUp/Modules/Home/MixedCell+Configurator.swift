@@ -1,11 +1,6 @@
 import Foundation
 import UIKit
 
-enum MixedCell: Reusable {
-    case treatment(TreatmentCell)
-    case setting(SettingCell)
-}
-
 class TreatmentCell: UICollectionViewCell, Reusable {
     private lazy var title: UILabel = {
         let l = UILabel()
@@ -117,7 +112,7 @@ class TreatmentCell: UICollectionViewCell, Reusable {
 
 // MARK: Collection view cell configurator
 
-class MixedCellConfigurator<T: Reusable>: CollectionViewCellConfigurator, UsesHomeViewModel {
+class MixedCellConfigurator: CollectionViewCellConfigurator, UsesHomeViewModel {
     internal unowned let homeViewModel: HomeViewModel
     
     init(viewModel: HomeViewModel) {

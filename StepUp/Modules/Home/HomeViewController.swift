@@ -30,9 +30,9 @@ class HomeViewController: UIViewController,
         return cv
     }()
     
-    private let configurator: MixedCellConfigurator<MixedCell>
+    private let configurator: MixedCellConfigurator
     private let dataSource: CollectionViewDataSource<FlatArrayDataHandler<Section<MixedEntity>>,
-                            MixedCellConfigurator<MixedCell>>
+                            MixedCellConfigurator>
     
     init(viewModel: HomeViewModel) {
         homeViewModel = viewModel

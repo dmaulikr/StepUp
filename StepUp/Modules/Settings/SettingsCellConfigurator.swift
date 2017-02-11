@@ -51,7 +51,7 @@ class SettingCell: UICollectionViewCell, Reusable {
     }
 }
 
-class SettingsCellConfigurator<T: Reusable>: CollectionViewCellConfigurator {
+class SettingsCellConfigurator: CollectionViewCellConfigurator {
     func configure(using collectionView: UICollectionView,
                    at index: IndexPath,
                    with model: Setting) -> UICollectionViewCell {

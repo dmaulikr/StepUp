@@ -183,7 +183,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
     // swiftlint:enable line_length
 }
 
-class WeekScheduleCellConfiguration<T: Reusable>: CollectionViewCellConfigurator,
+class WeekScheduleCellConfiguration: CollectionViewCellConfigurator,
                                                   UsesWeekScheduleViewModel {
     
     internal unowned let weekScheduleViewModel: WeekScheduleViewModel
