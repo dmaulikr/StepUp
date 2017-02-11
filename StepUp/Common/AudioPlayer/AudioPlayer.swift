@@ -1,44 +1,22 @@
 import Foundation
 import AVFoundation
 
-struct Time {
-    let day: Int
-    let hour: Int
-    let minute: Int
-    let second: Int
-}
-
-extension Time {
-    init(_ timeInterval: TimeInterval) {
-        day = Int(timeInterval / (24 * 3600))
-        hour = Int(timeInterval.truncatingRemainder(dividingBy:(24 * 3600))) / 3600
-        minute = Int(timeInterval.truncatingRemainder(dividingBy: 3600)) / 60
-        second = Int(timeInterval.truncatingRemainder(dividingBy: 60))
-    }
-}
-
-extension Time: Equatable {
-    static func == (lhs: Time, rhs: Time) -> Bool {
-        return lhs.day == rhs.day &&
-            lhs.hour == rhs.hour &&
-            lhs.minute == rhs.minute &&
-            lhs.second == rhs.second
-    }
-}
-
 class AudioPlayer {
     private let engine: AVAudioEngine
     private let playerNode: AVAudioPlayerNode
     private let mixer: AVAudioMixerNode
     private var audio: AVAudioFile?
-    var elapsedTime: ((Time) -> ())?
-    var totalLength: ((TimeInterval) -> ())?
+    var elapsedTime: ((AudioTime) -> ())?
+    var totalLength: ((AudioTime) -> ())?
+    var progress: ((_ elapsedTime: AudioTime, _ totalLength: AudioTime) -> ())?
+    var isPlaying: Bool {
+        return playerNode.isPlaying
+    }
     
     init() {
         engine = AVAudioEngine()
         playerNode = AVAudioPlayerNode()
         mixer = engine.mainMixerNode
-        engine.attach(playerNode)
     }
     
     deinit {
@@ -51,26 +29,44 @@ class AudioPlayer {
         cleanUpAudioSession()
     }
     
-    func configure() throws {
-        engine.connect(playerNode, to: mixer, format: nil)
-        engine.inputNode?.installTap(onBus: 0,
-                                     bufferSize: 1024,
-                                     format: mixer.inputFormat(forBus: 0),
-                                     block: { [weak self] (b: AVAudioPCMBuffer, at: AVAudioTime) in
-                                        if let closure = self?.elapsedTime,
-                                            let currentTime = self?.currentTime() {
-                                            DispatchQueue.main.async {
-                                                closure(Time(currentTime))
+    func configure(completion: @escaping (Result<Bool>) -> ()) {
+        DispatchQueue.global().async { [unowned self] in
+            self.engine.attach(self.playerNode)
+            self.engine.connect(self.playerNode, to: self.mixer, format: nil)
+            self.engine.inputNode?.installTap(onBus: 0,
+                                         bufferSize: 1024,
+                                         format: self.mixer.inputFormat(forBus: 0),
+                                         block: { [weak self] (b: AVAudioPCMBuffer, at: AVAudioTime) in
+                                            if let closure = self?.elapsedTime,
+                                                let currentTime = self?.currentTime(),
+                                                let totalTime = self?.totalTime(),
+                                                let isPlaying = self?.playerNode.isPlaying,
+                                                isPlaying {
+                                                DispatchQueue.main.async {
+                                                    closure(AudioTime(currentTime))
+                                                    if let progress = self?.progress {
+                                                        progress(AudioTime(currentTime), AudioTime(totalTime))
+                                                    }
+                                                }
                                             }
-                                        }
-        })
-        try engine.start()
+            })
+            do {
+                try self.engine.start()
+                DispatchQueue.main.async {
+                    completion(.success(true))
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(.success(false))
+                }
+            }
+        }
     }
     
     func play() {
         playerNode.play()
         if let closure = totalLength {
-            closure(totalTime())
+            closure(AudioTime(totalTime()))
         }
     }
     
@@ -78,15 +74,21 @@ class AudioPlayer {
         playerNode.pause()
     }
     
-    func prepare(audio: AVAudioFile, completion: @escaping () -> ()) {
-        self.audio = audio
-        playerNode.reset()
+    func prepare(audioFilePath path: URL, completion: @escaping (Result<Bool>) -> (), stopped: @escaping () -> ()) {
         DispatchQueue.global().async { [weak self] in
+            self?.playerNode.reset()
+            self?.playerNode.stop()
+            guard let audio = try? AVAudioFile(forReading: path) else { return }
+            self?.audio = audio
             self?.prepareAudioSession()
-            self?.playerNode.scheduleFile(audio, at: nil, completionHandler: nil)
-            self?.playerNode.prepare(withFrameCount: 45)
+            self?.playerNode.scheduleFile(audio, at: nil) {
+                DispatchQueue.main.async {
+                    stopped()
+                }
+            }
+            self?.playerNode.prepare(withFrameCount: 1)
             DispatchQueue.main.async {
-                completion()
+                completion(.success(true))
             }
         }
     }

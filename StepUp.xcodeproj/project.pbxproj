@@ -42,12 +42,15 @@
 		A3C474571E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */; };
 		A3C474591E337D1000B22AF3 /* DaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474581E337D1000B22AF3 /* DaySchedule.swift */; };
 		A3DDF8901E4E67ED0021F60D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF88F1E4E67ED0021F60D /* AudioPlayer.swift */; };
+		A3DDF8BD1E4E7E090021F60D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8BA1E4E7E090021F60D /* File.swift */; };
+		A3DDF8BE1E4E7E090021F60D /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8BB1E4E7E090021F60D /* Folder.swift */; };
+		A3DDF8BF1E4E7E090021F60D /* FileKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8BC1E4E7E090021F60D /* FileKit.swift */; };
+		A3DDF8C11E4E86290021F60D /* AudioTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8C01E4E86290021F60D /* AudioTime.swift */; };
+		A3DDF8C31E4E868A0021F60D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8C21E4E868A0021F60D /* Result.swift */; };
+		A3DDF8C51E4F4A120021F60D /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8C41E4F4A120021F60D /* AudioPlayerView.swift */; };
 		A3DFC3061E4788BC00292DB9 /* MindfulnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */; };
 		A3E28F371E463FCC00C1B764 /* ActiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E28F361E463FCC00C1B764 /* ActiveViewController.swift */; };
 		A3E28F391E47281400C1B764 /* PositiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E28F381E47281400C1B764 /* PositiveViewController.swift */; };
-		OBJ_25 /* FileKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* FileKit.swift */; };
-		OBJ_26 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* File.swift */; };
-		OBJ_27 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Folder.swift */; };
 		OBJ_34 /* StepUpDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* StepUpDummy.swift */; };
 		OBJ_36 /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* FileKit.framework */; };
 /* End PBXBuildFile section */
@@ -125,16 +128,19 @@
 		A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeekScheduleCell+Configurator.swift"; sourceTree = "<group>"; };
 		A3C474581E337D1000B22AF3 /* DaySchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySchedule.swift; sourceTree = "<group>"; };
 		A3DDF88F1E4E67ED0021F60D /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		A3DDF8BA1E4E7E090021F60D /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		A3DDF8BB1E4E7E090021F60D /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		A3DDF8BC1E4E7E090021F60D /* FileKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileKit.swift; sourceTree = "<group>"; };
+		A3DDF8C01E4E86290021F60D /* AudioTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioTime.swift; sourceTree = "<group>"; };
+		A3DDF8C21E4E868A0021F60D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		A3DDF8C41E4F4A120021F60D /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MindfulnessViewController.swift; sourceTree = "<group>"; };
 		A3E28F361E463FCC00C1B764 /* ActiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveViewController.swift; sourceTree = "<group>"; };
 		A3E28F381E47281400C1B764 /* PositiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositiveViewController.swift; sourceTree = "<group>"; };
-		OBJ_11 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		OBJ_12 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		OBJ_14 /* StepUpDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepUpDummy.swift; sourceTree = "<group>"; };
 		OBJ_18 /* FileKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FileKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_19 /* App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_9 /* FileKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +177,7 @@
 				A3084EDF1E2EA316009C2CC3 /* Treatment.swift */,
 				A3C474581E337D1000B22AF3 /* DaySchedule.swift */,
 				A30400BB1E34DAD8003989D1 /* Exercise.swift */,
+				A3DDF8C21E4E868A0021F60D /* Result.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -316,15 +323,27 @@
 			isa = PBXGroup;
 			children = (
 				A3DDF88F1E4E67ED0021F60D /* AudioPlayer.swift */,
+				A3DDF8C01E4E86290021F60D /* AudioTime.swift */,
+				A3DDF8C41E4F4A120021F60D /* AudioPlayerView.swift */,
 			);
 			path = AudioPlayer;
 			sourceTree = "<group>";
 		};
-		OBJ_10 /* Entities */ = {
+		A3DDF8B81E4E7E090021F60D /* FileKit */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_11 /* File.swift */,
-				OBJ_12 /* Folder.swift */,
+				A3DDF8B91E4E7E090021F60D /* Entities */,
+				A3DDF8BC1E4E7E090021F60D /* FileKit.swift */,
+			);
+			name = FileKit;
+			path = "Packages/FileKit-1.0.1/Sources/FileKit";
+			sourceTree = SOURCE_ROOT;
+		};
+		A3DDF8B91E4E7E090021F60D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A3DDF8BA1E4E7E090021F60D /* File.swift */,
+				A3DDF8BB1E4E7E090021F60D /* Folder.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -369,21 +388,11 @@
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_8 /* FileKit */,
+				A3DDF8B81E4E7E090021F60D /* FileKit */,
 				OBJ_13 /* App */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
-		};
-		OBJ_8 /* FileKit */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_9 /* FileKit.swift */,
-				OBJ_10 /* Entities */,
-			);
-			name = FileKit;
-			path = "Packages/FileKit-1.0.0/Sources/FileKit";
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -531,12 +540,15 @@
 				A30400BC1E34DAD8003989D1 /* Exercise.swift in Sources */,
 				A3523AC71E43D67300FCB89A /* ExerciseViewController.swift in Sources */,
 				A3DFC3061E4788BC00292DB9 /* MindfulnessViewController.swift in Sources */,
+				A3DDF8C31E4E868A0021F60D /* Result.swift in Sources */,
 				A3DDF8901E4E67ED0021F60D /* AudioPlayer.swift in Sources */,
 				A3523AC91E43D69400FCB89A /* ExerciseViewModel.swift in Sources */,
 				A36B44BD1E204A76005E0B98 /* DataHandler.swift in Sources */,
+				A3DDF8C51E4F4A120021F60D /* AudioPlayerView.swift in Sources */,
 				A3C474551E33758D00B22AF3 /* WeekScheduleViewController.swift in Sources */,
 				A3E28F391E47281400C1B764 /* PositiveViewController.swift in Sources */,
 				A36B44C11E204AC5005E0B98 /* CollectionViewCellConfigurator.swift in Sources */,
+				A3DDF8C11E4E86290021F60D /* AudioTime.swift in Sources */,
 				A3C474591E337D1000B22AF3 /* DaySchedule.swift in Sources */,
 				A35190E11E04992300F7348E /* TreatmentCell+Configurator.swift in Sources */,
 				A36B44C41E204B68005E0B98 /* CollectionViewDataSource.swift in Sources */,
@@ -555,9 +567,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_25 /* FileKit.swift in Sources */,
-				OBJ_26 /* File.swift in Sources */,
-				OBJ_27 /* Folder.swift in Sources */,
+				A3DDF8BD1E4E7E090021F60D /* File.swift in Sources */,
+				A3DDF8BE1E4E7E090021F60D /* Folder.swift in Sources */,
+				A3DDF8BF1E4E7E090021F60D /* FileKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
