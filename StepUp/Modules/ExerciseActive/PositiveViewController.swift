@@ -75,6 +75,7 @@ class PositiveViewController: UIViewController, ExerciseResult {
         super.viewDidLoad()
         setup()
         applyConstraints()
+        configure()
     }
     
     func result() -> Exercise {
@@ -82,6 +83,14 @@ class PositiveViewController: UIViewController, ExerciseResult {
                                         two.text ?? "",
                                         three.text ?? ""],
                                 weekDay: exercise.weekDay, weekNr: exercise.weekNr)
+    }
+    
+    private func configure() {
+        guard let e = exercise as? ExercisePositive,
+         e.value.count > 2 else { return }
+        one.text = e.value[0]
+        two.text = e.value[1]
+        three.text = e.value[2]
     }
     
     private func setup() {

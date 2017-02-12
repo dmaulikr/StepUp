@@ -105,13 +105,11 @@ class HomeViewController: UIViewController,
     
     // MARK: HomeViewOutput
     
-    func showTreatments() {
-        var totalNrPages = 0
-        for nr in 0..<homeViewModel.dataHandler.numberOfSections() {
-            totalNrPages += homeViewModel.dataHandler.numberOfItems(inSection: nr)
-        }
-        pageControl.numberOfPages = totalNrPages
+    func showTreatments(index: IndexPath) {
+        pageControl.numberOfPages = numberOfPages()
+        pageControl.currentPage = index.section
         collectionView.reloadData()
+        collectionView.scrollToItem(at: index, at: .left, animated: false)
     }
     
     func presentTreatmentWeek(viewModel: WeekScheduleViewModel) {
@@ -138,5 +136,13 @@ class HomeViewController: UIViewController,
         let pageWidth: CGFloat = scrollView.bounds.size.width
         let page: CGFloat = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1
         pageControl.currentPage = Int(page)
+    }
+    
+    private func numberOfPages() -> Int {
+        var totalNrPages = 0
+        for nr in 0..<homeViewModel.dataHandler.numberOfSections() {
+            totalNrPages += homeViewModel.dataHandler.numberOfItems(inSection: nr)
+        }
+        return totalNrPages
     }
 }

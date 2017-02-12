@@ -2,7 +2,7 @@ import Foundation
 import App
 
 protocol HomeViewOutput: class {
-    func showTreatments()
+    func showTreatments(index: IndexPath)
     func presentTreatmentWeek(viewModel: WeekScheduleViewModel)
     func presentReminderSettings(viewModel: MixinReminderViewModel)
     func sendTreatmentResults(_ results: [Treatment])
@@ -48,7 +48,7 @@ class HomeViewModelImplementation: HomeViewModel, UsesTreatmentService {
     }
     
     func start() {
-        output?.showTreatments()
+        output?.showTreatments(index: IndexPath(row: 0, section: 1))
     }
     
     func presentTreatment(weekNumber number: Int) {

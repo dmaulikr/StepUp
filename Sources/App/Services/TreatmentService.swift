@@ -3,6 +3,7 @@ import FileKit
 
 public protocol TreatmentService {
     func save(_ exercise: Exercise)
+    func load(exerciseWithType type: ExerciseType, forDay day: Day, inWeek week: Int) -> Exercise?
     func cleanAll()
 }
 
@@ -25,6 +26,16 @@ public class MixinTreatmentService: TreatmentService {
                                                options: JSONSerialization.WritingOptions(rawValue: 0))
         let file = FileKit.fileInDocumentsFolder(withName: "\(exercise.weekNr).json", data: data)
         try? fileKit.save(file: file)
+    }
+    
+    public func load(exerciseWithType type: ExerciseType, forDay day: Day, inWeek week: Int) -> Exercise? {
+        let exercises = loadExercises(forWeek: week)
+        guard let index = exercises.index(where: { e in
+            return e.weekDay == day && e.type == type
+        }) else {
+            return nil
+        }
+        return exercises[index]
     }
     
     public func cleanAll() {

@@ -80,6 +80,7 @@ class ActiveViewController: UIViewController, ExerciseResult {
         super.viewDidLoad()
         setup()
         applyConstraints()
+        configure()
     }
     
     func result() -> Exercise {
@@ -87,6 +88,14 @@ class ActiveViewController: UIViewController, ExerciseResult {
                                                   training.selectedSegmentIndex,
                                                   fun.selectedSegmentIndex],
                               weekDay: exercise.weekDay, weekNr: exercise.weekNr)
+    }
+    
+    private func configure() {
+        guard let e = exercise as? ExerciseActive,
+            e.value.count > 2 else { return }
+        intensity.selectedSegmentIndex = e.value[0]
+        training.selectedSegmentIndex = e.value[1]
+        fun.selectedSegmentIndex = e.value[2]
     }
     
     private func setup() {

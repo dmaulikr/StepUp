@@ -18,14 +18,16 @@ protocol UsesWeekScheduleViewModel {
     var weekScheduleViewModel: WeekScheduleViewModel { get }
 }
 
-class WeekScheduleViewModelImplementation: WeekScheduleViewModel {
+class WeekScheduleViewModelImplementation: WeekScheduleViewModel, UsesTreatmentService {
     private weak var output: WeekScheduleViewOutput?
+    internal let treatmentService: TreatmentService
     let dataHandler: FlatArrayDataHandler<Section<DaySchedule>>
     let weekNumber: Int
     
     init(weekNumber: Int) {
         self.weekNumber = weekNumber
         dataHandler = FlatArrayDataHandler()
+        treatmentService = MixinTreatmentService()
     }
     
     func setModel(output: WeekScheduleViewOutput) {
@@ -61,16 +63,27 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel {
     }
     
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule) {
+        output?.show(exercise: loadExercise(withType: type, weekDay: schedule.weekDay))
+    }
+    
+    private func loadExercise(withType type: ExerciseType, weekDay: Day) -> Exercise {
+        if let e = treatmentService.load(exerciseWithType: type, forDay: weekDay, inWeek: weekNumber) {
+            return e
+        }
+        return emptyExercise(withType: type, weekDay: weekDay)
+    }
+    
+    private func emptyExercise(withType type: ExerciseType, weekDay: Day) -> Exercise {
         switch type {
         case .active:
-            output?.show(exercise: ExerciseActive(value: [],
-                                                  weekDay: schedule.weekDay, weekNr: weekNumber))
+            return ExerciseActive(value: [],
+                                  weekDay: weekDay, weekNr: weekNumber)
         case .mindfulness:
-            output?.show(exercise: ExerciseMindfulness(value: [],
-                                                       weekDay: schedule.weekDay, weekNr: weekNumber))
+            return ExerciseMindfulness(value: [],
+                                       weekDay: weekDay, weekNr: weekNumber)
         case .positive:
-            output?.show(exercise: ExercisePositive(value: [],
-                                                    weekDay: schedule.weekDay, weekNr: weekNumber))
+            return ExercisePositive(value: [],
+                                    weekDay: weekDay, weekNr: weekNumber)
         }
     }
     
