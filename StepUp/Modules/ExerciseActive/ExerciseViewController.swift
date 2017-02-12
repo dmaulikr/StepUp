@@ -1,4 +1,9 @@
 import UIKit
+import App
+
+protocol ExerciseResult {
+    func result() -> Exercise
+}
 
 class ExerciseViewController: UIViewController,
                               UsesExerciseViewModel,
@@ -25,18 +30,18 @@ class ExerciseViewController: UIViewController,
     
     // MARK: ViewModelOuputView
     
-    func show<T>(exercise: AnyExercise<T>) {
+    func show(exercise: Exercise) {
         switch exercise.type {
         case .active:
-            activeVC = ActiveViewController()
+            activeVC = ActiveViewController(exercise: exercise)
             add(viewController: activeVC)
             return
         case .positive:
-            activeVC = PositiveViewController()
+            activeVC = PositiveViewController(exercise: exercise)
             add(viewController: activeVC)
             return
         case .mindfulness:
-            activeVC = MindfulnessViewController()
+            activeVC = MindfulnessViewController(exercise: exercise)
             add(viewController: activeVC)
             return
         }
@@ -77,11 +82,7 @@ class ExerciseViewController: UIViewController,
     }
     
     @objc private func save(sender: UIBarButtonItem) {
-        if let vc = activeVC as? ActiveViewController {
-            exerciseViewModel.save(exercise: vc.result())
-        } else if let vc = activeVC as? PositiveViewController {
-            exerciseViewModel.save(exercise: vc.result())
-        }
-
+        guard let vc = activeVC as? ExerciseResult else { return }
+        exerciseViewModel.save(exercise: vc.result())
     }
 }

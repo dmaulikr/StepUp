@@ -1,6 +1,7 @@
 import UIKit
+import App
 
-class PositiveViewController: UIViewController {
+class PositiveViewController: UIViewController, ExerciseResult {
     private lazy var labelOne: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -59,16 +60,29 @@ class PositiveViewController: UIViewController {
         return l
     }()
     
+    private let exercise: Exercise
+    
+    init(exercise: Exercise) {
+        self.exercise = exercise
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         applyConstraints()
     }
     
-    func result() -> AnyExercise<[String?]> {
-        return AnyExercise(type: .active, value: [one.text,
-                                                  two.text,
-                                                  three.text])
+    func result() -> Exercise {
+        return ExercisePositive(type: .positive,
+                                value: [one.text ?? "",
+                                        two.text ?? "",
+                                        three.text ?? ""],
+                                weekDay: exercise.weekDay, weekNr: exercise.weekNr)
     }
     
     private func setup() {

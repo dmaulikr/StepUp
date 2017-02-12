@@ -1,7 +1,8 @@
 import UIKit
 import FileKit
+import App
 
-class MindfulnessViewController: UIViewController {
+class MindfulnessViewController: UIViewController, ExerciseResult {
     internal let audioPlayer: AudioPlayer
     
     private lazy var audioFileBodyScan: File? = {
@@ -87,15 +88,16 @@ class MindfulnessViewController: UIViewController {
         return b
     }()
     
-    private var timeObserverToken: Any?
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        audioPlayer = AudioPlayer()
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private let exercise: Exercise
+    
+    init(exercise: Exercise) {
+        self.exercise = exercise
+        audioPlayer = AudioPlayer()
+        super.init(nibName: nil, bundle: nil)
     }
     
     override func viewDidLoad() {
@@ -108,6 +110,12 @@ class MindfulnessViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    func result() -> Exercise {
+        return ExerciseMindfulness(type: .mindfulness,
+                                   value: [1,1],
+                                   weekDay: exercise.weekDay, weekNr: exercise.weekNr)
     }
     
     @objc private func songButtonTapped(sender: UIButton) {

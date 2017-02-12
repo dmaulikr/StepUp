@@ -103,7 +103,7 @@ class TreatmentCell: UICollectionViewCell, Reusable {
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[start]-|",
                                                                    options: NSLayoutFormatOptions(rawValue: 0),
                                                                    metrics: nil, views: views))
-        let visualFormat = "V:|[title]-[info]-(>=10)-[start]-(<=40)-|"
+        let visualFormat = "V:|[title]-[info]-(>=10)-[start]-(==40)-|"
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: visualFormat,
                                                                    options: NSLayoutFormatOptions(rawValue: 0),
                                                                    metrics: nil, views: views))
@@ -133,6 +133,12 @@ class MixedCellConfigurator: CollectionViewCellConfigurator, UsesHomeViewModel {
         case let .setting(s):
             let cell: SettingCell = collectionView.dequeueReusableCell(at: index)
             cell.configure(model: s)
+            cell.reminderButtonCallback = { [weak self] in
+                self?.homeViewModel.getReminderSettings()
+            }
+            cell.emailButtonCallback = { [weak self] in
+                self?.homeViewModel.getTreatmentResults()
+            }
             return cell
         }
     }

@@ -3,7 +3,8 @@ import UIKit
 class HomeViewController: UIViewController,
                           HomeViewOutput,
                           UsesHomeViewModel,
-                          UICollectionViewDelegate {
+                          UICollectionViewDelegate,
+                          MailComposer {
     
     internal let homeViewModel: HomeViewModel
     
@@ -115,6 +116,20 @@ class HomeViewController: UIViewController,
     
     func presentTreatmentWeek(viewModel: WeekScheduleViewModel) {
         navigationController?.pushViewController(WeekScheduleViewController(viewModel: viewModel), animated: true)
+    }
+    
+    func presentReminderSettings(viewModel: MixinReminderViewModel) {
+        let vc = ReminderViewController(viewModel: viewModel)
+        let nav = UINavigationController(rootViewController: vc)
+        present(nav, animated: true, completion: nil)
+    }
+    
+    func sendTreatmentResults(_ results: [Treatment]) {
+        if canSendMail() {
+            presentMailComposerView(recipients: ["no@mail.com"],
+                                    subject: "Resultaat oefeningen",
+                                    message: "Message body!")
+        }
     }
     
     // MARK: UIScrollview delegate, calculate page position

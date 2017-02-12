@@ -3,6 +3,8 @@ import Foundation
 protocol HomeViewOutput: class {
     func showTreatments()
     func presentTreatmentWeek(viewModel: WeekScheduleViewModel)
+    func presentReminderSettings(viewModel: MixinReminderViewModel)
+    func sendTreatmentResults(_ results: [Treatment])
 }
 
 protocol HomeViewModel: class {
@@ -10,6 +12,8 @@ protocol HomeViewModel: class {
     func setModel(output: HomeViewOutput)
     func start()
     func presentTreatment(weekNumber number: Int)
+    func getReminderSettings()
+    func getTreatmentResults()
 }
 
 protocol UsesHomeViewModel {
@@ -46,4 +50,13 @@ class HomeViewModelImplementation: HomeViewModel {
     func presentTreatment(weekNumber number: Int) {
         output?.presentTreatmentWeek(viewModel: WeekScheduleViewModelImplementation(weekNumber: number))
     }
+    
+    func getReminderSettings() {
+        output?.presentReminderSettings(viewModel: MixinReminderViewModel())
+    }
+
+    func getTreatmentResults() {
+        output?.sendTreatmentResults([])
+    }
 }
+

@@ -1,5 +1,6 @@
 
 import UIKit
+import App
 
 class WeekScheduleViewController: UIViewController,
                                   UsesWeekScheduleViewModel,
@@ -91,7 +92,7 @@ class WeekScheduleViewController: UIViewController,
         collectionView.reloadData()
     }
     
-    func show<T>(exercise: AnyExercise<T>) {
+    func show(exercise: Exercise) {
         let vc = ExerciseViewController(viewModel: MixinExerciseViewModelImplementation(exercise: exercise))
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true, completion: nil)

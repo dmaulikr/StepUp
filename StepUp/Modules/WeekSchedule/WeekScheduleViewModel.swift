@@ -1,8 +1,9 @@
 import Foundation
+import App
 
 protocol WeekScheduleViewOutput: class {
     func showWeekSchedule()
-    func show<T>(exercise: AnyExercise<T>)
+    func show(exercise: Exercise)
 }
 
 protocol WeekScheduleViewModel: class {
@@ -24,27 +25,28 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel {
     
     init(weekNumber: Int) {
         self.weekNumber = weekNumber
-        let section = Section(title: "Schedule", rows: DaySchedule(title: "Maandag",
-                                                           weekDay: .monday,
-                                                           exercises: [.active]),
-                                              DaySchedule(title: "Dinsdag",
-                                                           weekDay: .tuesday,
-                                                           exercises: [.active, .mindfulness, .positive]),
-                                              DaySchedule(title: "Woensdag",
-                                                           weekDay: .wednesday,
-                                                           exercises: [.active, .mindfulness]),
-                                              DaySchedule(title: "Donderdag",
-                                                           weekDay: .thursday,
-                                                           exercises: [.active, .mindfulness]),
-                                              DaySchedule(title: "Vrijdag",
-                                                           weekDay: .friday,
-                                                           exercises: [.active, .mindfulness]),
-                                              DaySchedule(title: "Zaterdag",
-                                                           weekDay: .saturday,
-                                                           exercises: [.active, .mindfulness]),
-                                              DaySchedule(title: "Zondag",
-                                                           weekDay: .sunday,
-                                                           exercises: [.active, .mindfulness, .positive]))
+        let section = Section(title: "Schedule",
+                              rows: DaySchedule(title: "Maandag",
+                                                weekDay: .monday,
+                                                exercises: [.active]),
+                              DaySchedule(title: "Dinsdag",
+                                          weekDay: .tuesday,
+                                          exercises: [.active, .mindfulness]),
+                              DaySchedule(title: "Woensdag",
+                                          weekDay: .wednesday,
+                                          exercises: [.active, .mindfulness]),
+                              DaySchedule(title: "Donderdag",
+                                          weekDay: .thursday,
+                                          exercises: [.active, .mindfulness]),
+                              DaySchedule(title: "Vrijdag",
+                                          weekDay: .friday,
+                                          exercises: [.active, .mindfulness]),
+                              DaySchedule(title: "Zaterdag",
+                                          weekDay: .saturday,
+                                          exercises: [.active, .mindfulness]),
+                              DaySchedule(title: "Zondag",
+                                          weekDay: .sunday,
+                                          exercises: [.active, .mindfulness, .positive]))
         dataHandler = FlatArrayDataHandler(data: [section])
     }
     
@@ -57,6 +59,19 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel {
     }
     
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule) {
-        output?.show(exercise: AnyExercise(type: type, value: []))
+        switch type {
+        case .active:
+            output?.show(exercise: ExerciseActive(type: type,
+                                                  value: [],
+                                                  weekDay: schedule.weekDay, weekNr: weekNumber))
+        case .mindfulness:
+            output?.show(exercise: ExerciseMindfulness(type: type,
+                                                       value: [],
+                                                       weekDay: schedule.weekDay, weekNr: weekNumber))
+        case .positive:
+            output?.show(exercise: ExercisePositive(type: type,
+                                                    value: [],
+                                                    weekDay: schedule.weekDay, weekNr: weekNumber))
+        }
     }
 }
