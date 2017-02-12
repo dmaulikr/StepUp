@@ -113,8 +113,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
     }
     
     func result() -> Exercise {
-        return ExerciseMindfulness(type: .mindfulness,
-                                   value: [1,1],
+        return ExerciseMindfulness(value: [1, 1],
                                    weekDay: exercise.weekDay, weekNr: exercise.weekNr)
     }
     

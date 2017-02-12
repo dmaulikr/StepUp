@@ -61,16 +61,13 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel {
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule) {
         switch type {
         case .active:
-            output?.show(exercise: ExerciseActive(type: type,
-                                                  value: [],
+            output?.show(exercise: ExerciseActive(value: [],
                                                   weekDay: schedule.weekDay, weekNr: weekNumber))
         case .mindfulness:
-            output?.show(exercise: ExerciseMindfulness(type: type,
-                                                       value: [],
+            output?.show(exercise: ExerciseMindfulness(value: [],
                                                        weekDay: schedule.weekDay, weekNr: weekNumber))
         case .positive:
-            output?.show(exercise: ExercisePositive(type: type,
-                                                    value: [],
+            output?.show(exercise: ExercisePositive(value: [],
                                                     weekDay: schedule.weekDay, weekNr: weekNumber))
         }
     }

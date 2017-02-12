@@ -78,8 +78,7 @@ class PositiveViewController: UIViewController, ExerciseResult {
     }
     
     func result() -> Exercise {
-        return ExercisePositive(type: .positive,
-                                value: [one.text ?? "",
+        return ExercisePositive(value: [one.text ?? "",
                                         two.text ?? "",
                                         three.text ?? ""],
                                 weekDay: exercise.weekDay, weekNr: exercise.weekNr)

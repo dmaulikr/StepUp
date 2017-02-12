@@ -83,8 +83,7 @@ class ActiveViewController: UIViewController, ExerciseResult {
     }
     
     func result() -> Exercise {
-        return ExerciseActive(type: .active,
-                              value: [intensity.selectedSegmentIndex,
+        return ExerciseActive(value: [intensity.selectedSegmentIndex,
                                                   training.selectedSegmentIndex,
                                                   fun.selectedSegmentIndex],
                               weekDay: exercise.weekDay, weekNr: exercise.weekNr)
