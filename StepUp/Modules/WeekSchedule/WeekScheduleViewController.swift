@@ -55,7 +55,7 @@ class WeekScheduleViewController: UIViewController,
     
     private let configurator: WeekScheduleCellConfiguration
     private let dataSource: CollectionViewDataSource<FlatArrayDataHandler<Section<DaySchedule>>,
-    WeekScheduleCellConfiguration>
+                                                                          WeekScheduleCellConfiguration>
     
     init(viewModel: WeekScheduleViewModel) {
         weekScheduleViewModel = viewModel
@@ -77,14 +77,10 @@ class WeekScheduleViewController: UIViewController,
         applyConstraints()
         
         treatmentTitle.text = "Behandeling \(weekScheduleViewModel.weekNumber)"
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         weekScheduleViewModel.start()
         closeButton.addTarget(self, action: #selector(closeButtonTapped(sender:)), for: .touchUpInside)
     }
-    
+
     // MARK: Week schedule output
     
     func showWeekSchedule() {

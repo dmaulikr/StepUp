@@ -1,7 +1,7 @@
 import Foundation
 
 class FlatArrayDataHandler<T: SectionInfo>: DataHandler {
-    private var data: [T]
+    var data: [T]
     
     init(data: [T]) {
         self.data = data

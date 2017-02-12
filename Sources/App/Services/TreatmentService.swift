@@ -3,6 +3,7 @@ import FileKit
 
 public protocol TreatmentService {
     func save(_ exercise: Exercise)
+    func cleanAll()
 }
 
 public protocol UsesTreatmentService {
@@ -24,6 +25,25 @@ public class MixinTreatmentService: TreatmentService {
                                                options: JSONSerialization.WritingOptions(rawValue: 0))
         let file = FileKit.fileInDocumentsFolder(withName: "\(exercise.weekNr).json", data: data)
         try? fileKit.save(file: file)
+    }
+    
+    public func cleanAll() {
+        guard let folder = try? fileKit.load(folder: Folder(path: FileKit.pathToDocumentsFolder())) else {
+            return
+        }
+        let files: [File] = folder.filePaths.flatMap { url in
+            let filename = url.lastPathComponent
+            let pathComp = url.pathComponents
+                .dropFirst()
+                .dropLast()
+                .joined(separator: "/")
+            let f = Folder(path: URL(fileURLWithPath: pathComp))
+            return File(name: filename, folder: f)
+        }
+        
+        files.forEach { f in
+            try? fileKit.delete(file: f)
+        }
     }
     
     private func add(exercise: Exercise) -> [Exercise] {

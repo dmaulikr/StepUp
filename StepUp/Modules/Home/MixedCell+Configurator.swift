@@ -139,6 +139,9 @@ class MixedCellConfigurator: CollectionViewCellConfigurator, UsesHomeViewModel {
             cell.emailButtonCallback = { [weak self] in
                 self?.homeViewModel.getTreatmentResults()
             }
+            cell.deleteButtonCallback = { [weak self] in
+                self?.homeViewModel.removeAllExercise()
+            }
             return cell
         }
     }

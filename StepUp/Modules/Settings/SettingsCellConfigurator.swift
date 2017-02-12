@@ -22,6 +22,7 @@ class SettingCell: UICollectionViewCell, Reusable {
     
     var reminderButtonCallback: (() -> ())?
     var emailButtonCallback: (() -> ())?
+    var deleteButtonCallback: (() -> ())?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +37,7 @@ class SettingCell: UICollectionViewCell, Reusable {
     func configure(model: Setting) {
         reminderView.button.addTarget(self, action: #selector(reminderButtonTapped(sender:)), for: .touchUpInside)
         email.sendButton.addTarget(self, action: #selector(emailButtonTapped(sender:)), for: .touchUpInside)
+        deleteTreatments.button.addTarget(self, action: #selector(deleteButtonTapped(sender:)), for: .touchUpInside)
     }
     
     @objc private func reminderButtonTapped(sender: UIButton) {
@@ -46,6 +48,12 @@ class SettingCell: UICollectionViewCell, Reusable {
 
     @objc private func emailButtonTapped(sender: UIButton) {
         if let f = emailButtonCallback {
+            f()
+        }
+    }
+    
+    @objc private func deleteButtonTapped(sender: UIButton) {
+        if let f = deleteButtonCallback {
             f()
         }
     }

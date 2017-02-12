@@ -1,4 +1,5 @@
 import Foundation
+import App
 
 protocol HomeViewOutput: class {
     func showTreatments()
@@ -14,16 +15,18 @@ protocol HomeViewModel: class {
     func presentTreatment(weekNumber number: Int)
     func getReminderSettings()
     func getTreatmentResults()
+    func removeAllExercise()
 }
 
 protocol UsesHomeViewModel {
     var homeViewModel: HomeViewModel { get }
 }
 
-class HomeViewModelImplementation: HomeViewModel {
+class HomeViewModelImplementation: HomeViewModel, UsesTreatmentService {
     private weak var output: HomeViewOutput?
+    internal let treatmentService: TreatmentService
     let dataHandler: FlatArrayDataHandler<Section<MixedEntity>>
-
+    
     init() {
         // swiftlint:disable line_length
         let treatments = Section(title: "Treatments", rows: MixedEntity.treatment(Treatment(title: "Behandeling 1", description: "Step up en stap in omdat gezond bewegen goed voor je gezondheid is,een positieve invloed op je stemming heeft, je zelfvertrouwen vergroot en de kans op het gebruik van medicijnen doet afnemen.", number: 1)),
@@ -37,6 +40,7 @@ class HomeViewModelImplementation: HomeViewModel {
         let settings = Section(title: "Settings", rows: MixedEntity.setting(Setting(email: "email", name: "name")))
         // swiftlint:enable line_length
         dataHandler = FlatArrayDataHandler(data: [settings, treatments])
+        treatmentService = MixinTreatmentService()
     }
     
     func setModel(output: HomeViewOutput) {
@@ -57,6 +61,10 @@ class HomeViewModelImplementation: HomeViewModel {
 
     func getTreatmentResults() {
         output?.sendTreatmentResults([])
+    }
+    
+    func removeAllExercise() {
+        treatmentService.cleanAll()
     }
 }
 

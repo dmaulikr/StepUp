@@ -25,29 +25,7 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel {
     
     init(weekNumber: Int) {
         self.weekNumber = weekNumber
-        let section = Section(title: "Schedule",
-                              rows: DaySchedule(title: "Maandag",
-                                                weekDay: .monday,
-                                                exercises: [.active]),
-                              DaySchedule(title: "Dinsdag",
-                                          weekDay: .tuesday,
-                                          exercises: [.active, .mindfulness]),
-                              DaySchedule(title: "Woensdag",
-                                          weekDay: .wednesday,
-                                          exercises: [.active, .mindfulness]),
-                              DaySchedule(title: "Donderdag",
-                                          weekDay: .thursday,
-                                          exercises: [.active, .mindfulness]),
-                              DaySchedule(title: "Vrijdag",
-                                          weekDay: .friday,
-                                          exercises: [.active, .mindfulness]),
-                              DaySchedule(title: "Zaterdag",
-                                          weekDay: .saturday,
-                                          exercises: [.active, .mindfulness]),
-                              DaySchedule(title: "Zondag",
-                                          weekDay: .sunday,
-                                          exercises: [.active, .mindfulness, .positive]))
-        dataHandler = FlatArrayDataHandler(data: [section])
+        dataHandler = FlatArrayDataHandler()
     }
     
     func setModel(output: WeekScheduleViewOutput) {
@@ -55,6 +33,30 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel {
     }
     
     func start() {
+        let exercises = exerciseTypes(forWeek: weekNumber)
+        let section = Section(title: "Schedule",
+                              rows: DaySchedule(title: "Maandag",
+                                                weekDay: .monday,
+                                                exercises: exercises),
+                              DaySchedule(title: "Dinsdag",
+                                          weekDay: .tuesday,
+                                          exercises: exercises),
+                              DaySchedule(title: "Woensdag",
+                                          weekDay: .wednesday,
+                                          exercises: exercises),
+                              DaySchedule(title: "Donderdag",
+                                          weekDay: .thursday,
+                                          exercises: exercises),
+                              DaySchedule(title: "Vrijdag",
+                                          weekDay: .friday,
+                                          exercises: exercises),
+                              DaySchedule(title: "Zaterdag",
+                                          weekDay: .saturday,
+                                          exercises: exercises),
+                              DaySchedule(title: "Zondag",
+                                          weekDay: .sunday,
+                                          exercises: exercises))
+        dataHandler.data = [section]
         output?.showWeekSchedule()
     }
     
@@ -69,6 +71,19 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel {
         case .positive:
             output?.show(exercise: ExercisePositive(value: [],
                                                     weekDay: schedule.weekDay, weekNr: weekNumber))
+        }
+    }
+    
+    private func exerciseTypes(forWeek: Int) -> [ExerciseType] {
+        switch forWeek {
+        case 1...1:
+            return [.active]
+        case 1...7:
+            return [.active, .mindfulness]
+        case 7...8:
+            return [.active, .mindfulness, .positive]
+        default:
+            return []
         }
     }
 }
