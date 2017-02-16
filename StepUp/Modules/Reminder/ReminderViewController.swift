@@ -60,8 +60,18 @@ class ReminderViewController: UIViewController, ReminderViewOutput, UsesReminder
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    func timePicker(enabled: Bool) {
+        timePicker.isEnabled = enabled
+    }
+    
+    func controlSwitch(on: Bool) {
+        switchOnOff.isOn = on
+    }
+    
+    // MARK: view controller helper
+    
     @objc func switchChanged(sender: UISwitch) {
-        timePicker.isEnabled = sender.isOn
+        reminderViewModel.pushTryTo(enabled: sender.isOn)
     }
     
     @objc private func cancel(sender: UIBarButtonItem) {

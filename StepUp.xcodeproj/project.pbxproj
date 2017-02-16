@@ -62,6 +62,7 @@
 		A3DFC3061E4788BC00292DB9 /* MindfulnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */; };
 		A3E28F371E463FCC00C1B764 /* ActiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E28F361E463FCC00C1B764 /* ActiveViewController.swift */; };
 		A3E28F391E47281400C1B764 /* PositiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E28F381E47281400C1B764 /* PositiveViewController.swift */; };
+		A3FC9FAB1E562EFF006F10A1 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FC9FAA1E562EFF006F10A1 /* NotificationService.swift */; };
 		OBJ_34 /* StepUpDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* StepUpDummy.swift */; };
 		OBJ_36 /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* FileKit.framework */; };
 /* End PBXBuildFile section */
@@ -159,6 +160,7 @@
 		A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MindfulnessViewController.swift; sourceTree = "<group>"; };
 		A3E28F361E463FCC00C1B764 /* ActiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveViewController.swift; sourceTree = "<group>"; };
 		A3E28F381E47281400C1B764 /* PositiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositiveViewController.swift; sourceTree = "<group>"; };
+		A3FC9FAA1E562EFF006F10A1 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		OBJ_14 /* StepUpDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepUpDummy.swift; sourceTree = "<group>"; };
 		OBJ_18 /* FileKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FileKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_19 /* App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -339,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				A363B5991E509C480068F754 /* TreatmentService.swift */,
+				A3FC9FAA1E562EFF006F10A1 /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				A363B5A61E50AECC0068F754 /* TreatmentService.swift in Sources */,
 				OBJ_34 /* StepUpDummy.swift in Sources */,
 				A363B5A91E50AF8F0068F754 /* Exercise.swift in Sources */,
+				A3FC9FAB1E562EFF006F10A1 /* NotificationService.swift in Sources */,
 				A363B5AB1E50AFD70068F754 /* DaySchedule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
