@@ -50,6 +50,7 @@
 		A36B44C11E204AC5005E0B98 /* CollectionViewCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B44C01E204AC5005E0B98 /* CollectionViewCellConfigurator.swift */; };
 		A36B44C41E204B68005E0B98 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B44C31E204B68005E0B98 /* CollectionViewDataSource.swift */; };
 		A36B44C61E204BC5005E0B98 /* CollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B44C51E204BC5005E0B98 /* CollectionView+Reusable.swift */; };
+		A38418461E58D7DC003914DB /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38418451E58D7DC003914DB /* Reminder.swift */; };
 		A3C474531E33748800B22AF3 /* WeekScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474521E33748800B22AF3 /* WeekScheduleViewModel.swift */; };
 		A3C474551E33758D00B22AF3 /* WeekScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */; };
 		A3C474571E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */; };
@@ -148,6 +149,7 @@
 		A36B44C01E204AC5005E0B98 /* CollectionViewCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCellConfigurator.swift; sourceTree = "<group>"; };
 		A36B44C31E204B68005E0B98 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		A36B44C51E204BC5005E0B98 /* CollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionView+Reusable.swift"; sourceTree = "<group>"; };
+		A38418451E58D7DC003914DB /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		A3C474521E33748800B22AF3 /* WeekScheduleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekScheduleViewModel.swift; sourceTree = "<group>"; };
 		A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekScheduleViewController.swift; sourceTree = "<group>"; };
 		A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeekScheduleCell+Configurator.swift"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				A3DDF8C21E4E868A0021F60D /* Result.swift */,
 				A361E4221E4FB59200CFE9B8 /* Setting.swift */,
 				A361E4241E4FB5C700CFE9B8 /* MixedEntity.swift */,
+				A38418451E58D7DC003914DB /* Reminder.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				A361E4251E4FB5C700CFE9B8 /* MixedEntity.swift in Sources */,
 				A3DDF8C81E4F9E5D0021F60D /* SettingsCellConfigurator.swift in Sources */,
 				A3C474531E33748800B22AF3 /* WeekScheduleViewModel.swift in Sources */,
+				A38418461E58D7DC003914DB /* Reminder.swift in Sources */,
 				A3E28F371E463FCC00C1B764 /* ActiveViewController.swift in Sources */,
 				A361E4231E4FB59200CFE9B8 /* Setting.swift in Sources */,
 				A35190DB1E048C3F00F7348E /* HomeViewModel.swift in Sources */,

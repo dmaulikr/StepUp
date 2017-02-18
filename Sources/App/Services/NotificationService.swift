@@ -8,7 +8,11 @@ public enum NotificationServiceResult {
 
 public protocol NotificationService {
     func checkNotificationStatus(completion: @escaping (NotificationServiceResult) -> Void)
-    func scheduleLocalNotification(title: String, body: String, at time: TimeInterval)
+    func scheduleLocalNotification(title: String,
+                                   body: String,
+                                   at time: TimeInterval,
+                                   withIdentifier id: String,
+                                   repeats: Bool)
 }
 
 public protocol UsesNotificationService {
@@ -42,22 +46,23 @@ public class MixinNotificationService: NotificationService {
         }
     }
     
-    public func scheduleLocalNotification(title: String, body: String, at time: TimeInterval) {
+    public func scheduleLocalNotification(title: String,
+                                          body: String,
+                                          at time: TimeInterval,
+                                          withIdentifier id: String,
+                                          repeats: Bool = false) {
         let content = UNMutableNotificationContent()
-        content.title = NSString.localizedUserNotificationString(forKey:
-            "Hello!", arguments: nil)
-        content.body = NSString.localizedUserNotificationString(forKey:
-            "Hello_message_body", arguments: nil)
-        
-        // Deliver the notification in five seconds.
+        content.title = title
+        content.body = body
+
         content.sound = UNNotificationSound.default()
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5,
-                                                        repeats: false)
-        
-        // Schedule the notification.
-        let request = UNNotificationRequest(identifier: "FiveSecond", content: content, trigger: trigger)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: time,
+                                                        repeats: repeats)
+        let request = UNNotificationRequest(identifier: id,
+            content: content,
+            trigger: trigger)
         let center = UNUserNotificationCenter.current()
-        center.add(request, withCompletionHandler: nil)        
+        center.add(request, withCompletionHandler: nil)
     }
     
     private func checkPermissions(completion: @escaping (UNAuthorizationStatus) -> Void) {
