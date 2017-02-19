@@ -136,11 +136,11 @@ class MixedCellConfigurator: CollectionViewCellConfigurator, UsesHomeViewModel {
             cell.reminderButtonCallback = { [weak self] in
                 self?.homeViewModel.getReminderSettings()
             }
-            cell.emailButtonCallback = { [weak self] in
-                self?.homeViewModel.getTreatmentResults()
+            cell.emailButtonCallback = { [weak self] email, name in
+                self?.homeViewModel.getTreatmentResults(email: email, name: name)
             }
             cell.deleteButtonCallback = { [weak self] in
-                self?.homeViewModel.removeAllExercise()
+                self?.homeViewModel.promptForExercisesRemoval()
             }
             return cell
         }

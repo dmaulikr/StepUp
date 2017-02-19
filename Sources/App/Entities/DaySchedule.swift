@@ -1,13 +1,13 @@
 import Foundation
 
 public enum Day: String {
-    case sunday = "sunday"
-    case monday = "monday"
-    case tuesday = "tuesday"
-    case wednesday = "wednesday"
-    case thursday = "thursday"
-    case friday = "friday"
-    case saturday = "saturday"
+    case sunday = "zondag"
+    case monday = "maandag"
+    case tuesday = "dinsdag"
+    case wednesday = "woensdag"
+    case thursday = "donderdag"
+    case friday = "vrijdag"
+    case saturday = "zaterdag"
 }
 
 public struct DaySchedule {

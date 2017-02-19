@@ -5,6 +5,7 @@ public protocol TreatmentService {
     func save(_ exercise: Exercise)
     func load(exerciseWithType type: ExerciseType, forDay day: Day, inWeek week: Int) -> Exercise?
     func cleanAll()
+    func loadAllExercise() -> [Exercise]
 }
 
 public protocol UsesTreatmentService {
@@ -36,6 +37,14 @@ public class MixinTreatmentService: TreatmentService {
             return nil
         }
         return exercises[index]
+    }
+    
+    public func loadAllExercise() -> [Exercise] {
+        var result: [Exercise] = []
+        for week in 1...8 {
+            result.append(contentsOf: loadExercises(forWeek: week))
+        }
+        return result
     }
     
     public func cleanAll() {

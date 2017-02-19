@@ -2,7 +2,11 @@ import UIKit
 import MessageUI
 
 protocol MailComposer {
-    func presentMailComposerView(recipients: [String], subject: String, message: String, appendDebugInfo debug: Bool)
+    func presentMailComposerView(recipients: [String],
+                                 subject: String,
+                                 message: String,
+                                 isHTML: Bool,
+                                 appendDebugInfo debug: Bool)
     func canSendMail() -> Bool
 }
 
@@ -10,10 +14,12 @@ extension MailComposer where Self: UIViewController {
     func presentMailComposerView(recipients: [String],
                                  subject: String,
                                  message: String,
+                                 isHTML: Bool = true,
                                  appendDebugInfo debug: Bool = false) {
         let mailComposer = MailComposerViewController(recipients: recipients,
                                                       subject: subject,
                                                       message: message,
+                                                      isHTML: isHTML,
                                                       appendDebugInfo: debug)
         present(mailComposer, animated: true, completion: nil)
     }
@@ -26,12 +32,16 @@ extension MailComposer where Self: UIViewController {
 final class MailComposerViewController: MFMailComposeViewController,
                                   MFMailComposeViewControllerDelegate {
    
-    init(recipients: [String], subject: String, message: String, appendDebugInfo debug: Bool = false) {
+    init(recipients: [String],
+         subject: String,
+         message: String,
+         isHTML: Bool = true,
+         appendDebugInfo debug: Bool = false) {
         super.init(nibName: nil, bundle: nil)
         mailComposeDelegate = self
         setToRecipients(recipients)
         setSubject(subject)
-        setMessageBody(debug ? append(keyValues: getSpecKeyList(), toMessage: message) : message, isHTML: false)
+        setMessageBody(debug ? append(keyValues: getSpecKeyList(), toMessage: message) : message, isHTML: isHTML)
     }
 
     required init?(coder aDecoder: NSCoder) {

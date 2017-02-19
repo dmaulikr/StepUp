@@ -43,6 +43,7 @@ class HomeViewController: UIViewController,
         viewModel.setModel(output: self)
         collectionView.dataSource = dataSource
         collectionView.delegate = self
+        collectionView.keyboardDismissMode = .onDrag
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -122,12 +123,24 @@ class HomeViewController: UIViewController,
         present(nav, animated: true, completion: nil)
     }
     
-    func sendTreatmentResults(_ results: [Treatment]) {
+    func sendTreatment(toEmail email: String, name: String, withResults results: String) {
         if canSendMail() {
-            presentMailComposerView(recipients: ["no@mail.com"],
-                                    subject: "Resultaat oefeningen",
-                                    message: "Message body!")
+            let subject = name.isEmpty ? "Overzicht van de oefeningen" : "Overzicht van de oefeningen: \(name)."
+            presentMailComposerView(recipients: [email],
+                                    subject: subject,
+                                    message: results)
         }
+    }
+    
+    func confirmation(message: String) {
+        let ac = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+        let delete = UIAlertAction(title: "Verwijderen", style: .destructive) { [weak self] _ in
+            self?.homeViewModel.deleteExercises()
+        }
+        ac.addAction(delete)
+        let cancel = UIAlertAction(title: "Annuleren", style: .cancel, handler: nil)
+        ac.addAction(cancel)
+        present(ac, animated: true, completion: nil)
     }
     
     // MARK: UIScrollview delegate, calculate page position

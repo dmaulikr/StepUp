@@ -5,21 +5,22 @@ class EmailView: UIView {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.textAlignment = .center
-        l.text = "Versturen van je oefeningen"
+        l.text = "Je oefeningen versturen"
         l.textColor = .black
         l.font = UIFont.light(withSize: 17)
         return l
     }()
     
-    private lazy var email: UITextField = {
+    lazy var email: UITextField = {
         let s = UITextField()
         s.translatesAutoresizingMaskIntoConstraints = false
         s.borderStyle = UITextBorderStyle.roundedRect
         s.placeholder = "E-mailadres van je therapeut"
+        s.keyboardType = .emailAddress
         return s
     }()
     
-    private lazy var name: UITextField = {
+    lazy var name: UITextField = {
         let s = UITextField()
         s.translatesAutoresizingMaskIntoConstraints = false
         s.borderStyle = UITextBorderStyle.roundedRect
@@ -30,7 +31,6 @@ class EmailView: UIView {
     lazy var sendButton: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
-        b.addTarget(self, action: #selector(emailButtonTapped(sender:)), for: .touchUpInside)
         b.titleLabel?.font = UIFont.regular(withSize: 14)
         b.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         b.setTitleColor(.white, for: .normal)
@@ -49,10 +49,6 @@ class EmailView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func emailButtonTapped(sender: UIButton) {
-//        delegate?.controlPressed(player: self)
     }
     
     private func setupViews() {

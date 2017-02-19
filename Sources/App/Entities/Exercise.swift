@@ -9,9 +9,9 @@ public enum ExerciseType: String {
 extension ExerciseType: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .active: return "active"
-        case .mindfulness: return "mindfulness"
-        case .positive: return "positive"
+        case .active: return "Bewegen"
+        case .mindfulness: return "Mindfulness"
+        case .positive: return "Positief"
         }
     }
 }
@@ -21,6 +21,7 @@ public protocol Exercise {
     var weekDay: Day { get }
     var weekNr: Int { get }
     func toJSON() -> [String: Any]
+    func toHTML() -> String
 }
 
 extension Exercise {
@@ -77,6 +78,15 @@ public struct ExerciseActive: Exercise {
                 "weekDay": weekDay.rawValue,
                 "weekNr": weekNr]
     }
+    
+    public func toHTML() -> String {
+        var html = "<tr><td>week: \(weekNr) - \(weekDay.rawValue)</td></tr>"
+        html += "<tr><td colspan=\"2\">\(type.description)</td></tr>"
+        html += "<tr><td colspan=\"2\">Intensiteit: \(value[0])</td></tr>"
+        html += "<tr><td colspan=\"2\">Training: \(value[1])</td></tr>"
+        html += "<tr><td colspan=\"2\">Plezier: \(value[2])</td></tr>"
+        return html
+    }
 }
 
 extension ExerciseActive: Equatable {
@@ -108,6 +118,15 @@ public struct ExercisePositive: Exercise {
                 "weekDay": weekDay.rawValue,
                 "weekNr": weekNr]
     }
+    
+    public func toHTML() -> String {
+        var html = "<tr><td>week \(weekNr) - \(weekDay.rawValue)</td></tr>"
+        html += "<tr><td colspan=\"2\">\(type.description)</td></tr>"
+        html += "<tr><td colspan=\"2\">1: \(value[0])</td></tr>"
+        html += "<tr><td colspan=\"2\">2: \(value[1])</td></tr>"
+        html += "<tr><td colspan=\"2\">3: \(value[2])</td></tr>"
+        return html
+    }
 }
 
 extension ExercisePositive: Equatable {
@@ -138,6 +157,15 @@ public struct ExerciseMindfulness: Exercise {
                 "weekDay": weekDay.rawValue,
                 "weekNr": weekNr]
     }
+    
+    public func toHTML() -> String {
+        var html = "<tr><td>week \(weekNr) - \(weekDay.rawValue)</td></tr>"
+        html += "<tr><td colspan=\"2\">\(type.description)</td></tr>"
+        html += "<tr><td colspan=\"2\">bodyscan: \(value[0])</td></tr>"
+        html += "<tr><td colspan=\"2\">ademruimte: \(value[1])</td></tr>"
+        return html
+    }
+
 }
 
 extension ExerciseMindfulness: Equatable {

@@ -5,7 +5,8 @@ protocol HomeViewOutput: class {
     func showTreatments(index: IndexPath)
     func presentTreatmentWeek(viewModel: WeekScheduleViewModel)
     func presentReminderSettings(viewModel: MixinReminderViewModel)
-    func sendTreatmentResults(_ results: [Treatment])
+    func sendTreatment(toEmail email: String, name: String, withResults results: String)
+    func confirmation(message: String)
 }
 
 protocol HomeViewModel: class {
@@ -14,8 +15,9 @@ protocol HomeViewModel: class {
     func start()
     func presentTreatment(weekNumber number: Int)
     func getReminderSettings()
-    func getTreatmentResults()
-    func removeAllExercise()
+    func getTreatmentResults(email: String, name: String)
+    func promptForExercisesRemoval()
+    func deleteExercises()
 }
 
 protocol UsesHomeViewModel {
@@ -26,6 +28,7 @@ class HomeViewModelImplementation: HomeViewModel, UsesTreatmentService {
     private weak var output: HomeViewOutput?
     internal let treatmentService: TreatmentService
     let dataHandler: FlatArrayDataHandler<Section<MixedEntity>>
+    var firstLaunch: Bool = true
     
     init() {
         // swiftlint:disable line_length
@@ -48,7 +51,10 @@ class HomeViewModelImplementation: HomeViewModel, UsesTreatmentService {
     }
     
     func start() {
-        output?.showTreatments(index: IndexPath(row: 0, section: 1))
+        if firstLaunch {
+            output?.showTreatments(index: IndexPath(row: 0, section: 1))
+            firstLaunch = false
+        }
     }
     
     func presentTreatment(weekNumber number: Int) {
@@ -59,12 +65,27 @@ class HomeViewModelImplementation: HomeViewModel, UsesTreatmentService {
         output?.presentReminderSettings(viewModel: MixinReminderViewModel())
     }
 
-    func getTreatmentResults() {
-        output?.sendTreatmentResults([])
+    func getTreatmentResults(email: String, name: String) {
+        let result = treatmentService.loadAllExercise()
+        let message = convertToHTMLTable(exercises: result)
+        output?.sendTreatment(toEmail: email, name: name, withResults: message)
     }
     
-    func removeAllExercise() {
+    func promptForExercisesRemoval() {
+        output?.confirmation(message: "Weet je zeker dat je alle resultaten wil verwijderen?")
+    }
+    
+    func deleteExercises() {
         treatmentService.cleanAll()
+    }
+    
+    private func convertToHTMLTable(exercises: [Exercise]) -> String {
+        var html: [String] = exercises.map { e in
+            e.toHTML()
+        }
+        html.insert("<html><body><table>", at: 0)
+        html.append("</table></body></html>")
+        return html.joined()
     }
 }
 

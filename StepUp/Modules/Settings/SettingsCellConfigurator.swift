@@ -20,14 +20,22 @@ class SettingCell: UICollectionViewCell, Reusable {
         return v
     }()
     
+    private var tap: UITapGestureRecognizer?
+    
     var reminderButtonCallback: (() -> ())?
-    var emailButtonCallback: (() -> ())?
+    var emailButtonCallback: ((String, String) -> ())?
     var deleteButtonCallback: (() -> ())?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
         applyViewConstraints()
+    }
+    
+    deinit {
+        if let tap = tap {
+            contentView.removeGestureRecognizer(tap)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,7 +56,7 @@ class SettingCell: UICollectionViewCell, Reusable {
 
     @objc private func emailButtonTapped(sender: UIButton) {
         if let f = emailButtonCallback {
-            f()
+            f(email.email.text ?? "", email.name.text ?? "")
         }
     }
     
@@ -62,6 +70,13 @@ class SettingCell: UICollectionViewCell, Reusable {
         contentView.addSubview(email)
         contentView.addSubview(deleteTreatments)
         contentView.addSubview(reminderView)
+        
+        tap = UITapGestureRecognizer(target: self, action: #selector(userTapped(recognizer:)))
+        contentView.addGestureRecognizer(tap!)
+    }
+    
+    @objc private func userTapped(recognizer: UIGestureRecognizer) {
+        endEditing(false)
     }
     
     private func applyViewConstraints() {

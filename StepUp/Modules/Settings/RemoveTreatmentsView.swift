@@ -14,7 +14,6 @@ class RemoveTreatmentsView: UIView {
     lazy var button: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
-        b.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
         b.titleLabel?.font = UIFont.regular(withSize: 14)
         b.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         b.setTitleColor(.white, for: .normal)
@@ -33,10 +32,6 @@ class RemoveTreatmentsView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func buttonTapped(sender: UIButton) {
-        //        delegate?.controlPressed(player: self)
     }
     
     private func setupViews() {
