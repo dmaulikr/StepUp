@@ -1,9 +1,11 @@
 import UIKit
 import FileKit
 import App
+import AVFoundation
+import AudioKit
 
 class MindfulnessViewController: UIViewController, ExerciseResult {
-    internal let audioPlayer: AudioPlayer
+    internal var audioPlayer: AudioPlaying
     
     private lazy var audioFileBodyScan: File? = {
         guard let item = try? FileKit.path(forResource: "bodyscan",
@@ -96,7 +98,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
     
     init(exercise: Exercise) {
         self.exercise = exercise
-        audioPlayer = AudioPlayer()
+        audioPlayer = PlayerController()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -110,6 +112,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        audioPlayer.pause()
     }
     
     func result() -> Exercise {
@@ -134,28 +137,29 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
     }
     
     private func configure() {
-        audioPlayer.configure { [weak self] _ in
-            self?.audioPlayer.elapsedTime = { [weak self] time in
-                self?.audioPlayerView.elapsedTime.text = String(format: "%02d:%02d", time.minute, time.second)
-            }
-            self?.prepareAudioPlayer(forAudioFile: self?.audioFileBodyScan)
-            self?.audioPlayer.totalLength = { tl in
-                self?.audioPlayerView.totalTime.text = String(format: "%02d:%02d", tl.minute, tl.second)
-            }
-            self?.audioPlayer.progress = { [weak self] ct, tt in
-                self?.audioPlayerView.progress(totalTime: tt, elapsedTime: ct)
-            }
+        guard let url = audioFileBodyScan?.path else { return }
+        audioPlayer.configure(url: url, completion: nil)
+        audioPlayer.elapsedTime = { [weak self] time in
+            self?.audioPlayerView.elapsedTime.text = time
+        }
+
+        audioPlayer.totalLength = { [weak self] tl in
+            self?.audioPlayerView.totalTime.text = tl
+        }
+        audioPlayer.progress = { [weak self] ct, tt in
+            self?.audioPlayerView.progress(totalTime: tt, elapsedTime: ct)
+        }
+        
+        audioPlayer.playerReady = { [weak self] in
+            self?.audioPlayerView.controlButton.isEnabled = true
         }
     }
     
     private func prepareAudioPlayer(forAudioFile: File?) {
         audioPlayerView.controlButton.isEnabled = false
+        audioPlayer.pause()
         guard let file = forAudioFile else { return }
-        audioPlayer.prepare(audioFilePath: file.path, completion: { [weak self] _ in
-            self?.audioPlayerView.controlButton.isEnabled = true
-        }, stopped: { [weak self] in
-            self?.audioPlayerView.reset()
-        })
+        audioPlayer.prepare(audioFilePath: file.path, completion: nil, stopped: nil)
     }
     
     private func setup() {

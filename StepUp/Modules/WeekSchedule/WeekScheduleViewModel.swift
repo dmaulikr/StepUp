@@ -1,5 +1,6 @@
 import Foundation
 import App
+import CollectionViewKit
 
 protocol WeekScheduleViewOutput: class {
     func showWeekSchedule()
@@ -8,7 +9,7 @@ protocol WeekScheduleViewOutput: class {
 
 protocol WeekScheduleViewModel: class {
     var weekNumber: Int { get }
-    var dataHandler: FlatArrayDataHandler<Section<DaySchedule>> { get }
+    var dataHandler: SectionDataHandler<Section<DaySchedule>> { get }
     func setModel(output: WeekScheduleViewOutput)
     func start()
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule)
@@ -21,12 +22,12 @@ protocol UsesWeekScheduleViewModel {
 class WeekScheduleViewModelImplementation: WeekScheduleViewModel, UsesTreatmentService {
     private weak var output: WeekScheduleViewOutput?
     internal let treatmentService: TreatmentService
-    let dataHandler: FlatArrayDataHandler<Section<DaySchedule>>
+    let dataHandler: SectionDataHandler<Section<DaySchedule>>
     let weekNumber: Int
     
     init(weekNumber: Int) {
         self.weekNumber = weekNumber
-        dataHandler = FlatArrayDataHandler()
+        dataHandler = SectionDataHandler()
         treatmentService = MixinTreatmentService()
     }
     

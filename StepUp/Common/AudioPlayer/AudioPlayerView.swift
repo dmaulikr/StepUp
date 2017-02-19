@@ -1,18 +1,18 @@
 import UIKit
 
-protocol AudioPlayerDelegate: class {
+public protocol AudioPlayerDelegate: class {
     func controlPressed(player: AudioPlayerView)
 }
 
-class AudioPlayerView: UIView {
-    lazy var itemTitle: UILabel = {
+public class AudioPlayerView: UIView {
+    public lazy var itemTitle: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.font = UIFont.regular(withSize: 14)
         return l
     }()
     
-    lazy var totalTime: UILabel = {
+    public lazy var totalTime: UILabel = {
         let l = UILabel()
         l.font = UIFont.light(withSize: 14)
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +20,7 @@ class AudioPlayerView: UIView {
         return l
     }()
     
-    lazy var elapsedTime: UILabel = {
+    public lazy var elapsedTime: UILabel = {
         let l = UILabel()
         l.font = UIFont.light(withSize: 14)
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +28,7 @@ class AudioPlayerView: UIView {
         return l
     }()
     
-    lazy var controlButton: UIButton = {
+    public lazy var controlButton: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
         b.addTarget(self, action: #selector(controlButtonTapped(sender:)), for: .touchUpInside)
@@ -42,7 +42,7 @@ class AudioPlayerView: UIView {
         return b
     }()
     
-    weak var delegate: AudioPlayerDelegate?
+    public weak var delegate: AudioPlayerDelegate?
     
     private lazy var wrapperView: UIView = {
         let v = UIView()
@@ -58,25 +58,25 @@ class AudioPlayerView: UIView {
         return p
     }()
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
         applyViewConstraints()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func reset() {
-        elapsedTime.text = String(format: "%02d:%02d", 0, 0)
-        totalTime.text = String(format: "%02d:%02d", 0, 0)
+    public func reset() {
+        elapsedTime.text = String(format: "%0d:%02d", 0, 0)
+        totalTime.text = String(format: "%0d:%02d", 0, 0)
         progressIndicator.setProgress(0, animated: false)
         controlButton.setTitle("Afspelen", for: .normal)
     }
     
-    func progress(totalTime: AudioTime, elapsedTime: AudioTime) {
-        progressIndicator.setProgress(1.0 / Float(totalTime.timeInterval / elapsedTime.timeInterval), animated: true)
+    public func progress(totalTime: Double, elapsedTime: Double) {
+        progressIndicator.setProgress(1.0 / Float(totalTime / elapsedTime), animated: true)
     }
     
     @objc private func controlButtonTapped(sender: UIButton) {

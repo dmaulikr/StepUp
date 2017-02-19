@@ -1,4 +1,5 @@
 import UIKit
+import CollectionViewKit
 
 class HomeViewController: UIViewController,
                           HomeViewOutput,
@@ -32,7 +33,7 @@ class HomeViewController: UIViewController,
     }()
     
     private let configurator: MixedCellConfigurator
-    private let dataSource: CollectionViewDataSource<FlatArrayDataHandler<Section<MixedEntity>>,
+    private let dataSource: CollectionViewDataSource<SectionDataHandler<Section<MixedEntity>>,
                             MixedCellConfigurator>
     
     init(viewModel: HomeViewModel) {

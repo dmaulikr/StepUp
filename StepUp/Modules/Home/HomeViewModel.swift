@@ -1,5 +1,6 @@
 import Foundation
 import App
+import CollectionViewKit
 
 protocol HomeViewOutput: class {
     func showTreatments(index: IndexPath)
@@ -10,7 +11,7 @@ protocol HomeViewOutput: class {
 }
 
 protocol HomeViewModel: class {
-    var dataHandler: FlatArrayDataHandler<Section<MixedEntity>> { get }
+    var dataHandler: SectionDataHandler<Section<MixedEntity>> { get }
     func setModel(output: HomeViewOutput)
     func start()
     func presentTreatment(weekNumber number: Int)
@@ -27,7 +28,7 @@ protocol UsesHomeViewModel {
 class HomeViewModelImplementation: HomeViewModel, UsesTreatmentService {
     private weak var output: HomeViewOutput?
     internal let treatmentService: TreatmentService
-    let dataHandler: FlatArrayDataHandler<Section<MixedEntity>>
+    let dataHandler: SectionDataHandler<Section<MixedEntity>>
     var firstLaunch: Bool = true
     
     init() {
@@ -42,7 +43,7 @@ class HomeViewModelImplementation: HomeViewModel, UsesTreatmentService {
                               MixedEntity.treatment(Treatment(title: "Behandeling 8", description: "Richt je op positieve dingen.", number: 8)))
         let settings = Section(title: "Settings", rows: MixedEntity.setting(Setting(email: "email", name: "name")))
         // swiftlint:enable line_length
-        dataHandler = FlatArrayDataHandler(data: [settings, treatments])
+        dataHandler = SectionDataHandler(data: [settings, treatments])
         treatmentService = MixinTreatmentService()
     }
     

@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import CollectionViewKit
 
 class TreatmentCell: UICollectionViewCell, Reusable {
     private lazy var title: UILabel = {

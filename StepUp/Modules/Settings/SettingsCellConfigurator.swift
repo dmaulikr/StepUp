@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import CollectionViewKit
 
 class SettingCell: UICollectionViewCell, Reusable {
     private lazy var email: EmailView = {

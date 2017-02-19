@@ -1,5 +1,6 @@
 import UIKit
 import App
+import CollectionViewKit
 
 class DayScheduleCell: UICollectionViewCell, Reusable {
     private lazy var title: UILabel = {

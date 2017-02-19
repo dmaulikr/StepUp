@@ -1,6 +1,7 @@
 
 import UIKit
 import App
+import CollectionViewKit
 
 class WeekScheduleViewController: UIViewController,
                                   UsesWeekScheduleViewModel,
@@ -54,7 +55,7 @@ class WeekScheduleViewController: UIViewController,
     }()
     
     private let configurator: WeekScheduleCellConfiguration
-    private let dataSource: CollectionViewDataSource<FlatArrayDataHandler<Section<DaySchedule>>,
+    private let dataSource: CollectionViewDataSource<SectionDataHandler<Section<DaySchedule>>,
                                                                           WeekScheduleCellConfiguration>
     
     init(viewModel: WeekScheduleViewModel) {
