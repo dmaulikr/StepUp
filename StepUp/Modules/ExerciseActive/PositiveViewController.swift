@@ -8,6 +8,7 @@ class PositiveViewController: UIViewController, ExerciseResult {
         l.text = "1:"
         l.textColor = .darkGray
         l.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+        l.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         return l
     }()
     
@@ -15,6 +16,7 @@ class PositiveViewController: UIViewController, ExerciseResult {
         let s = UITextField()
         s.translatesAutoresizingMaskIntoConstraints = false
         s.borderStyle = UITextBorderStyle.roundedRect
+        s.setContentCompressionResistancePriority(UILayoutPriorityDefaultLow, for: .horizontal)
         return s
     }()
     
@@ -24,6 +26,7 @@ class PositiveViewController: UIViewController, ExerciseResult {
         l.text = "2:"
         l.textColor = .darkGray
         l.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+        l.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         return l
     }()
     
@@ -31,6 +34,7 @@ class PositiveViewController: UIViewController, ExerciseResult {
         let s = UITextField()
         s.translatesAutoresizingMaskIntoConstraints = false
         s.borderStyle = UITextBorderStyle.roundedRect
+        s.setContentCompressionResistancePriority(UILayoutPriorityDefaultLow, for: .horizontal)
         return s
     }()
     
@@ -39,7 +43,8 @@ class PositiveViewController: UIViewController, ExerciseResult {
         l.translatesAutoresizingMaskIntoConstraints = false
         l.text = "3:"
         l.textColor = .darkGray
-        l.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+//        l.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+        l.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         return l
     }()
     
@@ -47,6 +52,7 @@ class PositiveViewController: UIViewController, ExerciseResult {
         let s = UITextField()
         s.translatesAutoresizingMaskIntoConstraints = false
         s.borderStyle = UITextBorderStyle.roundedRect
+        s.setContentCompressionResistancePriority(UILayoutPriorityDefaultLow, for: .horizontal)
         return s
     }()
     
@@ -183,7 +189,7 @@ class PositiveViewController: UIViewController, ExerciseResult {
                                                            options: NSLayoutFormatOptions(rawValue: 0),
                                                            metrics: nil, views: views))
         view.addConstraints(
-            NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[labelThree]-(5)-[three]-(15)-|",
+            NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[labelThree(==25)]-(5)-[three]-(15)-|",
                                                            options: NSLayoutFormatOptions(rawValue: 0),
                                                            metrics: nil, views: views))
         
