@@ -54,15 +54,15 @@
 		A38418961E59D327003914DB /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38418901E59D327003914DB /* DataHandler.swift */; };
 		A38418971E59D327003914DB /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38418911E59D327003914DB /* Section.swift */; };
 		A38418981E59D327003914DB /* SectionDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38418921E59D327003914DB /* SectionDataHandler.swift */; };
+		A3AE30571E6A158500159B29 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AE30541E6A158500159B29 /* File.swift */; };
+		A3AE30581E6A158500159B29 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AE30551E6A158500159B29 /* Folder.swift */; };
+		A3AE30591E6A158500159B29 /* FileKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AE30561E6A158500159B29 /* FileKit.swift */; };
 		A3C474531E33748800B22AF3 /* WeekScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474521E33748800B22AF3 /* WeekScheduleViewModel.swift */; };
 		A3C474551E33758D00B22AF3 /* WeekScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */; };
 		A3C474571E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */; };
 		A3C5AAF91E5A36CA0084B14C /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AAF61E5A36CA0084B14C /* AudioPlayer.swift */; };
 		A3C5AAFA1E5A36CA0084B14C /* AudioPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AAF71E5A36CA0084B14C /* AudioPlaying.swift */; };
 		A3C5AAFB1E5A36CA0084B14C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AAF81E5A36CA0084B14C /* Player.swift */; };
-		A3C5AB011E5A36F20084B14C /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AAFE1E5A36F20084B14C /* File.swift */; };
-		A3C5AB021E5A36F20084B14C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AAFF1E5A36F20084B14C /* Folder.swift */; };
-		A3C5AB031E5A36F20084B14C /* FileKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AB001E5A36F20084B14C /* FileKit.swift */; };
 		A3DDF8C31E4E868A0021F60D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8C21E4E868A0021F60D /* Result.swift */; };
 		A3DDF8C81E4F9E5D0021F60D /* SettingsCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8C71E4F9E5D0021F60D /* SettingsCellConfigurator.swift */; };
 		A3DFC3061E4788BC00292DB9 /* MindfulnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */; };
@@ -172,15 +172,15 @@
 		A38418901E59D327003914DB /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		A38418911E59D327003914DB /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		A38418921E59D327003914DB /* SectionDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionDataHandler.swift; sourceTree = "<group>"; };
+		A3AE30541E6A158500159B29 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		A3AE30551E6A158500159B29 /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		A3AE30561E6A158500159B29 /* FileKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileKit.swift; sourceTree = "<group>"; };
 		A3C474521E33748800B22AF3 /* WeekScheduleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekScheduleViewModel.swift; sourceTree = "<group>"; };
 		A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = WeekScheduleViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "WeekScheduleCell+Configurator.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A3C5AAF61E5A36CA0084B14C /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = "Packages/AudioKit-1.0.4/Sources/AudioKit/AudioPlayer.swift"; sourceTree = SOURCE_ROOT; };
 		A3C5AAF71E5A36CA0084B14C /* AudioPlaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlaying.swift; path = "Packages/AudioKit-1.0.4/Sources/AudioKit/AudioPlaying.swift"; sourceTree = SOURCE_ROOT; };
 		A3C5AAF81E5A36CA0084B14C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = "Packages/AudioKit-1.0.4/Sources/AudioKit/Player.swift"; sourceTree = SOURCE_ROOT; };
-		A3C5AAFE1E5A36F20084B14C /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		A3C5AAFF1E5A36F20084B14C /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
-		A3C5AB001E5A36F20084B14C /* FileKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileKit.swift; sourceTree = "<group>"; };
 		A3DDF8C21E4E868A0021F60D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		A3DDF8C71E4F9E5D0021F60D /* SettingsCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsCellConfigurator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MindfulnessViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -451,21 +451,21 @@
 			path = DataHandler;
 			sourceTree = "<group>";
 		};
-		A3C5AAFC1E5A36F20084B14C /* FileKit */ = {
+		A3AE30521E6A158500159B29 /* FileKit */ = {
 			isa = PBXGroup;
 			children = (
-				A3C5AAFD1E5A36F20084B14C /* Entities */,
-				A3C5AB001E5A36F20084B14C /* FileKit.swift */,
+				A3AE30531E6A158500159B29 /* Entities */,
+				A3AE30561E6A158500159B29 /* FileKit.swift */,
 			);
 			name = FileKit;
-			path = "Packages/FileKit-1.0.3/Sources/FileKit";
+			path = "Packages/FileKit-1.0.4/Sources/FileKit";
 			sourceTree = SOURCE_ROOT;
 		};
-		A3C5AAFD1E5A36F20084B14C /* Entities */ = {
+		A3AE30531E6A158500159B29 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				A3C5AAFE1E5A36F20084B14C /* File.swift */,
-				A3C5AAFF1E5A36F20084B14C /* Folder.swift */,
+				A3AE30541E6A158500159B29 /* File.swift */,
+				A3AE30551E6A158500159B29 /* Folder.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -525,7 +525,7 @@
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A3C5AAFC1E5A36F20084B14C /* FileKit */,
+				A3AE30521E6A158500159B29 /* FileKit */,
 				A38418891E59D327003914DB /* CollectionViewKit */,
 				A38418681E59C603003914DB /* AudioKit */,
 				OBJ_13 /* App */,
@@ -818,9 +818,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				A3C5AB011E5A36F20084B14C /* File.swift in Sources */,
-				A3C5AB021E5A36F20084B14C /* Folder.swift in Sources */,
-				A3C5AB031E5A36F20084B14C /* FileKit.swift in Sources */,
+				A3AE30571E6A158500159B29 /* File.swift in Sources */,
+				A3AE30581E6A158500159B29 /* Folder.swift in Sources */,
+				A3AE30591E6A158500159B29 /* FileKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
