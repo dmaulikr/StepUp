@@ -113,7 +113,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
         }
     }
     
-    // swiftlint:disable line_length
+    // swiftlint:disable:next line_length function_body_length
     private func setup(excerises: [ExerciseType]) {
         for v in buttonWrapperView.subviews { v.removeFromSuperview() }
         var previous: UIView = buttonWrapperView
@@ -125,15 +125,28 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
                 NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[active]-15-|",
                                                                            options: [],
                                                                            metrics: nil, views: ["active": active]))
-                constraints.append(NSLayoutConstraint(item: active, attribute: .top, relatedBy: .equal, toItem: buttonWrapperView, attribute: .top, multiplier: 1, constant: 7))
+                constraints.append(NSLayoutConstraint(item: active,
+                                                      attribute: .top,
+                                                      relatedBy: .equal,
+                                                      toItem: buttonWrapperView,
+                                                      attribute: .top,
+                                                      multiplier: 1,
+                                                      constant: 7))
             
                 previous = active
             case .mindfulness:
                 buttonWrapperView.addSubview(mindfulness)
-                NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[mindfulness]-15-|",
-                                                                           options: [],
-                                                                           metrics: nil, views: ["mindfulness": mindfulness]))
-                constraints.append(NSLayoutConstraint(item: mindfulness, attribute: .top, relatedBy: .equal, toItem: previous, attribute: .bottom, multiplier: 1, constant: 7))
+                NSLayoutConstraint.activate(NSLayoutConstraint
+                    .constraints(withVisualFormat: "H:|-15-[mindfulness]-15-|",
+                                 options: [],
+                                 metrics: nil, views: ["mindfulness": mindfulness]))
+                constraints.append(NSLayoutConstraint(item: mindfulness,
+                                                      attribute: .top,
+                                                      relatedBy: .equal,
+                                                      toItem: previous,
+                                                      attribute: .bottom,
+                                                      multiplier: 1,
+                                                      constant: 7))
     
                 previous = mindfulness
             case .positive:
@@ -141,15 +154,27 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
                 NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[positive]-15-|",
                                                                            options: [],
                                                                            metrics: nil, views: ["positive": positive]))
-                constraints.append(NSLayoutConstraint(item: positive, attribute: .top, relatedBy: .equal, toItem: previous, attribute: .bottom, multiplier: 1, constant: 7))
+                constraints.append(NSLayoutConstraint(item: positive,
+                                                      attribute: .top,
+                                                      relatedBy: .equal,
+                                                      toItem: previous,
+                                                      attribute: .bottom,
+                                                      multiplier: 1,
+                                                      constant: 7))
             
                 previous = positive
             }
         }
-        constraints.append(NSLayoutConstraint(item: previous, attribute: .bottom, relatedBy: .lessThanOrEqual, toItem: buttonWrapperView, attribute: .bottom, multiplier: 1, constant: 0))
+        constraints.append(NSLayoutConstraint(item: previous,
+                                              attribute: .bottom,
+                                              relatedBy: .lessThanOrEqual,
+                                              toItem: buttonWrapperView,
+                                              attribute: .bottom,
+                                              multiplier: 1,
+                                              constant: 0))
         NSLayoutConstraint.activate(constraints)
     }
-    // swiftlint:enable line_length
+    // swiftlint:enable:next line_length function_body_length
     
     private func setup() {
         contentView.addSubview(wrapperView)
@@ -178,7 +203,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
                                                                    options: [],
                                                                    metrics: nil, views: views))
         
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(<=30)-[title]-[buttonWrapperView]-(>=50)-|",
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(30)-[title]-[buttonWrapperView]-(50)-|",
                                                                    options: [],
                                                                    metrics: nil, views: views))
     }

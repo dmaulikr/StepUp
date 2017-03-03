@@ -54,11 +54,9 @@ class WeekScheduleViewController: UIViewController,
         return l
     }()
     
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let l = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    private lazy var loaderView: LoaderView = {
+        let l = LoaderView()
         l.translatesAutoresizingMaskIntoConstraints = false
-        l.hidesWhenStopped = true
-        l.color = .baseGreen
         return l
     }()
     
@@ -105,25 +103,25 @@ class WeekScheduleViewController: UIViewController,
     
     func show(loader: Bool) {
         if loader {
-            view.addSubview(activityIndicator)
-            var constraints: [NSLayoutConstraint] = []
-            constraints.append(NSLayoutConstraint(item: activityIndicator,
-                                                  attribute: .centerX,
-                                                  relatedBy: .equal,
-                                                  toItem: view,
-                                                  attribute: .centerX,
-                                                  multiplier: 1, constant: 0))
-            constraints.append(NSLayoutConstraint(item: activityIndicator,
-                                                  attribute: .centerY,
-                                                  relatedBy: .equal,
-                                                  toItem: view,
-                                                  attribute: .centerY,
-                                                  multiplier: 1, constant: 0))
-
-            NSLayoutConstraint.activate(constraints)
-            activityIndicator.startAnimating()
+            loaderView.alpha = 1
+            loaderView.start()
+            view.addSubview(loaderView)
+            let views: [String: Any] = ["loaderView": loaderView]
+            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[loaderView]|",
+                                                                       options: [],
+                                                                       metrics: nil,
+                                                                       views: views))
+            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|[loaderView]|",
+                                                                       options: [],
+                                                                       metrics: nil,
+                                                                       views: views))
         } else {
-            activityIndicator.stopAnimating()
+            loaderView.stop()
+            UIView.transition(with: loaderView, duration: 0.23, options: .transitionCrossDissolve, animations: { 
+                self.loaderView.alpha = 0
+            }, completion: { _ in
+                self.loaderView.removeFromSuperview()
+            })
         }
         
     }

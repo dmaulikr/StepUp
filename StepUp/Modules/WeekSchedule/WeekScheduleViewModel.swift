@@ -66,13 +66,10 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel, UsesTreatmentS
     
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule) {
         output?.show(loader: true)
-//        let when = DispatchTime.now() + 5
-//        DispatchQueue.main.asyncAfter(deadline: when) {
-            loadExercise(withType: type, weekDay: schedule.weekDay) { [weak self] exercise in
-                self?.output?.show(loader: false)
-                self?.output?.show(exercise: exercise)
-            }
-//        }
+        loadExercise(withType: type, weekDay: schedule.weekDay) { [weak self] exercise in
+            self?.output?.show(loader: false)
+            self?.output?.show(exercise: exercise)
+        }
     }
     
     private func loadExercise(withType type: ExerciseType, weekDay: Day, completion: @escaping (Exercise) -> ()) {

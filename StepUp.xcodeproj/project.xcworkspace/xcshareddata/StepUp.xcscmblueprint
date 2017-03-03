@@ -11,7 +11,7 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "69BAF7B7-3394-4252-9164-77B8DC57E000",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "2A1CBA6F9493D8564E1FDFA82B79A6D55590435E" : "StepUp\/Packages\/FileKit-1.0.3\/",
+    "2A1CBA6F9493D8564E1FDFA82B79A6D55590435E" : "StepUp\/Packages\/FileKit-1.0.4\/",
     "04CF61C201A3BE897570ABCFF2DE56518F973B93" : "StepUp\/",
     "6A3F3A8484D9925A6C9F18358316285C6996D2CE" : "StepUp\/Packages\/AudioKit-1.0.4\/",
     "4CBCDBF739BD7D6C8D54143CF47CF818AF380BAE" : "StepUp\/Packages\/CollectionViewKit-1.0.0\/"

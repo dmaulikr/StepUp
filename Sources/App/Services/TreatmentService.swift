@@ -30,7 +30,7 @@ public class MixinTreatmentService: TreatmentService {
             let data = try? JSONSerialization.data(withJSONObject: exercises,
                                                    options: JSONSerialization.WritingOptions(rawValue: 0))
             let file = FileKit.fileInDocumentsFolder(withName: "\(exercise.weekNr).json", data: data)
-            self?.fileKit.save(file: file)
+            self?.fileKit.save(file: file, queue: DispatchQueue.global())
         }
     }
     
@@ -78,7 +78,7 @@ public class MixinTreatmentService: TreatmentService {
             }
             
             files.forEach { f in
-                self?.fileKit.delete(file: f)
+                self?.fileKit.delete(file: f, queue: DispatchQueue.global())
             }
         }
     }
