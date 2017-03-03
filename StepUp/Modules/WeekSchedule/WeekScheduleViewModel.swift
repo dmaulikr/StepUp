@@ -2,10 +2,9 @@ import Foundation
 import App
 import CollectionViewKit
 
-protocol WeekScheduleViewOutput: class {
+protocol WeekScheduleViewOutput: class, ActivityIndicating {
     func showWeekSchedule()
     func show(exercise: Exercise)
-    func show(loader: Bool)
 }
 
 protocol WeekScheduleViewModel: class {

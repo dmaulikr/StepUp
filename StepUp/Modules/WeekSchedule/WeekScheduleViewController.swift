@@ -54,7 +54,7 @@ class WeekScheduleViewController: UIViewController,
         return l
     }()
     
-    private lazy var loaderView: LoaderView = {
+    internal lazy var loaderView: LoaderView = {
         let l = LoaderView()
         l.translatesAutoresizingMaskIntoConstraints = false
         return l
@@ -98,32 +98,7 @@ class WeekScheduleViewController: UIViewController,
     func show(exercise: Exercise) {
         let vc = ExerciseViewController(viewModel: MixinExerciseViewModelImplementation(exercise: exercise))
         let navVC = UINavigationController(rootViewController: vc)
-        present(navVC, animated: true, completion: nil)
-    }
-    
-    func show(loader: Bool) {
-        if loader {
-            loaderView.alpha = 1
-            loaderView.start()
-            view.addSubview(loaderView)
-            let views: [String: Any] = ["loaderView": loaderView]
-            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[loaderView]|",
-                                                                       options: [],
-                                                                       metrics: nil,
-                                                                       views: views))
-            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|[loaderView]|",
-                                                                       options: [],
-                                                                       metrics: nil,
-                                                                       views: views))
-        } else {
-            loaderView.stop()
-            UIView.transition(with: loaderView, duration: 0.23, options: .transitionCrossDissolve, animations: { 
-                self.loaderView.alpha = 0
-            }, completion: { _ in
-                self.loaderView.removeFromSuperview()
-            })
-        }
-        
+        present(navVC, animated: false, completion: nil)
     }
     
     // MARK: UIScrollview delegate, calculate page position
