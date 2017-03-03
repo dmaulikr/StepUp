@@ -178,19 +178,19 @@ class PositiveViewController: UIViewController, ExerciseResult {
                                               multiplier: 1, constant: 30))
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[titleLabel]|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[labelOne(==labelTwo)]-(5)-[one]-(15)-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[labelTwo(==labelThree)]-(5)-[two]-(15)-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[labelThree(==25)]-(5)-[three]-(15)-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         
         NSLayoutConstraint.activate(constraints)

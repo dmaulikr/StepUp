@@ -183,10 +183,10 @@ public class AudioPlayerView: UIView {
         NSLayoutConstraint.activate(constraints)
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[wrapperView]|",
-                                                      options: NSLayoutFormatOptions(rawValue: 0),
+                                                      options: [],
                                                       metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[wrapperView]|",
-                                                      options: NSLayoutFormatOptions(rawValue: 0),
+                                                      options: [],
                                                       metrics: nil, views: views))
     }
     // swiftlint:enable function_body_length

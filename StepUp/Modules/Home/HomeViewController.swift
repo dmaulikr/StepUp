@@ -100,7 +100,7 @@ class HomeViewController: UIViewController,
                                               multiplier: 1, constant: 0))
         
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[collectionView]|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         NSLayoutConstraint.activate(constraints)
     }

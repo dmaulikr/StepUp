@@ -123,7 +123,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
             case .active:
                 buttonWrapperView.addSubview(active)
                 NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[active]-15-|",
-                                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                                           options: [],
                                                                            metrics: nil, views: ["active": active]))
                 constraints.append(NSLayoutConstraint(item: active, attribute: .top, relatedBy: .equal, toItem: buttonWrapperView, attribute: .top, multiplier: 1, constant: 7))
             
@@ -131,7 +131,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
             case .mindfulness:
                 buttonWrapperView.addSubview(mindfulness)
                 NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[mindfulness]-15-|",
-                                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                                           options: [],
                                                                            metrics: nil, views: ["mindfulness": mindfulness]))
                 constraints.append(NSLayoutConstraint(item: mindfulness, attribute: .top, relatedBy: .equal, toItem: previous, attribute: .bottom, multiplier: 1, constant: 7))
     
@@ -139,7 +139,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
             case .positive:
                 buttonWrapperView.addSubview(positive)
                 NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[positive]-15-|",
-                                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                                           options: [],
                                                                            metrics: nil, views: ["positive": positive]))
                 constraints.append(NSLayoutConstraint(item: positive, attribute: .top, relatedBy: .equal, toItem: previous, attribute: .bottom, multiplier: 1, constant: 7))
             
@@ -164,22 +164,22 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
                                     "buttonWrapperView": buttonWrapperView]
         
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[wrapperView]-10-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[buttonWrapperView]|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[wrapperView]-10-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[title]|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(<=30)-[title]-[buttonWrapperView]-(>=50)-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
     }
     // swiftlint:enable line_length

@@ -54,6 +54,14 @@ class WeekScheduleViewController: UIViewController,
         return l
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let l = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.hidesWhenStopped = true
+        l.color = .baseGreen
+        return l
+    }()
+    
     private let configurator: WeekScheduleCellConfiguration
     private let dataSource: CollectionViewDataSource<SectionDataHandler<Section<DaySchedule>>,
                                                                           WeekScheduleCellConfiguration>
@@ -93,6 +101,31 @@ class WeekScheduleViewController: UIViewController,
         let vc = ExerciseViewController(viewModel: MixinExerciseViewModelImplementation(exercise: exercise))
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true, completion: nil)
+    }
+    
+    func show(loader: Bool) {
+        if loader {
+            view.addSubview(activityIndicator)
+            var constraints: [NSLayoutConstraint] = []
+            constraints.append(NSLayoutConstraint(item: activityIndicator,
+                                                  attribute: .centerX,
+                                                  relatedBy: .equal,
+                                                  toItem: view,
+                                                  attribute: .centerX,
+                                                  multiplier: 1, constant: 0))
+            constraints.append(NSLayoutConstraint(item: activityIndicator,
+                                                  attribute: .centerY,
+                                                  relatedBy: .equal,
+                                                  toItem: view,
+                                                  attribute: .centerY,
+                                                  multiplier: 1, constant: 0))
+
+            NSLayoutConstraint.activate(constraints)
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        
     }
     
     // MARK: UIScrollview delegate, calculate page position
@@ -176,7 +209,7 @@ class WeekScheduleViewController: UIViewController,
                                               multiplier: 1, constant: -10))
         
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[collectionView]|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         NSLayoutConstraint.activate(constraints)
 

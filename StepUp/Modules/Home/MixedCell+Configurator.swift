@@ -89,24 +89,24 @@ class TreatmentCell: UICollectionViewCell, Reusable {
                      "wrapperView": wrapperView]
         
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[wrapperView]-20-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[wrapperView]-30-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[title]|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[info]|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[start]-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         let visualFormat = "V:|[title]-[info]-(>=10)-[start]-(==40)-|"
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: visualFormat,
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
     }
 }

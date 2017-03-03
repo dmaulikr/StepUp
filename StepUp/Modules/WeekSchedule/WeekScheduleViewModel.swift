@@ -5,6 +5,7 @@ import CollectionViewKit
 protocol WeekScheduleViewOutput: class {
     func showWeekSchedule()
     func show(exercise: Exercise)
+    func show(loader: Bool)
 }
 
 protocol WeekScheduleViewModel: class {
@@ -64,14 +65,25 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel, UsesTreatmentS
     }
     
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule) {
-        output?.show(exercise: loadExercise(withType: type, weekDay: schedule.weekDay))
+        output?.show(loader: true)
+//        let when = DispatchTime.now() + 5
+//        DispatchQueue.main.asyncAfter(deadline: when) {
+            loadExercise(withType: type, weekDay: schedule.weekDay) { [weak self] exercise in
+                self?.output?.show(loader: false)
+                self?.output?.show(exercise: exercise)
+            }
+//        }
     }
     
-    private func loadExercise(withType type: ExerciseType, weekDay: Day) -> Exercise {
-        if let e = treatmentService.load(exerciseWithType: type, forDay: weekDay, inWeek: weekNumber) {
-            return e
+    private func loadExercise(withType type: ExerciseType, weekDay: Day, completion: @escaping (Exercise) -> ()) {
+        treatmentService.load(exerciseWithType: type, forDay: weekDay, inWeek: weekNumber) { [unowned self] result in
+            guard let r = result else {
+                completion(self.emptyExercise(withType: type, weekDay: weekDay))
+                return 
+            }
+            completion(r)
         }
-        return emptyExercise(withType: type, weekDay: weekDay)
+        
     }
     
     private func emptyExercise(withType type: ExerciseType, weekDay: Day) -> Exercise {

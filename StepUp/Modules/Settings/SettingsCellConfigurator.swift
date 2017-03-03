@@ -115,13 +115,13 @@ class SettingCell: UICollectionViewCell, Reusable {
                                               multiplier: 1, constant: 40))
         
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[email]-15-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[deleteTreatments]-15-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[reminderView]-15-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         
         NSLayoutConstraint.activate(constraints)

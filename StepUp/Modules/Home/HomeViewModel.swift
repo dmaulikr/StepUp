@@ -67,9 +67,10 @@ class HomeViewModelImplementation: HomeViewModel, UsesTreatmentService {
     }
 
     func getTreatmentResults(email: String, name: String) {
-        let result = treatmentService.loadAllExercise()
-        let message = convertToHTMLTable(exercises: result)
-        output?.sendTreatment(toEmail: email, name: name, withResults: message)
+        treatmentService.loadAllExercise() { [unowned self] result in
+            let message = self.convertToHTMLTable(exercises: result)
+            self.output?.sendTreatment(toEmail: email, name: name, withResults: message)
+        }
     }
     
     func promptForExercisesRemoval() {

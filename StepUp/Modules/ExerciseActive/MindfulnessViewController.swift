@@ -217,17 +217,17 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
         NSLayoutConstraint.activate(constraints)
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[titleLabel]|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[descriptionLabel]-15-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         let buttonVF = "H:|-15-[bodyscanButton(==ademruimteButton)]-(>=25)-[ademruimteButton]-15-|"
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: buttonVF,
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[audioPlayerView]-15-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
     }
     // swiftlint:enable function_body_length
@@ -242,5 +242,41 @@ extension MindfulnessViewController: AudioPlayerDelegate {
             audioPlayerView.controlButton.setTitle("Pause", for: .normal)
             audioPlayer.play()
         }
+    }
+}
+
+final class ConfirmationView: UIView {
+    private lazy var message: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+    
+    private lazy var confirmButton: UIButton = {
+        let b = UIButton()
+        b.translatesAutoresizingMaskIntoConstraints = false
+        return b
+    }()
+    
+    private func setupViews() {
+        addSubview(message)
+        addSubview(confirmButton)
+    }
+    
+    private func applyViewConstraints() {
+        let views: [String: Any] = ["label": message,
+                     "button": confirmButton]
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[label]|",
+                                                                   options: [],
+                                                                   metrics: nil,
+                                                                   views: views))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[button]|",
+                                                                   options: [],
+                                                                   metrics: nil,
+                                                                   views: views))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]-[button]|",
+                                                                   options: [],
+                                                                   metrics: nil,
+                                                                   views: views))
     }
 }

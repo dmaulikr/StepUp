@@ -3,9 +3,12 @@ import FileKit
 
 public protocol TreatmentService {
     func save(_ exercise: Exercise)
-    func load(exerciseWithType type: ExerciseType, forDay day: Day, inWeek week: Int) -> Exercise?
+    func load(exerciseWithType type: ExerciseType,
+              forDay day: Day,
+              inWeek week: Int,
+              completion: @escaping (Exercise?) -> ())
     func cleanAll()
-    func loadAllExercise() -> [Exercise]
+    func loadAllExercise(completion: @escaping ([Exercise]) -> ())
 }
 
 public protocol UsesTreatmentService {
@@ -20,77 +23,99 @@ public class MixinTreatmentService: TreatmentService {
     }
     
     public func save(_ exercise: Exercise) {
-        let exercises = add(exercise: exercise).map { e in
-            e.toJSON()
+        add(exercise: exercise) { [weak self] exercises in
+            let exercises = exercises.map { e in
+                e.toJSON()
+            }
+            let data = try? JSONSerialization.data(withJSONObject: exercises,
+                                                   options: JSONSerialization.WritingOptions(rawValue: 0))
+            let file = FileKit.fileInDocumentsFolder(withName: "\(exercise.weekNr).json", data: data)
+            self?.fileKit.save(file: file)
         }
-        let data = try? JSONSerialization.data(withJSONObject: exercises,
-                                               options: JSONSerialization.WritingOptions(rawValue: 0))
-        let file = FileKit.fileInDocumentsFolder(withName: "\(exercise.weekNr).json", data: data)
-        try? fileKit.save(file: file)
     }
     
-    public func load(exerciseWithType type: ExerciseType, forDay day: Day, inWeek week: Int) -> Exercise? {
-        let exercises = loadExercises(forWeek: week)
-        guard let index = exercises.index(where: { e in
-            return e.weekDay == day && e.type == type
-        }) else {
-            return nil
+    public func load(exerciseWithType type: ExerciseType,
+                     forDay day: Day,
+                     inWeek week: Int,
+                     completion: @escaping (Exercise?) -> ()) {
+        loadExercises(forWeek: week) { exercises in
+            guard let index = exercises.index(where: { e in
+                return e.weekDay == day && e.type == type
+            }) else {
+                completion(nil)
+                return
+            }
+            completion(exercises[index])
         }
-        return exercises[index]
     }
     
-    public func loadAllExercise() -> [Exercise] {
+    public func loadAllExercise(completion: @escaping ([Exercise]) -> ()) {
         var result: [Exercise] = []
+        let asycWorkerGroup = DispatchGroup()
         for week in 1...8 {
-            result.append(contentsOf: loadExercises(forWeek: week))
+            asycWorkerGroup.enter()
+            loadExercises(forWeek: week) { exercises in
+                result.append(contentsOf: exercises)
+                asycWorkerGroup.leave()
+            }
         }
-        return result
+        asycWorkerGroup.notify(queue: DispatchQueue.main) {
+            completion(result)
+        }
     }
     
     public func cleanAll() {
-        guard let folder = try? fileKit.load(folder: Folder(path: FileKit.pathToDocumentsFolder())) else {
-            return
-        }
-        let files: [File] = folder.filePaths.flatMap { url in
-            let filename = url.lastPathComponent
-            let pathComp = url.pathComponents
-                .dropFirst()
-                .dropLast()
-                .joined(separator: "/")
-            let f = Folder(path: URL(fileURLWithPath: pathComp))
-            return File(name: filename, folder: f)
-        }
-        
-        files.forEach { f in
-            try? fileKit.delete(file: f)
+        fileKit.load(folder: Folder(path: FileKit.pathToDocumentsFolder())) { [weak self] result in
+            guard case let .success(folder) = result else { return }
+            let files: [File] = folder.filePaths.flatMap { url in
+                let filename = url.lastPathComponent
+                let pathComp = url.pathComponents
+                    .dropFirst()
+                    .dropLast()
+                    .joined(separator: "/")
+                let f = Folder(path: URL(fileURLWithPath: pathComp))
+                return File(name: filename, folder: f)
+            }
+            
+            files.forEach { f in
+                self?.fileKit.delete(file: f)
+            }
         }
     }
     
-    private func add(exercise: Exercise) -> [Exercise] {
-        var exercises = loadExercises(forWeek: exercise.weekNr)
-        if let index = exercises.index(where: { e in
-            return e.weekDay == exercise.weekDay && e.type == exercise.type
-        }) {
-            exercises.remove(at: index)
+    private func add(exercise: Exercise, completion: @escaping ([Exercise]) -> ()) {
+        loadExercises(forWeek: exercise.weekNr) { exercises in
+            var exercises = exercises
+            if let index = exercises.index(where: { e in
+                return e.weekDay == exercise.weekDay && e.type == exercise.type
+            }) {
+                exercises.remove(at: index)
+            }
+            exercises.append(exercise)
+            completion(exercises)
         }
-        exercises.append(exercise)
-        return exercises
     }
     
-    private func loadExercises(forWeek nr: Int) -> [Exercise] {
-        guard let f = try? fileKit.load(file: FileKit.fileInDocumentsFolder(withName: "\(nr).json")),
-              let data = f.data else {
-            return []
+    private func loadExercises(forWeek nr: Int, completion: @escaping ([Exercise]) -> ()) {
+        let backgroundQueue = DispatchQueue.global()
+        fileKit.load(file: FileKit.fileInDocumentsFolder(withName: "\(nr).json"), queue: backgroundQueue) { result in
+            guard case let .success(file) = result,
+                    let data = file.data else {
+                        completion([])
+                        return
+            }
+            
+            guard let json = try? JSONSerialization.jsonObject(with: data,
+                                                               options: []) as? [[String: Any]],
+                let result = json
+                else {
+                    completion([])
+                    return
+            }
+            let exercises: [Exercise] = result.flatMap { item in
+                return ExerciseActive.create(json: item)
+            }
+            completion(exercises)
         }
-        guard let json = try? JSONSerialization.jsonObject(with: data,
-                                                           options: []) as? [[String: Any]],
-              let result = json
-            else {
-                return []
-        }
-        let exercises: [Exercise] = result.flatMap { item in
-            return ExerciseActive.create(json: item)
-        }
-        return exercises
     }
 }

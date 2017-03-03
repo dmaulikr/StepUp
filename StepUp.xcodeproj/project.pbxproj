@@ -39,17 +39,12 @@
 		A361E4231E4FB59200CFE9B8 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361E4221E4FB59200CFE9B8 /* Setting.swift */; };
 		A361E4251E4FB5C700CFE9B8 /* MixedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361E4241E4FB5C700CFE9B8 /* MixedEntity.swift */; };
 		A363B5971E5098880068F754 /* MailComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B5961E5098880068F754 /* MailComposerViewController.swift */; };
-		A363B5A31E50AE9C0068F754 /* FileKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B59F1E50AE950068F754 /* FileKit.swift */; };
-		A363B5A41E50AEA20068F754 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B59D1E50AE950068F754 /* File.swift */; };
-		A363B5A51E50AEA50068F754 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B59E1E50AE950068F754 /* Folder.swift */; };
 		A363B5A61E50AECC0068F754 /* TreatmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B5991E509C480068F754 /* TreatmentService.swift */; };
 		A363B5A91E50AF8F0068F754 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B5A81E50AF8F0068F754 /* Exercise.swift */; };
 		A363B5AB1E50AFD70068F754 /* DaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B5AA1E50AFD70068F754 /* DaySchedule.swift */; };
 		A38418461E58D7DC003914DB /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38418451E58D7DC003914DB /* Reminder.swift */; };
 		A384185C1E59C3C4003914DB /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38418551E59C3C4003914DB /* AudioKit.framework */; };
 		A384185D1E59C3C4003914DB /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A38418551E59C3C4003914DB /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A38418721E59C8FD003914DB /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38418701E59C8FD003914DB /* AudioPlayer.swift */; };
-		A38418731E59C8FD003914DB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38418711E59C8FD003914DB /* Player.swift */; };
 		A38418761E59C94C003914DB /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38418751E59C94C003914DB /* AudioPlayerView.swift */; };
 		A38418841E59D15E003914DB /* CollectionViewKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A384187D1E59D15E003914DB /* CollectionViewKit.framework */; };
 		A38418851E59D15E003914DB /* CollectionViewKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A384187D1E59D15E003914DB /* CollectionViewKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -62,6 +57,12 @@
 		A3C474531E33748800B22AF3 /* WeekScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474521E33748800B22AF3 /* WeekScheduleViewModel.swift */; };
 		A3C474551E33758D00B22AF3 /* WeekScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */; };
 		A3C474571E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */; };
+		A3C5AAF91E5A36CA0084B14C /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AAF61E5A36CA0084B14C /* AudioPlayer.swift */; };
+		A3C5AAFA1E5A36CA0084B14C /* AudioPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AAF71E5A36CA0084B14C /* AudioPlaying.swift */; };
+		A3C5AAFB1E5A36CA0084B14C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AAF81E5A36CA0084B14C /* Player.swift */; };
+		A3C5AB011E5A36F20084B14C /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AAFE1E5A36F20084B14C /* File.swift */; };
+		A3C5AB021E5A36F20084B14C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AAFF1E5A36F20084B14C /* Folder.swift */; };
+		A3C5AB031E5A36F20084B14C /* FileKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AB001E5A36F20084B14C /* FileKit.swift */; };
 		A3DDF8C31E4E868A0021F60D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8C21E4E868A0021F60D /* Result.swift */; };
 		A3DDF8C81E4F9E5D0021F60D /* SettingsCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8C71E4F9E5D0021F60D /* SettingsCellConfigurator.swift */; };
 		A3DFC3061E4788BC00292DB9 /* MindfulnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */; };
@@ -143,32 +144,27 @@
 		A35190CB1E048BA100F7348E /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		A35190CC1E048BA100F7348E /* Treatments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Treatments.plist; sourceTree = "<group>"; };
 		A35190D61E048BC900F7348E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A35190D81E048BF200F7348E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A35190D81E048BF200F7348E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A35190DA1E048C3F00F7348E /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		A35190DC1E048E2E00F7348E /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A35190DE1E04910200F7348E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		A35190E01E04992300F7348E /* MixedCell+Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MixedCell+Configurator.swift"; sourceTree = "<group>"; };
+		A35190E01E04992300F7348E /* MixedCell+Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "MixedCell+Configurator.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A35235A01E505B35007B0EE4 /* EmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		A35235A21E5061A9007B0EE4 /* RemoveTreatmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveTreatmentsView.swift; sourceTree = "<group>"; };
 		A35235A41E5063F3007B0EE4 /* ReminderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderView.swift; sourceTree = "<group>"; };
 		A35235A71E506781007B0EE4 /* ReminderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderViewModel.swift; sourceTree = "<group>"; };
-		A35235A91E506829007B0EE4 /* ReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
+		A35235A91E506829007B0EE4 /* ReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ReminderViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A3523AC61E43D67300FCB89A /* ExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		A3523AC81E43D69400FCB89A /* ExerciseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseViewModel.swift; sourceTree = "<group>"; };
 		A361E4221E4FB59200CFE9B8 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		A361E4241E4FB5C700CFE9B8 /* MixedEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixedEntity.swift; sourceTree = "<group>"; };
 		A363B5961E5098880068F754 /* MailComposerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailComposerViewController.swift; sourceTree = "<group>"; };
 		A363B5991E509C480068F754 /* TreatmentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreatmentService.swift; sourceTree = "<group>"; };
-		A363B59D1E50AE950068F754 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		A363B59E1E50AE950068F754 /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
-		A363B59F1E50AE950068F754 /* FileKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileKit.swift; sourceTree = "<group>"; };
 		A363B5A81E50AF8F0068F754 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		A363B5AA1E50AFD70068F754 /* DaySchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySchedule.swift; sourceTree = "<group>"; };
 		A38418451E58D7DC003914DB /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		A38418551E59C3C4003914DB /* AudioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AudioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A38418701E59C8FD003914DB /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = "Packages/AudioKit-1.0.2/Sources/AudioPlayer.swift"; sourceTree = SOURCE_ROOT; };
-		A38418711E59C8FD003914DB /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = "Packages/AudioKit-1.0.2/Sources/Player.swift"; sourceTree = SOURCE_ROOT; };
-		A38418751E59C94C003914DB /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
+		A38418751E59C94C003914DB /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AudioPlayerView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A384187D1E59D15E003914DB /* CollectionViewKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionViewKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384188B1E59D327003914DB /* CollectionViewCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCellConfigurator.swift; sourceTree = "<group>"; };
 		A384188D1E59D327003914DB /* CollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionView+Reusable.swift"; sourceTree = "<group>"; };
@@ -177,13 +173,19 @@
 		A38418911E59D327003914DB /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		A38418921E59D327003914DB /* SectionDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionDataHandler.swift; sourceTree = "<group>"; };
 		A3C474521E33748800B22AF3 /* WeekScheduleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekScheduleViewModel.swift; sourceTree = "<group>"; };
-		A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekScheduleViewController.swift; sourceTree = "<group>"; };
-		A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeekScheduleCell+Configurator.swift"; sourceTree = "<group>"; };
+		A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = WeekScheduleViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "WeekScheduleCell+Configurator.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A3C5AAF61E5A36CA0084B14C /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = "Packages/AudioKit-1.0.4/Sources/AudioKit/AudioPlayer.swift"; sourceTree = SOURCE_ROOT; };
+		A3C5AAF71E5A36CA0084B14C /* AudioPlaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlaying.swift; path = "Packages/AudioKit-1.0.4/Sources/AudioKit/AudioPlaying.swift"; sourceTree = SOURCE_ROOT; };
+		A3C5AAF81E5A36CA0084B14C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = "Packages/AudioKit-1.0.4/Sources/AudioKit/Player.swift"; sourceTree = SOURCE_ROOT; };
+		A3C5AAFE1E5A36F20084B14C /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		A3C5AAFF1E5A36F20084B14C /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		A3C5AB001E5A36F20084B14C /* FileKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileKit.swift; sourceTree = "<group>"; };
 		A3DDF8C21E4E868A0021F60D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		A3DDF8C71E4F9E5D0021F60D /* SettingsCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCellConfigurator.swift; sourceTree = "<group>"; };
-		A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MindfulnessViewController.swift; sourceTree = "<group>"; };
-		A3E28F361E463FCC00C1B764 /* ActiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveViewController.swift; sourceTree = "<group>"; };
-		A3E28F381E47281400C1B764 /* PositiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositiveViewController.swift; sourceTree = "<group>"; };
+		A3DDF8C71E4F9E5D0021F60D /* SettingsCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsCellConfigurator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MindfulnessViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A3E28F361E463FCC00C1B764 /* ActiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ActiveViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A3E28F381E47281400C1B764 /* PositiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PositiveViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A3FC9FAA1E562EFF006F10A1 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		OBJ_14 /* StepUpDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepUpDummy.swift; sourceTree = "<group>"; };
 		OBJ_18 /* FileKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FileKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -384,25 +386,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		A363B59B1E50AE950068F754 /* FileKit */ = {
-			isa = PBXGroup;
-			children = (
-				A363B59C1E50AE950068F754 /* Entities */,
-				A363B59F1E50AE950068F754 /* FileKit.swift */,
-			);
-			name = FileKit;
-			path = "Packages/FileKit-1.0.2/Sources/FileKit";
-			sourceTree = SOURCE_ROOT;
-		};
-		A363B59C1E50AE950068F754 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				A363B59D1E50AE950068F754 /* File.swift */,
-				A363B59E1E50AE950068F754 /* Folder.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
 		A363B5A71E50AF470068F754 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,8 +398,9 @@
 		A38418681E59C603003914DB /* AudioKit */ = {
 			isa = PBXGroup;
 			children = (
-				A38418701E59C8FD003914DB /* AudioPlayer.swift */,
-				A38418711E59C8FD003914DB /* Player.swift */,
+				A3C5AAF61E5A36CA0084B14C /* AudioPlayer.swift */,
+				A3C5AAF71E5A36CA0084B14C /* AudioPlaying.swift */,
+				A3C5AAF81E5A36CA0084B14C /* Player.swift */,
 			);
 			name = AudioKit;
 			sourceTree = "<group>";
@@ -465,6 +449,25 @@
 				A38418921E59D327003914DB /* SectionDataHandler.swift */,
 			);
 			path = DataHandler;
+			sourceTree = "<group>";
+		};
+		A3C5AAFC1E5A36F20084B14C /* FileKit */ = {
+			isa = PBXGroup;
+			children = (
+				A3C5AAFD1E5A36F20084B14C /* Entities */,
+				A3C5AB001E5A36F20084B14C /* FileKit.swift */,
+			);
+			name = FileKit;
+			path = "Packages/FileKit-1.0.3/Sources/FileKit";
+			sourceTree = SOURCE_ROOT;
+		};
+		A3C5AAFD1E5A36F20084B14C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A3C5AAFE1E5A36F20084B14C /* File.swift */,
+				A3C5AAFF1E5A36F20084B14C /* Folder.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		A3DDF8C61E4F9E1B0021F60D /* Settings */ = {
@@ -522,9 +525,9 @@
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A3C5AAFC1E5A36F20084B14C /* FileKit */,
 				A38418891E59D327003914DB /* CollectionViewKit */,
 				A38418681E59C603003914DB /* AudioKit */,
-				A363B59B1E50AE950068F754 /* FileKit */,
 				OBJ_13 /* App */,
 			);
 			path = Sources;
@@ -792,8 +795,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A38418731E59C8FD003914DB /* Player.swift in Sources */,
-				A38418721E59C8FD003914DB /* AudioPlayer.swift in Sources */,
+				A3C5AAF91E5A36CA0084B14C /* AudioPlayer.swift in Sources */,
+				A3C5AAFB1E5A36CA0084B14C /* Player.swift in Sources */,
+				A3C5AAFA1E5A36CA0084B14C /* AudioPlaying.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,9 +818,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				A363B5A31E50AE9C0068F754 /* FileKit.swift in Sources */,
-				A363B5A41E50AEA20068F754 /* File.swift in Sources */,
-				A363B5A51E50AEA50068F754 /* Folder.swift in Sources */,
+				A3C5AB011E5A36F20084B14C /* File.swift in Sources */,
+				A3C5AB021E5A36F20084B14C /* Folder.swift in Sources */,
+				A3C5AB031E5A36F20084B14C /* FileKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1004,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1017,6 +1022,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = StepUp.xcodeproj/AudioKit_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = AudioKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1052,6 +1058,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1064,6 +1071,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = StepUp.xcodeproj/AudioKit_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = AudioKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";

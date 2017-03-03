@@ -158,13 +158,13 @@ class ReminderViewController: UIViewController, ReminderViewOutput, UsesReminder
         NSLayoutConstraint.activate(constraints)
         let vsl = "H:|-15-[descriptionLabel]-8-[switchOnOff]-15-|"
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: vsl,
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[timePicker]-15-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[noPushMessage]-15-|",
-                                                                   options: NSLayoutFormatOptions(rawValue: 0),
+                                                                   options: [],
                                                                    metrics: nil, views: views))
         
     }

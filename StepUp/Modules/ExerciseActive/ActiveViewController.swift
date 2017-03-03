@@ -173,25 +173,25 @@ class ActiveViewController: UIViewController, ExerciseResult {
                                               multiplier: 1, constant: 30))
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[titleLabel]|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[intensityLabel]-(15)-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[intensity]-(15)-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[trainingLabel]-(15)-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[training]-(15)-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[funLabel]-(15)-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[fun]-(15)-|",
-                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                           options: [],
                                                            metrics: nil, views: views))
         NSLayoutConstraint.activate(constraints)
     }
