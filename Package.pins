@@ -1,0 +1,24 @@
+{
+  "autoPin": true,
+  "pins": [
+    {
+      "package": "AudioKit",
+      "reason": null,
+      "repositoryURL": "https://github.com/eelcokoelewijn/AudioKit.git",
+      "version": "1.0.4"
+    },
+    {
+      "package": "CollectionViewKit",
+      "reason": null,
+      "repositoryURL": "https://github.com/eelcokoelewijn/CollectionViewKit.git",
+      "version": "1.0.0"
+    },
+    {
+      "package": "FileKit",
+      "reason": null,
+      "repositoryURL": "https://github.com/eelcokoelewijn/FileKit.git",
+      "version": "1.0.6"
+    }
+  ],
+  "version": 1
+}

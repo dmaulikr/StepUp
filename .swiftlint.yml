@@ -11,7 +11,7 @@ whitelist_rules:
   - colon # space added to right-handside of colon	
 excluded:
   - Carthage
-  - Packages
+  - .build
 
 cyclomatic_complexity: warning
 force_cast: warning
