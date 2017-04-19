@@ -1,7 +1,7 @@
 import Foundation
 import App
 
-protocol ReminderViewOutput: class {
+protocol ReminderView: class {
     func showReminder(_ date: Date)
     func pop()
     func timePicker(enabled: Bool)
@@ -9,23 +9,23 @@ protocol ReminderViewOutput: class {
     func showNoPushMessage()
 }
 
-protocol ReminderViewModel {
-    func setModel(output: ReminderViewOutput)
+protocol ReminderPresenter {
+    func setView(view: ReminderView)
     func start()
     func save(theDate: Date, pushEnabled enabled: Bool)
     func cancel()
     func pushTryTo(enabled: Bool, theDate date: Date)
 }
 
-protocol UsesReminderViewModel {
-    var reminderViewModel: ReminderViewModel { get }
+protocol UsesReminderPresenter {
+    var reminderPresenter: ReminderPresenter { get }
 }
 
-class MixinReminderViewModel: ReminderViewModel, UsesNotificationService {
+class MixinReminderPresenter: ReminderPresenter, UsesNotificationService {
     let pushStateKey = "PushStateKey"
     let reminderHourKey = "ReminderHourKey"
     let reminderMinuteKey = "ReminderMinuteKey"
-    private weak var output: ReminderViewOutput?
+    private weak var view: ReminderView?
     internal let notificationService: NotificationService
     
     init() {
@@ -35,14 +35,14 @@ class MixinReminderViewModel: ReminderViewModel, UsesNotificationService {
     func start() {
         let reminderDate = getReminderDate()
         let pushState = getPushState()
-        output?.controlSwitch(on: pushState)
-        output?.timePicker(enabled: pushState)
+        view?.controlSwitch(on: pushState)
+        view?.timePicker(enabled: pushState)
         enablePushScheduling(withDate: reminderDate, pushEnabled: pushState)
-        output?.showReminder(reminderDate)
+        view?.showReminder(reminderDate)
     }
     
-    func setModel(output: ReminderViewOutput) {
-        self.output = output
+    func setView(view: ReminderView) {
+        self.view = view
     }
     
     func save(theDate date: Date, pushEnabled enabled: Bool) {
@@ -54,7 +54,7 @@ class MixinReminderViewModel: ReminderViewModel, UsesNotificationService {
     }
     
     func cancel() {
-        output?.pop()
+        view?.pop()
     }
     
     func pushTryTo(enabled: Bool, theDate date: Date) {
@@ -62,7 +62,7 @@ class MixinReminderViewModel: ReminderViewModel, UsesNotificationService {
         if enabled {
             enablePushScheduling(withDate: date, pushEnabled: enabled)
         } else {
-            output?.timePicker(enabled: false)
+            view?.timePicker(enabled: false)
             cleanDefaults()
         }
     }
@@ -135,13 +135,13 @@ class MixinReminderViewModel: ReminderViewModel, UsesNotificationService {
             switch result {
             case .ok:
                 let pushState = self?.getPushState() ?? false
-                self?.output?.timePicker(enabled: true && pushState)
+                self?.view?.timePicker(enabled: true && pushState)
                 self?.save(theDate: date, pushEnabled: enabled)
                 return
             case .nok:
-                self?.output?.controlSwitch(on: false)
-                self?.output?.timePicker(enabled: false)
-                self?.output?.showNoPushMessage()
+                self?.view?.controlSwitch(on: false)
+                self?.view?.timePicker(enabled: false)
+                self?.view?.showNoPushMessage()
                 return
             }
         })

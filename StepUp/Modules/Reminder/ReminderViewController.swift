@@ -1,7 +1,7 @@
 import UIKit
 
-class ReminderViewController: UIViewController, ReminderViewOutput, UsesReminderViewModel {
-    internal let reminderViewModel: ReminderViewModel
+class ReminderViewController: UIViewController, ReminderView, UsesReminderPresenter {
+    internal let reminderPresenter: ReminderPresenter
     
     private lazy var descriptionLabel: UILabel = {
         let l = UILabel()
@@ -52,10 +52,10 @@ class ReminderViewController: UIViewController, ReminderViewOutput, UsesReminder
         return l
     }()
     
-    init(viewModel: ReminderViewModel) {
-        reminderViewModel = viewModel
+    init(Presenter: ReminderPresenter) {
+        reminderPresenter = Presenter
         super.init(nibName: nil, bundle: nil)
-        reminderViewModel.setModel(output: self)
+        reminderPresenter.setView(view: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,7 +71,7 @@ class ReminderViewController: UIViewController, ReminderViewOutput, UsesReminder
         setupViews()
         applyViewConstraints()
         registerForAppActivationNotification()
-        reminderViewModel.start()
+        reminderPresenter.start()
     }
     
     // MARK: view output
@@ -99,15 +99,15 @@ class ReminderViewController: UIViewController, ReminderViewOutput, UsesReminder
     // MARK: view controller helper
     
     @objc func switchChanged(sender: UISwitch) {
-        reminderViewModel.pushTryTo(enabled: sender.isOn, theDate: timePicker.date)
+        reminderPresenter.pushTryTo(enabled: sender.isOn, theDate: timePicker.date)
     }
     
     @objc private func cancel(sender: UIBarButtonItem) {
-        reminderViewModel.cancel()
+        reminderPresenter.cancel()
     }
     
     @objc private func pickerChanged(sender: UIDatePicker) {
-        reminderViewModel.save(theDate: sender.date, pushEnabled: switchOnOff.isOn)
+        reminderPresenter.save(theDate: sender.date, pushEnabled: switchOnOff.isOn)
     }
     
     private func setupViews() {
@@ -177,6 +177,6 @@ class ReminderViewController: UIViewController, ReminderViewOutput, UsesReminder
     }
     
     @objc private func appBecomeActive(notification: Notification) {
-        reminderViewModel.start()
+        reminderPresenter.start()
     }
 }

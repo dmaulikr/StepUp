@@ -2,17 +2,17 @@ import Foundation
 import App
 import CollectionViewKit
 
-protocol HomeViewOutput: class {
+protocol HomeView: class {
     func showTreatments(index: IndexPath)
-    func presentTreatmentWeek(viewModel: WeekScheduleViewModel)
-    func presentReminderSettings(viewModel: MixinReminderViewModel)
+    func presentTreatmentWeek(Presenter: WeekSchedulePresenter)
+    func presentReminderSettings(Presenter: MixinReminderPresenter)
     func sendTreatment(toEmail email: String, name: String, withResults results: String)
     func confirmation(message: String)
 }
 
-protocol HomeViewModel: class {
+protocol HomePresenter: class {
     var dataHandler: SectionDataHandler<Section<MixedEntity>> { get }
-    func setModel(output: HomeViewOutput)
+    func setView(view: HomeView)
     func start()
     func presentTreatment(weekNumber number: Int)
     func getReminderSettings()
@@ -21,12 +21,12 @@ protocol HomeViewModel: class {
     func deleteExercises()
 }
 
-protocol UsesHomeViewModel {
-    var homeViewModel: HomeViewModel { get }
+protocol UsesHomePresenter {
+    var homePresenter: HomePresenter { get }
 }
 
-class HomeViewModelImplementation: HomeViewModel, UsesTreatmentService {
-    private weak var output: HomeViewOutput?
+class HomePresenterImplementation: HomePresenter, UsesTreatmentService {
+    private weak var view: HomeView?
     internal let treatmentService: TreatmentService
     let dataHandler: SectionDataHandler<Section<MixedEntity>>
     var firstLaunch: Bool = true
@@ -47,34 +47,34 @@ class HomeViewModelImplementation: HomeViewModel, UsesTreatmentService {
         treatmentService = MixinTreatmentService()
     }
     
-    func setModel(output: HomeViewOutput) {
-        self.output = output
+    func setView(view: HomeView) {
+        self.view = view
     }
     
     func start() {
         if firstLaunch {
-            output?.showTreatments(index: IndexPath(row: 0, section: 1))
+            view?.showTreatments(index: IndexPath(row: 0, section: 1))
             firstLaunch = false
         }
     }
     
     func presentTreatment(weekNumber number: Int) {
-        output?.presentTreatmentWeek(viewModel: WeekScheduleViewModelImplementation(weekNumber: number))
+        view?.presentTreatmentWeek(Presenter: WeekSchedulePresenterImplementation(weekNumber: number))
     }
     
     func getReminderSettings() {
-        output?.presentReminderSettings(viewModel: MixinReminderViewModel())
+        view?.presentReminderSettings(Presenter: MixinReminderPresenter())
     }
 
     func getTreatmentResults(email: String, name: String) {
         treatmentService.loadAllExercise() { [unowned self] result in
             let message = self.convertToHTMLTable(exercises: result)
-            self.output?.sendTreatment(toEmail: email, name: name, withResults: message)
+            self.view?.sendTreatment(toEmail: email, name: name, withResults: message)
         }
     }
     
     func promptForExercisesRemoval() {
-        output?.confirmation(message: "Weet je zeker dat je alle resultaten wil verwijderen?")
+        view?.confirmation(message: "Weet je zeker dat je alle resultaten wil verwijderen?")
     }
     
     func deleteExercises() {

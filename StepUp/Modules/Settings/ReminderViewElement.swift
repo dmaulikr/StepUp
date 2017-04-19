@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ReminderView: UIView {
+class ReminderViewElement: UIView {
     private lazy var title: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false

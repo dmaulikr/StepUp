@@ -37,17 +37,17 @@
 		A35190D51E048BA100F7348E /* Treatments.plist in Resources */ = {isa = PBXBuildFile; fileRef = A35190CC1E048BA100F7348E /* Treatments.plist */; };
 		A35190D71E048BC900F7348E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A35190D61E048BC900F7348E /* Assets.xcassets */; };
 		A35190D91E048BF200F7348E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35190D81E048BF200F7348E /* HomeViewController.swift */; };
-		A35190DB1E048C3F00F7348E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35190DA1E048C3F00F7348E /* HomeViewModel.swift */; };
+		A35190DB1E048C3F00F7348E /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35190DA1E048C3F00F7348E /* HomePresenter.swift */; };
 		A35190DD1E048E2E00F7348E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35190DC1E048E2E00F7348E /* Colors.swift */; };
 		A35190DF1E04910200F7348E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35190DE1E04910200F7348E /* Fonts.swift */; };
 		A35190E11E04992300F7348E /* MixedCell+Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35190E01E04992300F7348E /* MixedCell+Configurator.swift */; };
 		A35235A11E505B35007B0EE4 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35235A01E505B35007B0EE4 /* EmailView.swift */; };
 		A35235A31E5061A9007B0EE4 /* RemoveTreatmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35235A21E5061A9007B0EE4 /* RemoveTreatmentsView.swift */; };
-		A35235A51E5063F3007B0EE4 /* ReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35235A41E5063F3007B0EE4 /* ReminderView.swift */; };
-		A35235A81E506781007B0EE4 /* ReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35235A71E506781007B0EE4 /* ReminderViewModel.swift */; };
+		A35235A51E5063F3007B0EE4 /* ReminderViewElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35235A41E5063F3007B0EE4 /* ReminderViewElement.swift */; };
+		A35235A81E506781007B0EE4 /* ReminderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35235A71E506781007B0EE4 /* ReminderPresenter.swift */; };
 		A35235AA1E506829007B0EE4 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35235A91E506829007B0EE4 /* ReminderViewController.swift */; };
 		A3523AC71E43D67300FCB89A /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3523AC61E43D67300FCB89A /* ExerciseViewController.swift */; };
-		A3523AC91E43D69400FCB89A /* ExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3523AC81E43D69400FCB89A /* ExerciseViewModel.swift */; };
+		A3523AC91E43D69400FCB89A /* ExercisePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3523AC81E43D69400FCB89A /* ExercisePresenter.swift */; };
 		A361E4231E4FB59200CFE9B8 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361E4221E4FB59200CFE9B8 /* Setting.swift */; };
 		A361E4251E4FB5C700CFE9B8 /* MixedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361E4241E4FB5C700CFE9B8 /* MixedEntity.swift */; };
 		A363B5971E5098880068F754 /* MailComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B5961E5098880068F754 /* MailComposerViewController.swift */; };
@@ -61,7 +61,7 @@
 		A38418841E59D15E003914DB /* CollectionViewKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A384187D1E59D15E003914DB /* CollectionViewKit.framework */; };
 		A38418851E59D15E003914DB /* CollectionViewKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A384187D1E59D15E003914DB /* CollectionViewKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A387217C1E6A21E1008C1EA9 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387217B1E6A21E1008C1EA9 /* LoaderView.swift */; };
-		A3C474531E33748800B22AF3 /* WeekScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474521E33748800B22AF3 /* WeekScheduleViewModel.swift */; };
+		A3C474531E33748800B22AF3 /* WeekSchedulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474521E33748800B22AF3 /* WeekSchedulePresenter.swift */; };
 		A3C474551E33758D00B22AF3 /* WeekScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */; };
 		A3C474571E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */; };
 		A3DDF8C31E4E868A0021F60D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDF8C21E4E868A0021F60D /* Result.swift */; };
@@ -158,17 +158,17 @@
 		A35190CC1E048BA100F7348E /* Treatments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Treatments.plist; sourceTree = "<group>"; };
 		A35190D61E048BC900F7348E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A35190D81E048BF200F7348E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A35190DA1E048C3F00F7348E /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		A35190DA1E048C3F00F7348E /* HomePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		A35190DC1E048E2E00F7348E /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A35190DE1E04910200F7348E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		A35190E01E04992300F7348E /* MixedCell+Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "MixedCell+Configurator.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A35235A01E505B35007B0EE4 /* EmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		A35235A21E5061A9007B0EE4 /* RemoveTreatmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveTreatmentsView.swift; sourceTree = "<group>"; };
-		A35235A41E5063F3007B0EE4 /* ReminderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderView.swift; sourceTree = "<group>"; };
-		A35235A71E506781007B0EE4 /* ReminderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderViewModel.swift; sourceTree = "<group>"; };
+		A35235A41E5063F3007B0EE4 /* ReminderViewElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderViewElement.swift; sourceTree = "<group>"; };
+		A35235A71E506781007B0EE4 /* ReminderPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderPresenter.swift; sourceTree = "<group>"; };
 		A35235A91E506829007B0EE4 /* ReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ReminderViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A3523AC61E43D67300FCB89A /* ExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
-		A3523AC81E43D69400FCB89A /* ExerciseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseViewModel.swift; sourceTree = "<group>"; };
+		A3523AC81E43D69400FCB89A /* ExercisePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExercisePresenter.swift; sourceTree = "<group>"; };
 		A361E4221E4FB59200CFE9B8 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		A361E4241E4FB5C700CFE9B8 /* MixedEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixedEntity.swift; sourceTree = "<group>"; };
 		A363B5961E5098880068F754 /* MailComposerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailComposerViewController.swift; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 		A38418751E59C94C003914DB /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AudioPlayerView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A384187D1E59D15E003914DB /* CollectionViewKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CollectionViewKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A387217B1E6A21E1008C1EA9 /* LoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
-		A3C474521E33748800B22AF3 /* WeekScheduleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekScheduleViewModel.swift; sourceTree = "<group>"; };
+		A3C474521E33748800B22AF3 /* WeekSchedulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekSchedulePresenter.swift; sourceTree = "<group>"; };
 		A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = WeekScheduleViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "WeekScheduleCell+Configurator.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A3DDF8C21E4E868A0021F60D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -369,7 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				A35190D81E048BF200F7348E /* HomeViewController.swift */,
-				A35190DA1E048C3F00F7348E /* HomeViewModel.swift */,
+				A35190DA1E048C3F00F7348E /* HomePresenter.swift */,
 				A35190E01E04992300F7348E /* MixedCell+Configurator.swift */,
 			);
 			path = Home;
@@ -378,7 +378,7 @@
 		A35190C01E048BA100F7348E /* WeekSchedule */ = {
 			isa = PBXGroup;
 			children = (
-				A3C474521E33748800B22AF3 /* WeekScheduleViewModel.swift */,
+				A3C474521E33748800B22AF3 /* WeekSchedulePresenter.swift */,
 				A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */,
 				A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */,
 			);
@@ -421,7 +421,7 @@
 		A35235A61E506764007B0EE4 /* Reminder */ = {
 			isa = PBXGroup;
 			children = (
-				A35235A71E506781007B0EE4 /* ReminderViewModel.swift */,
+				A35235A71E506781007B0EE4 /* ReminderPresenter.swift */,
 				A35235A91E506829007B0EE4 /* ReminderViewController.swift */,
 			);
 			path = Reminder;
@@ -431,7 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				A3523AC61E43D67300FCB89A /* ExerciseViewController.swift */,
-				A3523AC81E43D69400FCB89A /* ExerciseViewModel.swift */,
+				A3523AC81E43D69400FCB89A /* ExercisePresenter.swift */,
 				A3E28F361E463FCC00C1B764 /* ActiveViewController.swift */,
 				A3E28F381E47281400C1B764 /* PositiveViewController.swift */,
 				A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */,
@@ -488,7 +488,7 @@
 				A3DDF8C71E4F9E5D0021F60D /* SettingsCellConfigurator.swift */,
 				A35235A01E505B35007B0EE4 /* EmailView.swift */,
 				A35235A21E5061A9007B0EE4 /* RemoveTreatmentsView.swift */,
-				A35235A41E5063F3007B0EE4 /* ReminderView.swift */,
+				A35235A41E5063F3007B0EE4 /* ReminderViewElement.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -780,12 +780,12 @@
 				A3DFC3061E4788BC00292DB9 /* MindfulnessViewController.swift in Sources */,
 				A35235A31E5061A9007B0EE4 /* RemoveTreatmentsView.swift in Sources */,
 				A3DDF8C31E4E868A0021F60D /* Result.swift in Sources */,
-				A3523AC91E43D69400FCB89A /* ExerciseViewModel.swift in Sources */,
+				A3523AC91E43D69400FCB89A /* ExercisePresenter.swift in Sources */,
 				A35235A11E505B35007B0EE4 /* EmailView.swift in Sources */,
 				A363B5971E5098880068F754 /* MailComposerViewController.swift in Sources */,
 				A3C474551E33758D00B22AF3 /* WeekScheduleViewController.swift in Sources */,
-				A35235A81E506781007B0EE4 /* ReminderViewModel.swift in Sources */,
-				A35235A51E5063F3007B0EE4 /* ReminderView.swift in Sources */,
+				A35235A81E506781007B0EE4 /* ReminderPresenter.swift in Sources */,
+				A35235A51E5063F3007B0EE4 /* ReminderViewElement.swift in Sources */,
 				A3E28F391E47281400C1B764 /* PositiveViewController.swift in Sources */,
 				A35190E11E04992300F7348E /* MixedCell+Configurator.swift in Sources */,
 				A35190DF1E04910200F7348E /* Fonts.swift in Sources */,
@@ -794,11 +794,11 @@
 				A35190DD1E048E2E00F7348E /* Colors.swift in Sources */,
 				A361E4251E4FB5C700CFE9B8 /* MixedEntity.swift in Sources */,
 				A3DDF8C81E4F9E5D0021F60D /* SettingsCellConfigurator.swift in Sources */,
-				A3C474531E33748800B22AF3 /* WeekScheduleViewModel.swift in Sources */,
+				A3C474531E33748800B22AF3 /* WeekSchedulePresenter.swift in Sources */,
 				A38418461E58D7DC003914DB /* Reminder.swift in Sources */,
 				A3E28F371E463FCC00C1B764 /* ActiveViewController.swift in Sources */,
 				A361E4231E4FB59200CFE9B8 /* Setting.swift in Sources */,
-				A35190DB1E048C3F00F7348E /* HomeViewModel.swift in Sources */,
+				A35190DB1E048C3F00F7348E /* HomePresenter.swift in Sources */,
 				A35190D91E048BF200F7348E /* HomeViewController.swift in Sources */,
 				A38418761E59C94C003914DB /* AudioPlayerView.swift in Sources */,
 			);

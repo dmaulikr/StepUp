@@ -2,25 +2,25 @@ import Foundation
 import App
 import CollectionViewKit
 
-protocol WeekScheduleViewOutput: class, ActivityIndicating {
+protocol WeekScheduleView: class, ActivityIndicating {
     func showWeekSchedule()
     func show(exercise: Exercise)
 }
 
-protocol WeekScheduleViewModel: class {
+protocol WeekSchedulePresenter: class {
     var weekNumber: Int { get }
     var dataHandler: SectionDataHandler<Section<DaySchedule>> { get }
-    func setModel(output: WeekScheduleViewOutput)
+    func setView(view: WeekScheduleView)
     func start()
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule)
 }
 
-protocol UsesWeekScheduleViewModel {
-    var weekScheduleViewModel: WeekScheduleViewModel { get }
+protocol UsesWeekSchedulePresenter {
+    var weekSchedulePresenter: WeekSchedulePresenter { get }
 }
 
-class WeekScheduleViewModelImplementation: WeekScheduleViewModel, UsesTreatmentService {
-    private weak var output: WeekScheduleViewOutput?
+class WeekSchedulePresenterImplementation: WeekSchedulePresenter, UsesTreatmentService {
+    private weak var view: WeekScheduleView?
     internal let treatmentService: TreatmentService
     let dataHandler: SectionDataHandler<Section<DaySchedule>>
     let weekNumber: Int
@@ -31,8 +31,8 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel, UsesTreatmentS
         treatmentService = MixinTreatmentService()
     }
     
-    func setModel(output: WeekScheduleViewOutput) {
-        self.output = output
+    func setView(view: WeekScheduleView) {
+        self.view = view
     }
     
     func start() {
@@ -60,14 +60,14 @@ class WeekScheduleViewModelImplementation: WeekScheduleViewModel, UsesTreatmentS
                                           weekDay: .sunday,
                                           exercises: exercises))
         dataHandler.data = [section]
-        output?.showWeekSchedule()
+        view?.showWeekSchedule()
     }
     
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule) {
-        output?.show(loader: true)
+        view?.show(loader: true)
         loadExercise(withType: type, weekDay: schedule.weekDay) { [weak self] exercise in
-            self?.output?.show(loader: false)
-            self?.output?.show(exercise: exercise)
+            self?.view?.show(loader: false)
+            self?.view?.show(exercise: exercise)
         }
     }
     

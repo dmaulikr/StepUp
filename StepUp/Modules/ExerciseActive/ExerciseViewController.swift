@@ -6,16 +6,16 @@ protocol ExerciseResult {
 }
 
 class ExerciseViewController: UIViewController,
-                              UsesExerciseViewModel,
-                              ExerciseViewOutput {
+                              UsesExercisePresenter,
+                              ExerciseView {
 
-    internal let exerciseViewModel: ExerciseViewModel
+    internal let exercisePresenter: ExercisePresenter
     private var activeVC: UIViewController!
     
-    init(viewModel: ExerciseViewModel) {
-        exerciseViewModel = viewModel
+    init(Presenter: ExercisePresenter) {
+        exercisePresenter = Presenter
         super.init(nibName: nil, bundle: nil)
-        exerciseViewModel.setOutput(output: self)
+        exercisePresenter.setView(view: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,10 +25,10 @@ class ExerciseViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        exerciseViewModel.start()
+        exercisePresenter.start()
     }
     
-    // MARK: ViewModelOuputView
+    // MARK: PresenterOuputView
     
     func show(exercise: Exercise) {
         switch exercise.type {
@@ -78,11 +78,11 @@ class ExerciseViewController: UIViewController,
     }
     
     @objc private func cancel(sender: UIBarButtonItem) {
-        exerciseViewModel.cancel()
+        exercisePresenter.cancel()
     }
     
     @objc private func save(sender: UIBarButtonItem) {
         guard let vc = activeVC as? ExerciseResult else { return }
-        exerciseViewModel.save(exercise: vc.result())
+        exercisePresenter.save(exercise: vc.result())
     }
 }

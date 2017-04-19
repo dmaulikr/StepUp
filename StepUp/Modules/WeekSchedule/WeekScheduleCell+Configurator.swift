@@ -211,12 +211,12 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
 }
 
 class WeekScheduleCellConfiguration: CollectionViewCellConfigurator,
-                                                  UsesWeekScheduleViewModel {
+                                                  UsesWeekSchedulePresenter {
     
-    internal unowned let weekScheduleViewModel: WeekScheduleViewModel
+    internal unowned let weekSchedulePresenter: WeekSchedulePresenter
     
-    init(viewModel: WeekScheduleViewModel) {
-        weekScheduleViewModel = viewModel
+    init(Presenter: WeekSchedulePresenter) {
+        weekSchedulePresenter = Presenter
     }
     
     func configure(using collectionView: UICollectionView,
@@ -225,7 +225,7 @@ class WeekScheduleCellConfiguration: CollectionViewCellConfigurator,
         let cell: DayScheduleCell = collectionView.dequeueReusableCell(at: index)
         cell.configure(with: model)
         cell.buttonTappedCallBack = { [weak self] type in
-            self?.weekScheduleViewModel.present(exerciseWithType: type, fromDaySchedule: model)
+            self?.weekSchedulePresenter.present(exerciseWithType: type, fromDaySchedule: model)
         }
         return cell
     }

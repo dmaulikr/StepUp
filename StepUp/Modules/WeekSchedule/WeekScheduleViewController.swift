@@ -4,10 +4,10 @@ import App
 import CollectionViewKit
 
 class WeekScheduleViewController: UIViewController,
-                                  UsesWeekScheduleViewModel,
-                                  WeekScheduleViewOutput,
+                                  UsesWeekSchedulePresenter,
+                                  WeekScheduleView,
                                   UICollectionViewDelegate {
-    internal let weekScheduleViewModel: WeekScheduleViewModel
+    internal let weekSchedulePresenter: WeekSchedulePresenter
     
     private lazy var pageControl: UIPageControl = {
         let v = UIPageControl()
@@ -64,14 +64,14 @@ class WeekScheduleViewController: UIViewController,
     private let dataSource: CollectionViewDataSource<SectionDataHandler<Section<DaySchedule>>,
                                                                           WeekScheduleCellConfiguration>
     
-    init(viewModel: WeekScheduleViewModel) {
-        weekScheduleViewModel = viewModel
-        configurator = WeekScheduleCellConfiguration(viewModel: weekScheduleViewModel)
-        dataSource = CollectionViewDataSource(dataHandler: viewModel.dataHandler, configurator: configurator)
+    init(Presenter: WeekSchedulePresenter) {
+        weekSchedulePresenter = Presenter
+        configurator = WeekScheduleCellConfiguration(Presenter: weekSchedulePresenter)
+        dataSource = CollectionViewDataSource(dataHandler: Presenter.dataHandler, configurator: configurator)
         super.init(nibName: nil, bundle: nil)
         collectionView.dataSource = dataSource
         collectionView.delegate = self
-        weekScheduleViewModel.setModel(output: self)
+        weekSchedulePresenter.setView(view: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -83,20 +83,20 @@ class WeekScheduleViewController: UIViewController,
         setup()
         applyConstraints()
         
-        treatmentTitle.text = "Behandeling \(weekScheduleViewModel.weekNumber)"
-        weekScheduleViewModel.start()
+        treatmentTitle.text = "Behandeling \(weekSchedulePresenter.weekNumber)"
+        weekSchedulePresenter.start()
         closeButton.addTarget(self, action: #selector(closeButtonTapped(sender:)), for: .touchUpInside)
     }
 
     // MARK: Week schedule output
     
     func showWeekSchedule() {
-        pageControl.numberOfPages = weekScheduleViewModel.dataHandler.numberOfItems(inSection: 0)
+        pageControl.numberOfPages = weekSchedulePresenter.dataHandler.numberOfItems(inSection: 0)
         collectionView.reloadData()
     }
     
     func show(exercise: Exercise) {
-        let vc = ExerciseViewController(viewModel: MixinExerciseViewModelImplementation(exercise: exercise))
+        let vc = ExerciseViewController(Presenter: MixinExercisePresenterImplementation(exercise: exercise))
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: false, completion: nil)
     }

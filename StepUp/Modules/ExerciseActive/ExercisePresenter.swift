@@ -1,24 +1,24 @@
 import Foundation
 import App
 
-protocol ExerciseViewOutput: class {
+protocol ExerciseView: class {
     func show(exercise: Exercise)
     func pop()
 }
 
-protocol ExerciseViewModel: class {
-    func setOutput(output: ExerciseViewOutput)
+protocol ExercisePresenter: class {
+    func setView(view: ExerciseView)
     func start()
     func cancel()
     func save(exercise: Exercise)
 }
 
-protocol UsesExerciseViewModel {
-    var exerciseViewModel: ExerciseViewModel { get }
+protocol UsesExercisePresenter {
+    var exercisePresenter: ExercisePresenter { get }
 }
 
-class MixinExerciseViewModelImplementation: ExerciseViewModel, UsesTreatmentService {
-    private weak var output: ExerciseViewOutput?
+class MixinExercisePresenterImplementation: ExercisePresenter, UsesTreatmentService {
+    private weak var view: ExerciseView?
     private let exercise: Exercise
     internal let treatmentService: TreatmentService
     
@@ -27,20 +27,20 @@ class MixinExerciseViewModelImplementation: ExerciseViewModel, UsesTreatmentServ
         treatmentService = MixinTreatmentService()
     }
     
-    func setOutput(output: ExerciseViewOutput) {
-        self.output = output
+    func setView(view: ExerciseView) {
+        self.view = view
     }
     
     func start() {
-        output?.show(exercise: exercise)
+        view?.show(exercise: exercise)
     }
     
     func cancel() {
-        output?.pop()
+        view?.pop()
     }
     
     func save(exercise: Exercise) {
         treatmentService.save(exercise)
-        output?.pop()
+        view?.pop()
     }
 }

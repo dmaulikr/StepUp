@@ -113,11 +113,11 @@ class TreatmentCell: UICollectionViewCell, Reusable {
 
 // MARK: Collection view cell configurator
 
-class MixedCellConfigurator: CollectionViewCellConfigurator, UsesHomeViewModel {
-    internal unowned let homeViewModel: HomeViewModel
+class MixedCellConfigurator: CollectionViewCellConfigurator, UsesHomePresenter {
+    internal unowned let homePresenter: HomePresenter
     
-    init(viewModel: HomeViewModel) {
-        homeViewModel = viewModel
+    init(Presenter: HomePresenter) {
+        homePresenter = Presenter
     }
     
     func configure(using collectionView: UICollectionView,
@@ -128,20 +128,20 @@ class MixedCellConfigurator: CollectionViewCellConfigurator, UsesHomeViewModel {
             let cell: TreatmentCell = collectionView.dequeueReusableCell(at: index)
             cell.configure(with: t)
             cell.buttonTappedCallBack = { [weak self] number in
-                self?.homeViewModel.presentTreatment(weekNumber: number)
+                self?.homePresenter.presentTreatment(weekNumber: number)
             }
             return cell
         case let .setting(s):
             let cell: SettingCell = collectionView.dequeueReusableCell(at: index)
             cell.configure(model: s)
             cell.reminderButtonCallback = { [weak self] in
-                self?.homeViewModel.getReminderSettings()
+                self?.homePresenter.getReminderSettings()
             }
             cell.emailButtonCallback = { [weak self] email, name in
-                self?.homeViewModel.getTreatmentResults(email: email, name: name)
+                self?.homePresenter.getTreatmentResults(email: email, name: name)
             }
             cell.deleteButtonCallback = { [weak self] in
-                self?.homeViewModel.promptForExercisesRemoval()
+                self?.homePresenter.promptForExercisesRemoval()
             }
             return cell
         }

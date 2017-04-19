@@ -2,12 +2,12 @@ import UIKit
 import CollectionViewKit
 
 class HomeViewController: UIViewController,
-                          HomeViewOutput,
-                          UsesHomeViewModel,
+                          HomeView,
+                          UsesHomePresenter,
                           UICollectionViewDelegate,
                           MailComposer {
     
-    internal let homeViewModel: HomeViewModel
+    internal let homePresenter: HomePresenter
     
     private lazy var pageControl: UIPageControl = {
         let v = UIPageControl()
@@ -36,12 +36,12 @@ class HomeViewController: UIViewController,
     private let dataSource: CollectionViewDataSource<SectionDataHandler<Section<MixedEntity>>,
                             MixedCellConfigurator>
     
-    init(viewModel: HomeViewModel) {
-        homeViewModel = viewModel
-        configurator = MixedCellConfigurator(viewModel: homeViewModel)
-        dataSource = CollectionViewDataSource(dataHandler: viewModel.dataHandler, configurator: configurator)
+    init(Presenter: HomePresenter) {
+        homePresenter = Presenter
+        configurator = MixedCellConfigurator(Presenter: homePresenter)
+        dataSource = CollectionViewDataSource(dataHandler: Presenter.dataHandler, configurator: configurator)
         super.init(nibName: nil, bundle: nil)
-        viewModel.setModel(output: self)
+        Presenter.setView(view: self)
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         collectionView.keyboardDismissMode = .onDrag
@@ -59,7 +59,7 @@ class HomeViewController: UIViewController,
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        homeViewModel.start()
+        homePresenter.start()
     }
     
     private func setup() {
@@ -105,7 +105,7 @@ class HomeViewController: UIViewController,
         NSLayoutConstraint.activate(constraints)
     }
     
-    // MARK: HomeViewOutput
+    // MARK: HomeView
     
     func showTreatments(index: IndexPath) {
         pageControl.numberOfPages = numberOfPages()
@@ -114,12 +114,12 @@ class HomeViewController: UIViewController,
         collectionView.scrollToItem(at: index, at: .left, animated: false)
     }
     
-    func presentTreatmentWeek(viewModel: WeekScheduleViewModel) {
-        navigationController?.pushViewController(WeekScheduleViewController(viewModel: viewModel), animated: true)
+    func presentTreatmentWeek(Presenter: WeekSchedulePresenter) {
+        navigationController?.pushViewController(WeekScheduleViewController(Presenter: Presenter), animated: true)
     }
     
-    func presentReminderSettings(viewModel: MixinReminderViewModel) {
-        let vc = ReminderViewController(viewModel: viewModel)
+    func presentReminderSettings(Presenter: MixinReminderPresenter) {
+        let vc = ReminderViewController(Presenter: Presenter)
         let nav = UINavigationController(rootViewController: vc)
         present(nav, animated: true, completion: nil)
     }
@@ -136,7 +136,7 @@ class HomeViewController: UIViewController,
     func confirmation(message: String) {
         let ac = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
         let delete = UIAlertAction(title: "Verwijderen", style: .destructive) { [weak self] _ in
-            self?.homeViewModel.deleteExercises()
+            self?.homePresenter.deleteExercises()
         }
         ac.addAction(delete)
         let cancel = UIAlertAction(title: "Annuleren", style: .cancel, handler: nil)
@@ -154,8 +154,8 @@ class HomeViewController: UIViewController,
     
     private func numberOfPages() -> Int {
         var totalNrPages = 0
-        for nr in 0..<homeViewModel.dataHandler.numberOfSections() {
-            totalNrPages += homeViewModel.dataHandler.numberOfItems(inSection: nr)
+        for nr in 0..<homePresenter.dataHandler.numberOfSections() {
+            totalNrPages += homePresenter.dataHandler.numberOfItems(inSection: nr)
         }
         return totalNrPages
     }

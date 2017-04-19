@@ -15,8 +15,8 @@ class SettingCell: UICollectionViewCell, Reusable {
         return v
     }()
     
-    private lazy var reminderView: ReminderView = {
-        let v = ReminderView()
+    private lazy var reminderView: ReminderViewElement = {
+        let v = ReminderViewElement()
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
