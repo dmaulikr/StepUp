@@ -5,19 +5,19 @@
       "package": "AudioKit",
       "reason": null,
       "repositoryURL": "https://github.com/eelcokoelewijn/AudioKit.git",
-      "version": "1.0.4"
+      "version": "1.0.5"
     },
     {
       "package": "CollectionViewKit",
       "reason": null,
       "repositoryURL": "https://github.com/eelcokoelewijn/CollectionViewKit.git",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "package": "FileKit",
       "reason": null,
       "repositoryURL": "https://github.com/eelcokoelewijn/FileKit.git",
-      "version": "1.0.6"
+      "version": "1.0.7"
     }
   ],
   "version": 1
