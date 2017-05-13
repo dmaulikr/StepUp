@@ -2,7 +2,7 @@ import UIKit
 
 class ReminderViewController: UIViewController, ReminderView, UsesReminderPresenter {
     internal let reminderPresenter: ReminderPresenter
-    
+
     private lazy var descriptionLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -17,7 +17,7 @@ class ReminderViewController: UIViewController, ReminderView, UsesReminderPresen
         l.setContentCompressionResistancePriority(UILayoutPriorityDefaultLow, for: .horizontal)
         return l
     }()
-    
+
     private lazy var switchOnOff: UISwitch = {
         let s = UISwitch()
         s.translatesAutoresizingMaskIntoConstraints = false
@@ -25,7 +25,7 @@ class ReminderViewController: UIViewController, ReminderView, UsesReminderPresen
         s.addTarget(self, action: #selector(switchChanged(sender:)), for: .valueChanged)
         return s
     }()
-    
+
     private lazy var timePicker: UIDatePicker = {
         let p = UIDatePicker()
         p.translatesAutoresizingMaskIntoConstraints = false
@@ -34,8 +34,7 @@ class ReminderViewController: UIViewController, ReminderView, UsesReminderPresen
         p.addTarget(self, action: #selector(pickerChanged(sender:)), for: UIControlEvents.valueChanged)
         return p
     }()
-    
-    
+
     private lazy var noPushMessage: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -51,21 +50,21 @@ class ReminderViewController: UIViewController, ReminderView, UsesReminderPresen
         l.isHidden = true
         return l
     }()
-    
-    init(Presenter: ReminderPresenter) {
-        reminderPresenter = Presenter
+
+    init(presenter: ReminderPresenter) {
+        reminderPresenter = presenter
         super.init(nibName: nil, bundle: nil)
         reminderPresenter.setView(view: self)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -73,50 +72,50 @@ class ReminderViewController: UIViewController, ReminderView, UsesReminderPresen
         registerForAppActivationNotification()
         reminderPresenter.start()
     }
-    
+
     // MARK: view output
-    
+
     func showReminder(_ date: Date) {
         timePicker.date = date
     }
-    
+
     func pop() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
+
     func timePicker(enabled: Bool) {
         timePicker.isEnabled = enabled
     }
-    
-    func controlSwitch(on: Bool) {
-        switchOnOff.isOn = on
+
+    func controlSwitch(switchedOn: Bool) {
+        switchOnOff.isOn = switchedOn
     }
-    
+
     func showNoPushMessage() {
         noPushMessage.isHidden = false
     }
-    
+
     // MARK: view controller helper
-    
+
     @objc func switchChanged(sender: UISwitch) {
         reminderPresenter.pushTryTo(enabled: sender.isOn, theDate: timePicker.date)
     }
-    
+
     @objc private func cancel(sender: UIBarButtonItem) {
         reminderPresenter.cancel()
     }
-    
+
     @objc private func pickerChanged(sender: UIDatePicker) {
         reminderPresenter.save(theDate: sender.date, pushEnabled: switchOnOff.isOn)
     }
-    
+
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(descriptionLabel)
         view.addSubview(switchOnOff)
         view.addSubview(timePicker)
         view.addSubview(noPushMessage)
-        
+
         let leftButton = UIBarButtonItem(title: "Sluiten",
                                          style: .plain,
                                          target: self,
@@ -124,7 +123,7 @@ class ReminderViewController: UIViewController, ReminderView, UsesReminderPresen
         leftButton.tintColor = .actionGreen
         navigationItem.leftBarButtonItem = leftButton
     }
-    
+
     private func applyViewConstraints() {
         let views: [String: Any] = ["descriptionLabel": descriptionLabel,
                      "switchOnOff": switchOnOff,
@@ -166,16 +165,16 @@ class ReminderViewController: UIViewController, ReminderView, UsesReminderPresen
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[noPushMessage]-15-|",
                                                                    options: [],
                                                                    metrics: nil, views: views))
-        
+
     }
-    
+
     private func registerForAppActivationNotification() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(appBecomeActive(notification:)),
                                                name: .UIApplicationWillEnterForeground,
                                                object: nil)
     }
-    
+
     @objc private func appBecomeActive(notification: Notification) {
         reminderPresenter.start()
     }

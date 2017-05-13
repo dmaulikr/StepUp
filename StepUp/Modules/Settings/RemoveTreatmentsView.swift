@@ -10,7 +10,7 @@ class RemoveTreatmentsView: UIView {
         l.font = UIFont.light(withSize: 17)
         return l
     }()
-    
+
     lazy var button: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -23,22 +23,22 @@ class RemoveTreatmentsView: UIView {
         b.setTitle("Verwijderen", for: .normal)
         return b
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
         applyViewConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupViews() {
         addSubview(title)
         addSubview(button)
     }
-    
+
     // swiftlint:disable function_body_length
     private func applyViewConstraints() {
         var constraints: [NSLayoutConstraint] = []
@@ -60,7 +60,7 @@ class RemoveTreatmentsView: UIView {
                                               toItem: self,
                                               attribute: .right,
                                               multiplier: 1, constant: 0))
-        
+
         constraints.append(NSLayoutConstraint(item: button,
                                               attribute: .top,
                                               relatedBy: .equal,

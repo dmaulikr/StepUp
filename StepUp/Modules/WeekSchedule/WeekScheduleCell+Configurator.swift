@@ -11,7 +11,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
         l.font = UIFont.regular(withSize: 20)
         return l
     }()
-    
+
     lazy var active: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +24,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
         b.layer.cornerRadius = 7
         return b
     }()
-    
+
     lazy var mindfulness: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
         b.layer.cornerRadius = 7
         return b
     }()
-    
+
     lazy var positive: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -50,40 +50,40 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
         b.layer.cornerRadius = 7
         return b
     }()
-    
+
     private lazy var wrapperView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
-    
+
     private lazy var buttonWrapperView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
-    
-    var buttonTappedCallBack: ((_ exercise: ExerciseType) -> ())?
-    
+
+    var buttonTappedCallBack: ((_ exercise: ExerciseType) -> Void)?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         setup()
         applyConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-    
+
     func configure(with item: DaySchedule) {
         title.text = item.title
         setup(excerises: item.exercises)
-        
+
         if item.exercises.contains(.active) {
             active.addTarget(self, action: #selector(actionTapped(sender:)), for: .touchUpInside)
         }
@@ -94,25 +94,25 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
             positive.addTarget(self, action: #selector(positiveTapped(sender:)), for: .touchUpInside)
         }
     }
-    
+
     @objc private func actionTapped(sender: UIButton) {
         callButtonCallbackBlock(exerciseType: .active)
     }
-    
+
     @objc private func mindfulnessTapped(sender: UIButton) {
         callButtonCallbackBlock(exerciseType: .mindfulness)
     }
-    
+
     @objc private func positiveTapped(sender: UIButton) {
         callButtonCallbackBlock(exerciseType: .positive)
     }
-    
+
     private func callButtonCallbackBlock(exerciseType: ExerciseType) {
         if let f = buttonTappedCallBack {
             f(exerciseType)
         }
     }
-    
+
     // swiftlint:disable:next line_length function_body_length
     private func setup(excerises: [ExerciseType]) {
         for v in buttonWrapperView.subviews { v.removeFromSuperview() }
@@ -132,7 +132,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
                                                       attribute: .top,
                                                       multiplier: 1,
                                                       constant: 7))
-            
+
                 previous = active
             case .mindfulness:
                 buttonWrapperView.addSubview(mindfulness)
@@ -147,7 +147,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
                                                       attribute: .bottom,
                                                       multiplier: 1,
                                                       constant: 7))
-    
+
                 previous = mindfulness
             case .positive:
                 buttonWrapperView.addSubview(positive)
@@ -161,7 +161,7 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
                                                       attribute: .bottom,
                                                       multiplier: 1,
                                                       constant: 7))
-            
+
                 previous = positive
             }
         }
@@ -175,34 +175,34 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
         NSLayoutConstraint.activate(constraints)
     }
     // swiftlint:enable:next line_length function_body_length
-    
+
     private func setup() {
         contentView.addSubview(wrapperView)
         wrapperView.addSubview(title)
         wrapperView.addSubview(buttonWrapperView)
     }
-    
+
     // swiftlint:disable line_length
     private func applyConstraints() {
         let views: [String : Any] = ["title": title,
                                     "wrapperView": wrapperView,
                                     "buttonWrapperView": buttonWrapperView]
-        
+
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[wrapperView]-10-|",
                                                                    options: [],
                                                                    metrics: nil, views: views))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[buttonWrapperView]|",
                                                                    options: [],
                                                                    metrics: nil, views: views))
-        
+
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[wrapperView]-10-|",
                                                                    options: [],
                                                                    metrics: nil, views: views))
-        
+
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[title]|",
                                                                    options: [],
                                                                    metrics: nil, views: views))
-        
+
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(30)-[title]-[buttonWrapperView]-(50)-|",
                                                                    options: [],
                                                                    metrics: nil, views: views))
@@ -212,13 +212,13 @@ class DayScheduleCell: UICollectionViewCell, Reusable {
 
 class WeekScheduleCellConfiguration: CollectionViewCellConfigurator,
                                                   UsesWeekSchedulePresenter {
-    
+
     internal unowned let weekSchedulePresenter: WeekSchedulePresenter
-    
-    init(Presenter: WeekSchedulePresenter) {
-        weekSchedulePresenter = Presenter
+
+    init(presenter: WeekSchedulePresenter) {
+        weekSchedulePresenter = presenter
     }
-    
+
     func configure(using collectionView: UICollectionView,
                    at index: IndexPath,
                    with model: DaySchedule) -> UICollectionViewCell {
@@ -229,6 +229,5 @@ class WeekScheduleCellConfiguration: CollectionViewCellConfigurator,
         }
         return cell
     }
-    
-   
+
 }

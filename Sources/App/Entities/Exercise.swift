@@ -1,9 +1,9 @@
 import Foundation
 
 public enum ExerciseType: String {
-    case active = "active"
-    case mindfulness = "mindfulness"
-    case positive = "positive"
+    case active
+    case mindfulness
+    case positive
 }
 
 extension ExerciseType: CustomStringConvertible {
@@ -25,11 +25,12 @@ public protocol Exercise {
 }
 
 extension Exercise {
+    // swiftlint:disable cyclomatic_complexity
     public static func create(json: [String: Any]) -> Exercise? {
-        guard let type = ExerciseType(rawValue: json["type"] as! String) else {
+        guard let typeValue = json["type"] as? String, let type = ExerciseType(rawValue: typeValue) else {
             return nil
         }
-        guard let weekDay = Day(rawValue: json["weekDay"] as! String) else {
+        guard let weekDayValue = json["weekDay"] as? String, let weekDay = Day(rawValue: weekDayValue) else {
             return nil
         }
         guard let weekNr = json["weekNr"] as? Int else {
@@ -40,22 +41,26 @@ extension Exercise {
             guard let value = json["value"] as? [String: Any] else {
                 return nil
             }
-            let activeValues = [value["0"] as! Int, value["1"] as! Int, value["2"] as! Int]
-            return ExerciseActive(value: activeValues, weekDay: weekDay, weekNr: weekNr)
+            let activeValues = [value["0"] as? Int, value["1"] as? Int, value["2"] as? Int]
+            guard let activities = activeValues as? [Int] else { return nil }
+            return ExerciseActive(value: activities, weekDay: weekDay, weekNr: weekNr)
         case .mindfulness:
             guard let value = json["value"] as? [String: Any] else {
                 return nil
             }
-            let mindfullnessValues = [value["0"] as! Int, value["1"] as! Int]
-            return ExerciseMindfulness(value: mindfullnessValues, weekDay: weekDay, weekNr: weekNr)
+            let mindfullnessValues = [value["0"] as? Int, value["1"] as? Int]
+            guard let mindfullness = mindfullnessValues as? [Int] else { return nil }
+            return ExerciseMindfulness(value: mindfullness, weekDay: weekDay, weekNr: weekNr)
         case .positive:
             guard let value = json["value"] as? [String: Any] else {
                 return nil
             }
-            let positiveValues = [value["0"] as! String, value["1"] as! String, value["2"] as! String]
-            return ExercisePositive(value: positiveValues, weekDay: weekDay, weekNr: weekNr)
-        }   
+            let positiveValues = [value["0"] as? String, value["1"] as? String, value["2"] as? String]
+            guard let positive = positiveValues as? [String] else { return nil }
+            return ExercisePositive(value: positive, weekDay: weekDay, weekNr: weekNr)
+        }
     }
+    // swiftlint:enable cyclomatic_complexity
 }
 
 public struct ExerciseActive: Exercise {
@@ -63,13 +68,13 @@ public struct ExerciseActive: Exercise {
     public let value: [Int]
     public let weekDay: Day
     public let weekNr: Int
-    
+
     public init(value: [Int], weekDay: Day, weekNr: Int) {
         self.value = value
         self.weekDay = weekDay
         self.weekNr = weekNr
     }
-    
+
     public func toJSON() -> [String : Any] {
         return ["type": type.rawValue,
                 "value": ["0": value[0],
@@ -78,7 +83,7 @@ public struct ExerciseActive: Exercise {
                 "weekDay": weekDay.rawValue,
                 "weekNr": weekNr]
     }
-    
+
     public func toHTML() -> String {
         var html = "<tr><td>week: \(weekNr) - \(weekDay.rawValue)</td></tr>"
         html += "<tr><td colspan=\"2\">\(type.description)</td></tr>"
@@ -103,13 +108,13 @@ public struct ExercisePositive: Exercise {
     public let value: [String]
     public let weekDay: Day
     public let weekNr: Int
-    
+
     public init(value: [String], weekDay: Day, weekNr: Int) {
         self.value = value
         self.weekDay = weekDay
         self.weekNr = weekNr
     }
-    
+
     public func toJSON() -> [String : Any] {
         return ["type": type.rawValue,
                 "value": ["0": value[0],
@@ -118,7 +123,7 @@ public struct ExercisePositive: Exercise {
                 "weekDay": weekDay.rawValue,
                 "weekNr": weekNr]
     }
-    
+
     public func toHTML() -> String {
         var html = "<tr><td>week \(weekNr) - \(weekDay.rawValue)</td></tr>"
         html += "<tr><td colspan=\"2\">\(type.description)</td></tr>"
@@ -143,13 +148,13 @@ public struct ExerciseMindfulness: Exercise {
     public let value: [Int]
     public let weekDay: Day
     public let weekNr: Int
-    
+
     public init(value: [Int], weekDay: Day, weekNr: Int) {
         self.value = value
         self.weekDay = weekDay
         self.weekNr = weekNr
     }
-    
+
     public func toJSON() -> [String : Any] {
         return ["type": type.rawValue,
                 "value": ["0": value[0],
@@ -157,7 +162,7 @@ public struct ExerciseMindfulness: Exercise {
                 "weekDay": weekDay.rawValue,
                 "weekNr": weekNr]
     }
-    
+
     public func toHTML() -> String {
         var html = "<tr><td>week \(weekNr) - \(weekDay.rawValue)</td></tr>"
         html += "<tr><td colspan=\"2\">\(type.description)</td></tr>"

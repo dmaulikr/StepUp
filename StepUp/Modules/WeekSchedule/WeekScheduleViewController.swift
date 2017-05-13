@@ -1,4 +1,3 @@
-
 import UIKit
 import App
 import CollectionViewKit
@@ -8,7 +7,7 @@ class WeekScheduleViewController: UIViewController,
                                   WeekScheduleView,
                                   UICollectionViewDelegate {
     internal let weekSchedulePresenter: WeekSchedulePresenter
-    
+
     private lazy var pageControl: UIPageControl = {
         let v = UIPageControl()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -16,7 +15,7 @@ class WeekScheduleViewController: UIViewController,
         v.currentPageIndicatorTintColor = .baseGreen
         return v
     }()
-    
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 40)
@@ -30,7 +29,7 @@ class WeekScheduleViewController: UIViewController,
         cv.isPagingEnabled = true
         return cv
     }()
-    
+
     private lazy var closeButton: UIButton = {
         let b = UIButton(type: .roundedRect)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +43,7 @@ class WeekScheduleViewController: UIViewController,
         b.contentEdgeInsets = UIEdgeInsets(top: 3, left: 7, bottom: 3, right: 7)
         return b
     }()
-    
+
     private lazy var treatmentTitle: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -53,66 +52,66 @@ class WeekScheduleViewController: UIViewController,
         l.font = UIFont.light(withSize: 17)
         return l
     }()
-    
+
     internal lazy var loaderView: LoaderView = {
         let l = LoaderView()
         l.translatesAutoresizingMaskIntoConstraints = false
         return l
     }()
-    
+
     private let configurator: WeekScheduleCellConfiguration
     private let dataSource: CollectionViewDataSource<SectionDataHandler<Section<DaySchedule>>,
                                                                           WeekScheduleCellConfiguration>
-    
-    init(Presenter: WeekSchedulePresenter) {
-        weekSchedulePresenter = Presenter
-        configurator = WeekScheduleCellConfiguration(Presenter: weekSchedulePresenter)
-        dataSource = CollectionViewDataSource(dataHandler: Presenter.dataHandler, configurator: configurator)
+
+    init(presenter: WeekSchedulePresenter) {
+        weekSchedulePresenter = presenter
+        configurator = WeekScheduleCellConfiguration(presenter: weekSchedulePresenter)
+        dataSource = CollectionViewDataSource(dataHandler: presenter.dataHandler, configurator: configurator)
         super.init(nibName: nil, bundle: nil)
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         weekSchedulePresenter.setView(view: self)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         applyConstraints()
-        
+
         treatmentTitle.text = "Behandeling \(weekSchedulePresenter.weekNumber)"
         weekSchedulePresenter.start()
         closeButton.addTarget(self, action: #selector(closeButtonTapped(sender:)), for: .touchUpInside)
     }
 
     // MARK: Week schedule output
-    
+
     func showWeekSchedule() {
         pageControl.numberOfPages = weekSchedulePresenter.dataHandler.numberOfItems(inSection: 0)
         collectionView.reloadData()
     }
-    
+
     func show(exercise: Exercise) {
-        let vc = ExerciseViewController(Presenter: MixinExercisePresenterImplementation(exercise: exercise))
+        let vc = ExerciseViewController(presenter: MixinExercisePresenterImplementation(exercise: exercise))
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: false, completion: nil)
     }
-    
+
     // MARK: UIScrollview delegate, calculate page position
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth: CGFloat = scrollView.bounds.size.width
         let page: CGFloat = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1
         pageControl.currentPage = Int(page)
     }
-    
+
     @objc private func closeButtonTapped(sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }
-    
+
     private func setup() {
         view.backgroundColor = .white
         view.addSubview(collectionView)
@@ -120,7 +119,7 @@ class WeekScheduleViewController: UIViewController,
         view.addSubview(treatmentTitle)
         view.addSubview(pageControl)
     }
-    
+
     // swiftlint:disable function_body_length
     private func applyConstraints() {
         let views: [String: Any] = ["collectionView": collectionView,
@@ -138,49 +137,49 @@ class WeekScheduleViewController: UIViewController,
                                               toItem: bottomLayoutGuide,
                                               attribute: .bottom,
                                               multiplier: 1, constant: 0))
-        
+
         constraints.append(NSLayoutConstraint(item: pageControl,
                                               attribute: .bottom,
                                               relatedBy: .equal,
                                               toItem: bottomLayoutGuide,
                                               attribute: .top,
                                               multiplier: 1, constant: -20))
-        
+
         constraints.append(NSLayoutConstraint(item: pageControl,
                                               attribute: .centerX,
                                               relatedBy: .equal,
                                               toItem: view,
                                               attribute: .centerX,
                                               multiplier: 1, constant: 0))
-        
+
         constraints.append(NSLayoutConstraint(item: closeButton,
                                               attribute: .top,
                                               relatedBy: .equal,
                                               toItem: topLayoutGuide,
                                               attribute: .bottomMargin,
                                               multiplier: 1, constant: 7))
-        
+
         constraints.append(NSLayoutConstraint(item: closeButton,
                                               attribute: .left,
                                               relatedBy: .equal,
                                               toItem: view,
                                               attribute: .left,
                                               multiplier: 1, constant: 10))
-        
+
         constraints.append(NSLayoutConstraint(item: treatmentTitle,
                                               attribute: .top,
                                               relatedBy: .equal,
                                               toItem: topLayoutGuide,
                                               attribute: .bottomMargin,
                                               multiplier: 1, constant: 7))
-        
+
         constraints.append(NSLayoutConstraint(item: treatmentTitle,
                                               attribute: .right,
                                               relatedBy: .equal,
                                               toItem: view,
                                               attribute: .right,
                                               multiplier: 1, constant: -10))
-        
+
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[collectionView]|",
                                                                    options: [],
                                                                    metrics: nil, views: views))

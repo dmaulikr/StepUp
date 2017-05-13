@@ -6,7 +6,7 @@ import AudioKit
 
 class MindfulnessViewController: UIViewController, ExerciseResult {
     internal var audioPlayer: AudioPlaying
-    
+
     private lazy var audioFileBodyScan: File? = {
         guard let item = try? FileKit.path(forResource: "bodyscan",
                                            withExtension: "mp3",
@@ -15,7 +15,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
         }
         return item
     }()
-    
+
     private lazy var audioFileAdemRuimte: File? = {
         guard let item = try? FileKit.path(forResource: "ademruimte",
                                            withExtension: "mp3",
@@ -24,7 +24,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
         }
         return item
     }()
-    
+
     private lazy var titleLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +34,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
         l.text = "Mindfulness"
         return l
     }()
-    
+
     private lazy var descriptionLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -59,7 +59,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
         v.itemTitle.text = "Bodyscan"
         return v
     }()
-    
+
     private lazy var bodyscanButton: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +74,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
         b.tag = 1
         return b
     }()
-    
+
     private lazy var ademruimteButton: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -89,22 +89,22 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
         b.tag = 2
         return b
     }()
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private let exercise: Exercise
-    
+
     init(exercise: Exercise) {
         self.exercise = exercise
         audioPlayer = PlayerController()
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setup()
         applyConstraints()
         configure()
@@ -114,12 +114,12 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
         super.viewWillDisappear(animated)
         audioPlayer.pause()
     }
-    
+
     func result() -> Exercise {
         return ExerciseMindfulness(value: [1, 1],
                                    weekDay: exercise.weekDay, weekNr: exercise.weekNr)
     }
-    
+
     @objc private func songButtonTapped(sender: UIButton) {
         audioPlayerView.reset()
         switch sender.tag {
@@ -135,7 +135,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
             return
         }
     }
-    
+
     private func configure() {
         guard let url = audioFileBodyScan?.path else { return }
         audioPlayer.configure(url: url, completion: nil)
@@ -143,25 +143,25 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
             self?.audioPlayerView.elapsedTime.text = time
         }
 
-        audioPlayer.totalLength = { [weak self] tl in
-            self?.audioPlayerView.totalTime.text = tl
+        audioPlayer.totalLength = { [weak self] totalLength in
+            self?.audioPlayerView.totalTime.text = totalLength
         }
-        audioPlayer.progress = { [weak self] ct, tt in
-            self?.audioPlayerView.progress(totalTime: tt, elapsedTime: ct)
+        audioPlayer.progress = { [weak self] elapsed, totalTime in
+            self?.audioPlayerView.progress(totalTime: totalTime, elapsedTime: elapsed)
         }
-        
+
         audioPlayer.playerReady = { [weak self] in
             self?.audioPlayerView.controlButton.isEnabled = true
         }
     }
-    
+
     private func prepareAudioPlayer(forAudioFile: File?) {
         audioPlayerView.controlButton.isEnabled = false
         audioPlayer.pause()
         guard let file = forAudioFile else { return }
         audioPlayer.prepare(audioFilePath: file.path, completion: nil, stopped: nil)
     }
-    
+
     private func setup() {
         view.addSubview(titleLabel)
         view.addSubview(descriptionLabel)
@@ -169,7 +169,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
         view.addSubview(bodyscanButton)
         view.addSubview(ademruimteButton)
     }
-    
+
     // swiftlint:disable function_body_length
     private func applyConstraints() {
         let views: [String : Any] = ["titleLabel": titleLabel,
@@ -177,37 +177,37 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
                                      "ademruimteButton": ademruimteButton,
                                      "bodyscanButton": bodyscanButton,
                                      "descriptionLabel": descriptionLabel]
-        
+
         var constraints: [NSLayoutConstraint] = []
-        
+
         constraints.append(NSLayoutConstraint(item: titleLabel,
                                               attribute: .top,
                                               relatedBy: .equal,
                                               toItem: topLayoutGuide,
                                               attribute: .bottom,
                                               multiplier: 1, constant: 10))
-        
+
         constraints.append(NSLayoutConstraint(item: descriptionLabel,
                                               attribute: .top,
                                               relatedBy: .equal,
                                               toItem: titleLabel,
                                               attribute: .bottom,
                                               multiplier: 1, constant: 10))
-        
+
         constraints.append(NSLayoutConstraint(item: bodyscanButton,
                                               attribute: .top,
                                               relatedBy: .equal,
                                               toItem: descriptionLabel,
                                               attribute: .bottom,
                                               multiplier: 1, constant: 10))
-        
+
         constraints.append(NSLayoutConstraint(item: ademruimteButton,
                                               attribute: .top,
                                               relatedBy: .equal,
                                               toItem: descriptionLabel,
                                               attribute: .bottom,
                                               multiplier: 1, constant: 10))
-        
+
         constraints.append(NSLayoutConstraint(item: audioPlayerView,
                                               attribute: .top,
                                               relatedBy: .equal,
@@ -215,7 +215,7 @@ class MindfulnessViewController: UIViewController, ExerciseResult {
                                               attribute: .bottom,
                                               multiplier: 1, constant: 10))
         NSLayoutConstraint.activate(constraints)
-        
+
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[titleLabel]|",
                                                            options: [],
                                                            metrics: nil, views: views))
@@ -251,18 +251,18 @@ final class ConfirmationView: UIView {
         l.translatesAutoresizingMaskIntoConstraints = false
         return l
     }()
-    
+
     private lazy var confirmButton: UIButton = {
         let b = UIButton()
         b.translatesAutoresizingMaskIntoConstraints = false
         return b
     }()
-    
+
     private func setupViews() {
         addSubview(message)
         addSubview(confirmButton)
     }
-    
+
     private func applyViewConstraints() {
         let views: [String: Any] = ["label": message,
                      "button": confirmButton]

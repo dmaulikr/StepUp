@@ -9,7 +9,7 @@ struct Treatment {
 extension Treatment: Equatable {
     static func == (lhs: Treatment, rhs: Treatment) -> Bool {
             return lhs.title == rhs.title &&
-                lhs.description == rhs.description && 
+                lhs.description == rhs.description &&
                 lhs.number == rhs.number
     }
 }

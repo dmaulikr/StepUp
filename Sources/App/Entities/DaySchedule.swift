@@ -14,7 +14,7 @@ public struct DaySchedule {
     public let title: String
     public let weekDay: Day
     public let exercises: [ExerciseType]
-    
+
     public init(title: String, weekDay: Day, exercises: [ExerciseType]) {
         self.title = title
         self.weekDay = weekDay
@@ -24,7 +24,7 @@ public struct DaySchedule {
 
 extension DaySchedule: Equatable {
     public static func == (lhs: DaySchedule, rhs: DaySchedule) -> Bool {
-            return lhs.title == rhs.title && 
+            return lhs.title == rhs.title &&
                 lhs.exercises == rhs.exercises &&
                 lhs.weekDay == rhs.weekDay
     }

@@ -23,7 +23,7 @@ extension MailComposer where Self: UIViewController {
                                                       appendDebugInfo: debug)
         present(mailComposer, animated: true, completion: nil)
     }
-    
+
     func canSendMail() -> Bool {
         return MFMailComposeViewController.canSendMail()
     }
@@ -31,7 +31,7 @@ extension MailComposer where Self: UIViewController {
 
 final class MailComposerViewController: MFMailComposeViewController,
                                   MFMailComposeViewControllerDelegate {
-   
+
     init(recipients: [String],
          subject: String,
          message: String,
@@ -47,23 +47,23 @@ final class MailComposerViewController: MFMailComposeViewController,
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     // MARK: MFMailComposeViewControllerDelegate Method
-    
+
     func mailComposeController(_ controller: MFMailComposeViewController,
                                didFinishWith result: MFMailComposeResult,
-                                                    error: Error?) {
+                               error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
-    
+
     private func getAppVersion() -> String {
         guard let bundleVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String,
             let shortBundleVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
@@ -71,13 +71,13 @@ final class MailComposerViewController: MFMailComposeViewController,
         }
         return "\(shortBundleVersion)(\(bundleVersion))"
     }
-    
+
     private func getSpecKeyList() -> [String: String] {
         return  ["App versie": "\(getAppVersion())",
                 "SysVersion": "\(UIDevice.current.systemVersion)",
                 "Platform": "\(UIDevice.current.systemName)"]
     }
-    
+
     private func append(keyValues: [String: String], toMessage message: String) -> String {
         var messageWithSpecs: String = message
         for key in keyValues.keys {

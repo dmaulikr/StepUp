@@ -21,24 +21,24 @@ class MixinExercisePresenterImplementation: ExercisePresenter, UsesTreatmentServ
     private weak var view: ExerciseView?
     private let exercise: Exercise
     internal let treatmentService: TreatmentService
-    
+
     init(exercise: Exercise) {
         self.exercise = exercise
         treatmentService = MixinTreatmentService()
     }
-    
+
     func setView(view: ExerciseView) {
         self.view = view
     }
-    
+
     func start() {
         view?.show(exercise: exercise)
     }
-    
+
     func cancel() {
         view?.pop()
     }
-    
+
     func save(exercise: Exercise) {
         treatmentService.save(exercise)
         view?.pop()

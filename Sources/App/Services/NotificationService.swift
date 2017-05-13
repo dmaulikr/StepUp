@@ -10,8 +10,8 @@ public protocol NotificationService {
     func checkNotificationStatus(completion: @escaping (NotificationServiceResult) -> Void)
     func scheduleLocalNotification(title: String,
                                    body: String,
-                                   at time: TimeInterval,
-                                   withIdentifier id: String,
+                                   atTime time: TimeInterval,
+                                   withIdentifier identifier: String,
                                    repeats: Bool)
 }
 
@@ -21,7 +21,7 @@ public protocol UsesNotificationService {
 
 public class MixinNotificationService: NotificationService {
     public init() { }
-    
+
     public func checkNotificationStatus(completion: @escaping (NotificationServiceResult) -> Void) {
         checkPermissions { status in
             switch status {
@@ -45,11 +45,11 @@ public class MixinNotificationService: NotificationService {
             }
         }
     }
-    
+
     public func scheduleLocalNotification(title: String,
                                           body: String,
-                                          at time: TimeInterval,
-                                          withIdentifier id: String,
+                                          atTime time: TimeInterval,
+                                          withIdentifier identifier: String,
                                           repeats: Bool = false) {
         let content = UNMutableNotificationContent()
         content.title = title
@@ -58,21 +58,21 @@ public class MixinNotificationService: NotificationService {
         content.sound = UNNotificationSound.default()
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: time,
                                                         repeats: repeats)
-        let request = UNNotificationRequest(identifier: id,
+        let request = UNNotificationRequest(identifier: identifier,
             content: content,
             trigger: trigger)
         let center = UNUserNotificationCenter.current()
         center.add(request, withCompletionHandler: nil)
     }
-    
+
     private func checkPermissions(completion: @escaping (UNAuthorizationStatus) -> Void) {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             completion(settings.authorizationStatus)
         }
     }
-    
+
     private func requestPushPermission(completion: @escaping (Bool) -> Void) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { (granted, error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { (granted, _) in
             completion(granted)
         }
     }

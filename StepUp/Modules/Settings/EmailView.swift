@@ -10,7 +10,7 @@ class EmailView: UIView {
         l.font = UIFont.light(withSize: 17)
         return l
     }()
-    
+
     lazy var email: UITextField = {
         let s = UITextField()
         s.translatesAutoresizingMaskIntoConstraints = false
@@ -19,7 +19,7 @@ class EmailView: UIView {
         s.keyboardType = .emailAddress
         return s
     }()
-    
+
     lazy var name: UITextField = {
         let s = UITextField()
         s.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +27,7 @@ class EmailView: UIView {
         s.placeholder = "Je naam"
         return s
     }()
-    
+
     lazy var sendButton: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -40,24 +40,24 @@ class EmailView: UIView {
         b.setTitle("Versturen", for: .normal)
         return b
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
         applyViewConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupViews() {
         addSubview(title)
         addSubview(name)
         addSubview(email)
         addSubview(sendButton)
     }
-    
+
     // swiftlint:disable function_body_length
     private func applyViewConstraints() {
         var constraints: [NSLayoutConstraint] = []
@@ -79,7 +79,7 @@ class EmailView: UIView {
                                               toItem: self,
                                               attribute: .right,
                                               multiplier: 1, constant: 0))
-        
+
         constraints.append(NSLayoutConstraint(item: name,
                                               attribute: .top,
                                               relatedBy: .equal,
@@ -98,7 +98,7 @@ class EmailView: UIView {
                                               toItem: self,
                                               attribute: .right,
                                               multiplier: 1, constant: 0))
-        
+
         constraints.append(NSLayoutConstraint(item: email,
                                               attribute: .top,
                                               relatedBy: .equal,
@@ -117,7 +117,7 @@ class EmailView: UIView {
                                               toItem: self,
                                               attribute: .right,
                                               multiplier: 1, constant: 0))
-        
+
         constraints.append(NSLayoutConstraint(item: sendButton,
                                               attribute: .top,
                                               relatedBy: .equal,

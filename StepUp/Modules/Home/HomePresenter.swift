@@ -4,8 +4,8 @@ import CollectionViewKit
 
 protocol HomeView: class {
     func showTreatments(index: IndexPath)
-    func presentTreatmentWeek(Presenter: WeekSchedulePresenter)
-    func presentReminderSettings(Presenter: MixinReminderPresenter)
+    func presentTreatmentWeek(presenter: WeekSchedulePresenter)
+    func presentReminderSettings(presenter: MixinReminderPresenter)
     func sendTreatment(toEmail email: String, name: String, withResults results: String)
     func confirmation(message: String)
 }
@@ -30,7 +30,7 @@ class HomePresenterImplementation: HomePresenter, UsesTreatmentService {
     internal let treatmentService: TreatmentService
     let dataHandler: SectionDataHandler<Section<MixedEntity>>
     var firstLaunch: Bool = true
-    
+
     init() {
         // swiftlint:disable line_length
         let treatments = Section(title: "Treatments", rows: MixedEntity.treatment(Treatment(title: "Behandeling 1", description: "Step up en stap in omdat gezond bewegen goed voor je gezondheid is,een positieve invloed op je stemming heeft, je zelfvertrouwen vergroot en de kans op het gebruik van medicijnen doet afnemen.", number: 1)),
@@ -46,41 +46,41 @@ class HomePresenterImplementation: HomePresenter, UsesTreatmentService {
         dataHandler = SectionDataHandler(data: [settings, treatments])
         treatmentService = MixinTreatmentService()
     }
-    
+
     func setView(view: HomeView) {
         self.view = view
     }
-    
+
     func start() {
         if firstLaunch {
             view?.showTreatments(index: IndexPath(row: 0, section: 1))
             firstLaunch = false
         }
     }
-    
+
     func presentTreatment(weekNumber number: Int) {
-        view?.presentTreatmentWeek(Presenter: WeekSchedulePresenterImplementation(weekNumber: number))
+        view?.presentTreatmentWeek(presenter: WeekSchedulePresenterImplementation(weekNumber: number))
     }
-    
+
     func getReminderSettings() {
-        view?.presentReminderSettings(Presenter: MixinReminderPresenter())
+        view?.presentReminderSettings(presenter: MixinReminderPresenter())
     }
 
     func getTreatmentResults(email: String, name: String) {
-        treatmentService.loadAllExercise() { [unowned self] result in
+        treatmentService.loadAllExercise { [unowned self] result in
             let message = self.convertToHTMLTable(exercises: result)
             self.view?.sendTreatment(toEmail: email, name: name, withResults: message)
         }
     }
-    
+
     func promptForExercisesRemoval() {
         view?.confirmation(message: "Weet je zeker dat je alle resultaten wil verwijderen?")
     }
-    
+
     func deleteExercises() {
         treatmentService.cleanAll()
     }
-    
+
     private func convertToHTMLTable(exercises: [Exercise]) -> String {
         var html: [String] = exercises.map { e in
             e.toHTML()
@@ -90,4 +90,3 @@ class HomePresenterImplementation: HomePresenter, UsesTreatmentService {
         return html.joined()
     }
 }
-

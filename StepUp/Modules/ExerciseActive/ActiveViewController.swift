@@ -2,7 +2,7 @@ import UIKit
 import App
 
 class ActiveViewController: UIViewController, ExerciseResult {
-    
+
     private lazy var intensityLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -12,15 +12,14 @@ class ActiveViewController: UIViewController, ExerciseResult {
         l.text = "Intensiteit"
         return l
     }()
-    
+
     private lazy var intensity: UISegmentedControl = {
         let s = UISegmentedControl(items: ["Licht", "Matig", "Zwaar"])
         s.translatesAutoresizingMaskIntoConstraints = false
         s.tintColor = .baseGreen
         return s
     }()
-    
-    
+
     private lazy var trainingLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -30,14 +29,14 @@ class ActiveViewController: UIViewController, ExerciseResult {
         l.text = "De training ging"
         return l
     }()
-    
+
     private lazy var training: UISegmentedControl = {
         let s = UISegmentedControl(items: ["Slecht", "Gemiddeld", "Super"])
         s.translatesAutoresizingMaskIntoConstraints = false
         s.tintColor = .baseGreen
         return s
     }()
-    
+
     private lazy var funLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -47,14 +46,14 @@ class ActiveViewController: UIViewController, ExerciseResult {
         l.text = "Plezier"
         return l
     }()
-    
+
     private lazy var fun: UISegmentedControl = {
         let s = UISegmentedControl(items: ["Weinig", "Gemiddeld", "Veel"])
         s.translatesAutoresizingMaskIntoConstraints = false
         s.tintColor = .baseGreen
         return s
     }()
-    
+
     private lazy var titleLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -64,32 +63,32 @@ class ActiveViewController: UIViewController, ExerciseResult {
         l.text = "Bewegen"
         return l
     }()
-    
+
     private let exercise: Exercise
-    
+
     init(exercise: Exercise) {
         self.exercise = exercise
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         applyConstraints()
         configure()
     }
-    
+
     func result() -> Exercise {
         return ExerciseActive(value: [intensity.selectedSegmentIndex,
                                                   training.selectedSegmentIndex,
                                                   fun.selectedSegmentIndex],
                               weekDay: exercise.weekDay, weekNr: exercise.weekNr)
     }
-    
+
     private func configure() {
         guard let e = exercise as? ExerciseActive,
             e.value.count > 2 else { return }
@@ -97,7 +96,7 @@ class ActiveViewController: UIViewController, ExerciseResult {
         training.selectedSegmentIndex = e.value[1]
         fun.selectedSegmentIndex = e.value[2]
     }
-    
+
     private func setup() {
         view.addSubview(titleLabel)
         view.addSubview(intensityLabel)
@@ -107,7 +106,7 @@ class ActiveViewController: UIViewController, ExerciseResult {
         view.addSubview(funLabel)
         view.addSubview(fun)
     }
-    
+
     // swiftlint:disable function_body_length
     private func applyConstraints() {
         let views: [String : Any] = ["intensity": intensity,
@@ -117,16 +116,16 @@ class ActiveViewController: UIViewController, ExerciseResult {
                      "intensityLabel": intensityLabel,
                      "trainingLabel": trainingLabel,
                      "funLabel": funLabel]
-        
+
         var constraints: [NSLayoutConstraint] = []
-        
+
         constraints.append(NSLayoutConstraint(item: titleLabel,
                                               attribute: .top,
                                               relatedBy: .equal,
                                               toItem: topLayoutGuide,
                                               attribute: .bottom,
                                               multiplier: 1, constant: 10))
-        
+
         constraints.append(NSLayoutConstraint(item: intensityLabel,
                                               attribute: .top,
                                               relatedBy: .equal,
@@ -139,7 +138,7 @@ class ActiveViewController: UIViewController, ExerciseResult {
                                               toItem: intensityLabel,
                                               attribute: .bottom,
                                               multiplier: 1, constant: 5))
-        
+
         constraints.append(NSLayoutConstraint(item: trainingLabel,
                                               attribute: .top,
                                               relatedBy: .equal,
@@ -152,7 +151,7 @@ class ActiveViewController: UIViewController, ExerciseResult {
                                               toItem: trainingLabel,
                                               attribute: .bottom,
                                               multiplier: 1, constant: 5))
-        
+
         constraints.append(NSLayoutConstraint(item: funLabel,
                                               attribute: .top,
                                               relatedBy: .equal,
@@ -171,7 +170,7 @@ class ActiveViewController: UIViewController, ExerciseResult {
                                               toItem: bottomLayoutGuide,
                                               attribute: .top,
                                               multiplier: 1, constant: 30))
-        
+
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[titleLabel]|",
                                                            options: [],
                                                            metrics: nil, views: views))

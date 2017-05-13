@@ -24,17 +24,17 @@ class WeekSchedulePresenterImplementation: WeekSchedulePresenter, UsesTreatmentS
     internal let treatmentService: TreatmentService
     let dataHandler: SectionDataHandler<Section<DaySchedule>>
     let weekNumber: Int
-    
+
     init(weekNumber: Int) {
         self.weekNumber = weekNumber
         dataHandler = SectionDataHandler()
         treatmentService = MixinTreatmentService()
     }
-    
+
     func setView(view: WeekScheduleView) {
         self.view = view
     }
-    
+
     func start() {
         let exercises = exerciseTypes(forWeek: weekNumber)
         let section = Section(title: "Schedule",
@@ -62,7 +62,7 @@ class WeekSchedulePresenterImplementation: WeekSchedulePresenter, UsesTreatmentS
         dataHandler.data = [section]
         view?.showWeekSchedule()
     }
-    
+
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule) {
         view?.show(loader: true)
         loadExercise(withType: type, weekDay: schedule.weekDay) { [weak self] exercise in
@@ -70,18 +70,18 @@ class WeekSchedulePresenterImplementation: WeekSchedulePresenter, UsesTreatmentS
             self?.view?.show(exercise: exercise)
         }
     }
-    
-    private func loadExercise(withType type: ExerciseType, weekDay: Day, completion: @escaping (Exercise) -> ()) {
+
+    private func loadExercise(withType type: ExerciseType, weekDay: Day, completion: @escaping (Exercise) -> Void) {
         treatmentService.load(exerciseWithType: type, forDay: weekDay, inWeek: weekNumber) { [unowned self] result in
             guard let r = result else {
                 completion(self.emptyExercise(withType: type, weekDay: weekDay))
-                return 
+                return
             }
             completion(r)
         }
-        
+
     }
-    
+
     private func emptyExercise(withType type: ExerciseType, weekDay: Day) -> Exercise {
         switch type {
         case .active:
@@ -95,7 +95,7 @@ class WeekSchedulePresenterImplementation: WeekSchedulePresenter, UsesTreatmentS
                                     weekDay: weekDay, weekNr: weekNumber)
         }
     }
-    
+
     private func exerciseTypes(forWeek: Int) -> [ExerciseType] {
         switch forWeek {
         case 1...1:

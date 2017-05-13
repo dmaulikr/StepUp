@@ -11,25 +11,25 @@ class ExerciseViewController: UIViewController,
 
     internal let exercisePresenter: ExercisePresenter
     private var activeVC: UIViewController!
-    
-    init(Presenter: ExercisePresenter) {
-        exercisePresenter = Presenter
+
+    init(presenter: ExercisePresenter) {
+        exercisePresenter = presenter
         super.init(nibName: nil, bundle: nil)
         exercisePresenter.setView(view: self)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         exercisePresenter.start()
     }
-    
+
     // MARK: PresenterOuputView
-    
+
     func show(exercise: Exercise) {
         switch exercise.type {
         case .active:
@@ -46,20 +46,20 @@ class ExerciseViewController: UIViewController,
             return
         }
     }
-    
+
     func pop() {
         activeVC.view.removeFromSuperview()
         activeVC.removeFromParentViewController()
         activeVC = nil
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
-    private func add(viewController vc: UIViewController) {
-        addChildViewController(vc)
-        view.addSubview(vc.view)
-        vc.didMove(toParentViewController: self)
+
+    private func add(viewController: UIViewController) {
+        addChildViewController(viewController)
+        view.addSubview(viewController.view)
+        viewController.didMove(toParentViewController: self)
     }
-    
+
     private func setup() {
         let leftButton = UIBarButtonItem(title: "Annuleren",
                                          style: .plain,
@@ -67,7 +67,7 @@ class ExerciseViewController: UIViewController,
                                          action: #selector(cancel(sender:)))
         leftButton.tintColor = .cancelAction
         navigationItem.leftBarButtonItem = leftButton
-        
+
         let rightButton = UIBarButtonItem(title: "Opslaan",
                                           style: .done,
                                           target: self,
@@ -76,11 +76,11 @@ class ExerciseViewController: UIViewController,
         navigationItem.rightBarButtonItem = rightButton
         view.backgroundColor = .white
     }
-    
+
     @objc private func cancel(sender: UIBarButtonItem) {
         exercisePresenter.cancel()
     }
-    
+
     @objc private func save(sender: UIBarButtonItem) {
         guard let vc = activeVC as? ExerciseResult else { return }
         exercisePresenter.save(exercise: vc.result())
