@@ -51,7 +51,6 @@ class ExerciseViewController: UIViewController,
         activeVC.view.removeFromSuperview()
         activeVC.removeFromParentViewController()
         activeVC = nil
-        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
     private func add(viewController: UIViewController) {

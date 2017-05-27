@@ -4,8 +4,6 @@ import CollectionViewKit
 
 protocol HomeView: class {
     func showTreatments(index: IndexPath)
-    func presentTreatmentWeek(presenter: WeekSchedulePresenter)
-    func presentReminderSettings(presenter: MixinReminderPresenter)
     func sendTreatment(toEmail email: String, name: String, withResults results: String)
     func confirmation(message: String)
 }
@@ -25,11 +23,17 @@ protocol UsesHomePresenter {
     var homePresenter: HomePresenter { get }
 }
 
+protocol HomePresenterDelegate: class {
+    func presentTreatmentWeek(_ week: Int)
+    func presentReminderSettings()
+}
+
 class HomePresenterImplementation: HomePresenter, UsesTreatmentService {
     private weak var view: HomeView?
     internal let treatmentService: TreatmentService
     let dataHandler: SectionDataHandler<Section<MixedEntity>>
     var firstLaunch: Bool = true
+    weak var delegate: HomePresenterDelegate?
 
     init() {
         // swiftlint:disable line_length
@@ -59,11 +63,11 @@ class HomePresenterImplementation: HomePresenter, UsesTreatmentService {
     }
 
     func presentTreatment(weekNumber number: Int) {
-        view?.presentTreatmentWeek(presenter: WeekSchedulePresenterImplementation(weekNumber: number))
+        delegate?.presentTreatmentWeek(number)
     }
 
     func getReminderSettings() {
-        view?.presentReminderSettings(presenter: MixinReminderPresenter())
+        delegate?.presentReminderSettings()
     }
 
     func getTreatmentResults(email: String, name: String) {

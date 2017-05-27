@@ -4,7 +4,6 @@ import CollectionViewKit
 
 protocol WeekScheduleView: class, ActivityIndicating {
     func showWeekSchedule()
-    func show(exercise: Exercise)
 }
 
 protocol WeekSchedulePresenter: class {
@@ -13,10 +12,16 @@ protocol WeekSchedulePresenter: class {
     func setView(view: WeekScheduleView)
     func start()
     func present(exerciseWithType type: ExerciseType, fromDaySchedule schedule: DaySchedule)
+    func dismissWeekSchedule()
 }
 
 protocol UsesWeekSchedulePresenter {
     var weekSchedulePresenter: WeekSchedulePresenter { get }
+}
+
+protocol WeekScheduleDelegate: class {
+    func close()
+    func show(exercise: Exercise)
 }
 
 class WeekSchedulePresenterImplementation: WeekSchedulePresenter, UsesTreatmentService {
@@ -24,6 +29,7 @@ class WeekSchedulePresenterImplementation: WeekSchedulePresenter, UsesTreatmentS
     internal let treatmentService: TreatmentService
     let dataHandler: SectionDataHandler<Section<DaySchedule>>
     let weekNumber: Int
+    weak var delegate: WeekScheduleDelegate?
 
     init(weekNumber: Int) {
         self.weekNumber = weekNumber
@@ -67,8 +73,12 @@ class WeekSchedulePresenterImplementation: WeekSchedulePresenter, UsesTreatmentS
         view?.show(loader: true)
         loadExercise(withType: type, weekDay: schedule.weekDay) { [weak self] exercise in
             self?.view?.show(loader: false)
-            self?.view?.show(exercise: exercise)
+            self?.delegate?.show(exercise: exercise)
         }
+    }
+
+    func dismissWeekSchedule() {
+        delegate?.close()
     }
 
     private func loadExercise(withType type: ExerciseType, weekDay: Day, completion: @escaping (Exercise) -> Void) {

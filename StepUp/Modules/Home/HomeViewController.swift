@@ -114,16 +114,6 @@ class HomeViewController: UIViewController,
         collectionView.scrollToItem(at: index, at: .left, animated: false)
     }
 
-    func presentTreatmentWeek(presenter: WeekSchedulePresenter) {
-        navigationController?.pushViewController(WeekScheduleViewController(presenter: presenter), animated: true)
-    }
-
-    func presentReminderSettings(presenter: MixinReminderPresenter) {
-        let vc = ReminderViewController(presenter: presenter)
-        let nav = UINavigationController(rootViewController: vc)
-        present(nav, animated: true, completion: nil)
-    }
-
     func sendTreatment(toEmail email: String, name: String, withResults results: String) {
         if canSendMail() {
             let subject = name.isEmpty ? "Overzicht van de oefeningen" : "Overzicht van de oefeningen: \(name)."

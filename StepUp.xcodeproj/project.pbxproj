@@ -54,6 +54,12 @@
 		A363B5A61E50AECC0068F754 /* TreatmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B5991E509C480068F754 /* TreatmentService.swift */; };
 		A363B5A91E50AF8F0068F754 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B5A81E50AF8F0068F754 /* Exercise.swift */; };
 		A363B5AB1E50AFD70068F754 /* DaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363B5AA1E50AFD70068F754 /* DaySchedule.swift */; };
+		A3685C3F1ED8874000F593F4 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3685C3E1ED8874000F593F4 /* FlowController.swift */; };
+		A3685C411ED88B1600F593F4 /* HomeFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3685C401ED88B1600F593F4 /* HomeFlowController.swift */; };
+		A3685C431ED8A83100F593F4 /* ReminderFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3685C421ED8A83100F593F4 /* ReminderFlowController.swift */; };
+		A3685C451ED8AEB600F593F4 /* WeekScheduleFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3685C441ED8AEB600F593F4 /* WeekScheduleFlowController.swift */; };
+		A3685C471ED95F1E00F593F4 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3685C461ED95F1E00F593F4 /* MainFlowCoordinator.swift */; };
+		A3685C491ED963FF00F593F4 /* ExerciseFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3685C481ED963FF00F593F4 /* ExerciseFlowController.swift */; };
 		A38418461E58D7DC003914DB /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38418451E58D7DC003914DB /* Reminder.swift */; };
 		A384185C1E59C3C4003914DB /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38418551E59C3C4003914DB /* AudioKit.framework */; };
 		A384185D1E59C3C4003914DB /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A38418551E59C3C4003914DB /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -175,6 +181,12 @@
 		A363B5991E509C480068F754 /* TreatmentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreatmentService.swift; sourceTree = "<group>"; };
 		A363B5A81E50AF8F0068F754 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		A363B5AA1E50AFD70068F754 /* DaySchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySchedule.swift; sourceTree = "<group>"; };
+		A3685C3E1ED8874000F593F4 /* FlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
+		A3685C401ED88B1600F593F4 /* HomeFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFlowController.swift; sourceTree = "<group>"; };
+		A3685C421ED8A83100F593F4 /* ReminderFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderFlowController.swift; sourceTree = "<group>"; };
+		A3685C441ED8AEB600F593F4 /* WeekScheduleFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekScheduleFlowController.swift; sourceTree = "<group>"; };
+		A3685C461ED95F1E00F593F4 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
+		A3685C481ED963FF00F593F4 /* ExerciseFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseFlowController.swift; sourceTree = "<group>"; };
 		A38418451E58D7DC003914DB /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		A38418551E59C3C4003914DB /* AudioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AudioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38418751E59C94C003914DB /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AudioPlayerView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -336,6 +348,7 @@
 		A35190BB1E048BA100F7348E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A3685C3D1ED8871B00F593F4 /* FlowControllers */,
 				A387217A1E6A21C0008C1EA9 /* Loader */,
 				A38418741E59C94C003914DB /* AudioPlayer */,
 				A363B5951E50985D0068F754 /* MailComposer */,
@@ -371,6 +384,7 @@
 				A35190D81E048BF200F7348E /* HomeViewController.swift */,
 				A35190DA1E048C3F00F7348E /* HomePresenter.swift */,
 				A35190E01E04992300F7348E /* MixedCell+Configurator.swift */,
+				A3685C401ED88B1600F593F4 /* HomeFlowController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -381,6 +395,7 @@
 				A3C474521E33748800B22AF3 /* WeekSchedulePresenter.swift */,
 				A3C474541E33758D00B22AF3 /* WeekScheduleViewController.swift */,
 				A3C474561E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift */,
+				A3685C441ED8AEB600F593F4 /* WeekScheduleFlowController.swift */,
 			);
 			path = WeekSchedule;
 			sourceTree = "<group>";
@@ -423,6 +438,7 @@
 			children = (
 				A35235A71E506781007B0EE4 /* ReminderPresenter.swift */,
 				A35235A91E506829007B0EE4 /* ReminderViewController.swift */,
+				A3685C421ED8A83100F593F4 /* ReminderFlowController.swift */,
 			);
 			path = Reminder;
 			sourceTree = "<group>";
@@ -435,6 +451,7 @@
 				A3E28F361E463FCC00C1B764 /* ActiveViewController.swift */,
 				A3E28F381E47281400C1B764 /* PositiveViewController.swift */,
 				A3DFC3051E4788BC00292DB9 /* MindfulnessViewController.swift */,
+				A3685C481ED963FF00F593F4 /* ExerciseFlowController.swift */,
 			);
 			name = Exercise;
 			path = ExerciseActive;
@@ -464,6 +481,15 @@
 				A363B5A81E50AF8F0068F754 /* Exercise.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		A3685C3D1ED8871B00F593F4 /* FlowControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A3685C3E1ED8874000F593F4 /* FlowController.swift */,
+				A3685C461ED95F1E00F593F4 /* MainFlowCoordinator.swift */,
+			);
+			path = FlowControllers;
 			sourceTree = "<group>";
 		};
 		A38418741E59C94C003914DB /* AudioPlayer */ = {
@@ -773,10 +799,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3685C451ED8AEB600F593F4 /* WeekScheduleFlowController.swift in Sources */,
 				A351909E1E04898400F7348E /* AppDelegate.swift in Sources */,
 				A3084EE01E2EA316009C2CC3 /* Treatment.swift in Sources */,
 				A35235AA1E506829007B0EE4 /* ReminderViewController.swift in Sources */,
 				A3523AC71E43D67300FCB89A /* ExerciseViewController.swift in Sources */,
+				A3685C471ED95F1E00F593F4 /* MainFlowCoordinator.swift in Sources */,
+				A3685C431ED8A83100F593F4 /* ReminderFlowController.swift in Sources */,
 				A3DFC3061E4788BC00292DB9 /* MindfulnessViewController.swift in Sources */,
 				A35235A31E5061A9007B0EE4 /* RemoveTreatmentsView.swift in Sources */,
 				A3DDF8C31E4E868A0021F60D /* Result.swift in Sources */,
@@ -787,6 +816,8 @@
 				A35235A81E506781007B0EE4 /* ReminderPresenter.swift in Sources */,
 				A35235A51E5063F3007B0EE4 /* ReminderViewElement.swift in Sources */,
 				A3E28F391E47281400C1B764 /* PositiveViewController.swift in Sources */,
+				A3685C491ED963FF00F593F4 /* ExerciseFlowController.swift in Sources */,
+				A3685C411ED88B1600F593F4 /* HomeFlowController.swift in Sources */,
 				A35190E11E04992300F7348E /* MixedCell+Configurator.swift in Sources */,
 				A35190DF1E04910200F7348E /* Fonts.swift in Sources */,
 				A3C474571E337B7500B22AF3 /* WeekScheduleCell+Configurator.swift in Sources */,
@@ -794,6 +825,7 @@
 				A35190DD1E048E2E00F7348E /* Colors.swift in Sources */,
 				A361E4251E4FB5C700CFE9B8 /* MixedEntity.swift in Sources */,
 				A3DDF8C81E4F9E5D0021F60D /* SettingsCellConfigurator.swift in Sources */,
+				A3685C3F1ED8874000F593F4 /* FlowController.swift in Sources */,
 				A3C474531E33748800B22AF3 /* WeekSchedulePresenter.swift in Sources */,
 				A38418461E58D7DC003914DB /* Reminder.swift in Sources */,
 				A3E28F371E463FCC00C1B764 /* ActiveViewController.swift in Sources */,

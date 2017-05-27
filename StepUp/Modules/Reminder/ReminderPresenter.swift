@@ -3,7 +3,6 @@ import App
 
 protocol ReminderView: class {
     func showReminder(_ date: Date)
-    func pop()
     func timePicker(enabled: Bool)
     func controlSwitch(switchedOn: Bool)
     func showNoPushMessage()
@@ -17,6 +16,10 @@ protocol ReminderPresenter {
     func pushTryTo(enabled: Bool, theDate date: Date)
 }
 
+protocol RemdinderDelegate: class {
+    func close()
+}
+
 protocol UsesReminderPresenter {
     var reminderPresenter: ReminderPresenter { get }
 }
@@ -27,6 +30,7 @@ class MixinReminderPresenter: ReminderPresenter, UsesNotificationService {
     let reminderMinuteKey = "ReminderMinuteKey"
     private weak var view: ReminderView?
     internal let notificationService: NotificationService
+    weak var delegate: RemdinderDelegate?
 
     init() {
         notificationService = MixinNotificationService()
@@ -54,7 +58,7 @@ class MixinReminderPresenter: ReminderPresenter, UsesNotificationService {
     }
 
     func cancel() {
-        view?.pop()
+        delegate?.close()
     }
 
     func pushTryTo(enabled: Bool, theDate date: Date) {

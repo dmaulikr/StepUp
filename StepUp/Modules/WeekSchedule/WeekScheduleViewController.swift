@@ -94,12 +94,6 @@ class WeekScheduleViewController: UIViewController,
         collectionView.reloadData()
     }
 
-    func show(exercise: Exercise) {
-        let vc = ExerciseViewController(presenter: MixinExercisePresenterImplementation(exercise: exercise))
-        let navVC = UINavigationController(rootViewController: vc)
-        present(navVC, animated: false, completion: nil)
-    }
-
     // MARK: UIScrollview delegate, calculate page position
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -109,7 +103,7 @@ class WeekScheduleViewController: UIViewController,
     }
 
     @objc private func closeButtonTapped(sender: UIButton) {
-        _ = navigationController?.popViewController(animated: true)
+        weekSchedulePresenter.dismissWeekSchedule()
     }
 
     private func setup() {

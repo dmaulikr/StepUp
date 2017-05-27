@@ -17,10 +17,16 @@ protocol UsesExercisePresenter {
     var exercisePresenter: ExercisePresenter { get }
 }
 
+protocol ExerciseDelegate: class {
+    func didCancelExercise()
+    func didSaveExercise()
+}
+
 class MixinExercisePresenterImplementation: ExercisePresenter, UsesTreatmentService {
     private weak var view: ExerciseView?
     private let exercise: Exercise
     internal let treatmentService: TreatmentService
+    weak var delegate: ExerciseDelegate?
 
     init(exercise: Exercise) {
         self.exercise = exercise
@@ -37,10 +43,12 @@ class MixinExercisePresenterImplementation: ExercisePresenter, UsesTreatmentServ
 
     func cancel() {
         view?.pop()
+        delegate?.didCancelExercise()
     }
 
     func save(exercise: Exercise) {
         treatmentService.save(exercise)
         view?.pop()
+        delegate?.didSaveExercise()
     }
 }
